@@ -1,0 +1,537 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		55FD6DDB1F1CF95200322633 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55FD6DDA1F1CF95200322633 /* AppDelegate.swift */; };
+		55FD6DDD1F1CF95200322633 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55FD6DDC1F1CF95200322633 /* ViewController.swift */; };
+		55FD6DE01F1CF95200322633 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 55FD6DDE1F1CF95200322633 /* Main.storyboard */; };
+		55FD6DE21F1CF95200322633 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 55FD6DE11F1CF95200322633 /* Assets.xcassets */; };
+		55FD6DE51F1CF95200322633 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 55FD6DE31F1CF95200322633 /* LaunchScreen.storyboard */; };
+		55FD6DF01F1CF95300322633 /* potipotiTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55FD6DEF1F1CF95300322633 /* potipotiTests.swift */; };
+		55FD6DFB1F1CF95300322633 /* potipotiUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55FD6DFA1F1CF95300322633 /* potipotiUITests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		55FD6DEC1F1CF95300322633 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 55FD6DCF1F1CF95200322633 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 55FD6DD61F1CF95200322633;
+			remoteInfo = potipoti;
+		};
+		55FD6DF71F1CF95300322633 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 55FD6DCF1F1CF95200322633 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 55FD6DD61F1CF95200322633;
+			remoteInfo = potipoti;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		55FD6DD71F1CF95200322633 /* potipoti.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = potipoti.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		55FD6DDA1F1CF95200322633 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		55FD6DDC1F1CF95200322633 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		55FD6DDF1F1CF95200322633 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		55FD6DE11F1CF95200322633 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		55FD6DE41F1CF95200322633 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		55FD6DE61F1CF95200322633 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		55FD6DEB1F1CF95300322633 /* potipotiTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = potipotiTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		55FD6DEF1F1CF95300322633 /* potipotiTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = potipotiTests.swift; sourceTree = "<group>"; };
+		55FD6DF11F1CF95300322633 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		55FD6DF61F1CF95300322633 /* potipotiUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = potipotiUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		55FD6DFA1F1CF95300322633 /* potipotiUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = potipotiUITests.swift; sourceTree = "<group>"; };
+		55FD6DFC1F1CF95300322633 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		55FD6DD41F1CF95200322633 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		55FD6DE81F1CF95300322633 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		55FD6DF31F1CF95300322633 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		55FD6DCE1F1CF95200322633 = {
+			isa = PBXGroup;
+			children = (
+				55FD6DD91F1CF95200322633 /* potipoti */,
+				55FD6DEE1F1CF95300322633 /* potipotiTests */,
+				55FD6DF91F1CF95300322633 /* potipotiUITests */,
+				55FD6DD81F1CF95200322633 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		55FD6DD81F1CF95200322633 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				55FD6DD71F1CF95200322633 /* potipoti.app */,
+				55FD6DEB1F1CF95300322633 /* potipotiTests.xctest */,
+				55FD6DF61F1CF95300322633 /* potipotiUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		55FD6DD91F1CF95200322633 /* potipoti */ = {
+			isa = PBXGroup;
+			children = (
+				55FD6DDA1F1CF95200322633 /* AppDelegate.swift */,
+				55FD6DDC1F1CF95200322633 /* ViewController.swift */,
+				55FD6DDE1F1CF95200322633 /* Main.storyboard */,
+				55FD6DE11F1CF95200322633 /* Assets.xcassets */,
+				55FD6DE31F1CF95200322633 /* LaunchScreen.storyboard */,
+				55FD6DE61F1CF95200322633 /* Info.plist */,
+			);
+			path = potipoti;
+			sourceTree = "<group>";
+		};
+		55FD6DEE1F1CF95300322633 /* potipotiTests */ = {
+			isa = PBXGroup;
+			children = (
+				55FD6DEF1F1CF95300322633 /* potipotiTests.swift */,
+				55FD6DF11F1CF95300322633 /* Info.plist */,
+			);
+			path = potipotiTests;
+			sourceTree = "<group>";
+		};
+		55FD6DF91F1CF95300322633 /* potipotiUITests */ = {
+			isa = PBXGroup;
+			children = (
+				55FD6DFA1F1CF95300322633 /* potipotiUITests.swift */,
+				55FD6DFC1F1CF95300322633 /* Info.plist */,
+			);
+			path = potipotiUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		55FD6DD61F1CF95200322633 /* potipoti */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 55FD6DFF1F1CF95300322633 /* Build configuration list for PBXNativeTarget "potipoti" */;
+			buildPhases = (
+				55FD6DD31F1CF95200322633 /* Sources */,
+				55FD6DD41F1CF95200322633 /* Frameworks */,
+				55FD6DD51F1CF95200322633 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = potipoti;
+			productName = potipoti;
+			productReference = 55FD6DD71F1CF95200322633 /* potipoti.app */;
+			productType = "com.apple.product-type.application";
+		};
+		55FD6DEA1F1CF95300322633 /* potipotiTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 55FD6E021F1CF95300322633 /* Build configuration list for PBXNativeTarget "potipotiTests" */;
+			buildPhases = (
+				55FD6DE71F1CF95300322633 /* Sources */,
+				55FD6DE81F1CF95300322633 /* Frameworks */,
+				55FD6DE91F1CF95300322633 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				55FD6DED1F1CF95300322633 /* PBXTargetDependency */,
+			);
+			name = potipotiTests;
+			productName = potipotiTests;
+			productReference = 55FD6DEB1F1CF95300322633 /* potipotiTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		55FD6DF51F1CF95300322633 /* potipotiUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 55FD6E051F1CF95300322633 /* Build configuration list for PBXNativeTarget "potipotiUITests" */;
+			buildPhases = (
+				55FD6DF21F1CF95300322633 /* Sources */,
+				55FD6DF31F1CF95300322633 /* Frameworks */,
+				55FD6DF41F1CF95300322633 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				55FD6DF81F1CF95300322633 /* PBXTargetDependency */,
+			);
+			name = potipotiUITests;
+			productName = potipotiUITests;
+			productReference = 55FD6DF61F1CF95300322633 /* potipotiUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		55FD6DCF1F1CF95200322633 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0830;
+				LastUpgradeCheck = 0830;
+				ORGANIZATIONNAME = "築山朋紀";
+				TargetAttributes = {
+					55FD6DD61F1CF95200322633 = {
+						CreatedOnToolsVersion = 8.3.3;
+						DevelopmentTeam = FJMPLD4D4X;
+						ProvisioningStyle = Automatic;
+					};
+					55FD6DEA1F1CF95300322633 = {
+						CreatedOnToolsVersion = 8.3.3;
+						DevelopmentTeam = FJMPLD4D4X;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 55FD6DD61F1CF95200322633;
+					};
+					55FD6DF51F1CF95300322633 = {
+						CreatedOnToolsVersion = 8.3.3;
+						DevelopmentTeam = FJMPLD4D4X;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 55FD6DD61F1CF95200322633;
+					};
+				};
+			};
+			buildConfigurationList = 55FD6DD21F1CF95200322633 /* Build configuration list for PBXProject "potipoti" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 55FD6DCE1F1CF95200322633;
+			productRefGroup = 55FD6DD81F1CF95200322633 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				55FD6DD61F1CF95200322633 /* potipoti */,
+				55FD6DEA1F1CF95300322633 /* potipotiTests */,
+				55FD6DF51F1CF95300322633 /* potipotiUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		55FD6DD51F1CF95200322633 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				55FD6DE51F1CF95200322633 /* LaunchScreen.storyboard in Resources */,
+				55FD6DE21F1CF95200322633 /* Assets.xcassets in Resources */,
+				55FD6DE01F1CF95200322633 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		55FD6DE91F1CF95300322633 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		55FD6DF41F1CF95300322633 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		55FD6DD31F1CF95200322633 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				55FD6DDD1F1CF95200322633 /* ViewController.swift in Sources */,
+				55FD6DDB1F1CF95200322633 /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		55FD6DE71F1CF95300322633 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				55FD6DF01F1CF95300322633 /* potipotiTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		55FD6DF21F1CF95300322633 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				55FD6DFB1F1CF95300322633 /* potipotiUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		55FD6DED1F1CF95300322633 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 55FD6DD61F1CF95200322633 /* potipoti */;
+			targetProxy = 55FD6DEC1F1CF95300322633 /* PBXContainerItemProxy */;
+		};
+		55FD6DF81F1CF95300322633 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 55FD6DD61F1CF95200322633 /* potipoti */;
+			targetProxy = 55FD6DF71F1CF95300322633 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		55FD6DDE1F1CF95200322633 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				55FD6DDF1F1CF95200322633 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		55FD6DE31F1CF95200322633 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				55FD6DE41F1CF95200322633 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		55FD6DFD1F1CF95300322633 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		55FD6DFE1F1CF95300322633 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		55FD6E001F1CF95300322633 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = FJMPLD4D4X;
+				INFOPLIST_FILE = potipoti/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.tomoki.potipoti;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Debug;
+		};
+		55FD6E011F1CF95300322633 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = FJMPLD4D4X;
+				INFOPLIST_FILE = potipoti/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.tomoki.potipoti;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
+		55FD6E031F1CF95300322633 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEVELOPMENT_TEAM = FJMPLD4D4X;
+				INFOPLIST_FILE = potipotiTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.tomoki.potipotiTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/potipoti.app/potipoti";
+			};
+			name = Debug;
+		};
+		55FD6E041F1CF95300322633 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEVELOPMENT_TEAM = FJMPLD4D4X;
+				INFOPLIST_FILE = potipotiTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.tomoki.potipotiTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/potipoti.app/potipoti";
+			};
+			name = Release;
+		};
+		55FD6E061F1CF95300322633 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				DEVELOPMENT_TEAM = FJMPLD4D4X;
+				INFOPLIST_FILE = potipotiUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.tomoki.potipotiUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_TARGET_NAME = potipoti;
+			};
+			name = Debug;
+		};
+		55FD6E071F1CF95300322633 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				DEVELOPMENT_TEAM = FJMPLD4D4X;
+				INFOPLIST_FILE = potipotiUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.tomoki.potipotiUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_TARGET_NAME = potipoti;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		55FD6DD21F1CF95200322633 /* Build configuration list for PBXProject "potipoti" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				55FD6DFD1F1CF95300322633 /* Debug */,
+				55FD6DFE1F1CF95300322633 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		55FD6DFF1F1CF95300322633 /* Build configuration list for PBXNativeTarget "potipoti" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				55FD6E001F1CF95300322633 /* Debug */,
+				55FD6E011F1CF95300322633 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		55FD6E021F1CF95300322633 /* Build configuration list for PBXNativeTarget "potipotiTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				55FD6E031F1CF95300322633 /* Debug */,
+				55FD6E041F1CF95300322633 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		55FD6E051F1CF95300322633 /* Build configuration list for PBXNativeTarget "potipotiUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				55FD6E061F1CF95300322633 /* Debug */,
+				55FD6E071F1CF95300322633 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 55FD6DCF1F1CF95200322633 /* Project object */;
+}
