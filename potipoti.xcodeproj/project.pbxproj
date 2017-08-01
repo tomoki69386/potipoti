@@ -7,13 +7,23 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0AD2B9A9640C4F31874E8CC2 /* Pods_potipotiUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8829AE6E13B0C5A21E43C3A3 /* Pods_potipotiUITests.framework */; };
+		55DA5F1D1F2B33F800EB689D /* newViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55DA5F1C1F2B33F800EB689D /* newViewController.swift */; };
+		55EF4FA61F2332B000233C2E /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55EF4FA51F2332B000233C2E /* LoginViewController.swift */; };
 		55FD6DDB1F1CF95200322633 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55FD6DDA1F1CF95200322633 /* AppDelegate.swift */; };
-		55FD6DDD1F1CF95200322633 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55FD6DDC1F1CF95200322633 /* ViewController.swift */; };
-		55FD6DE01F1CF95200322633 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 55FD6DDE1F1CF95200322633 /* Main.storyboard */; };
 		55FD6DE21F1CF95200322633 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 55FD6DE11F1CF95200322633 /* Assets.xcassets */; };
 		55FD6DE51F1CF95200322633 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 55FD6DE31F1CF95200322633 /* LaunchScreen.storyboard */; };
 		55FD6DF01F1CF95300322633 /* potipotiTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55FD6DEF1F1CF95300322633 /* potipotiTests.swift */; };
 		55FD6DFB1F1CF95300322633 /* potipotiUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55FD6DFA1F1CF95300322633 /* potipotiUITests.swift */; };
+		55FD6E0B1F1CFA7D00322633 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 55FD6E0A1F1CFA7D00322633 /* Main.storyboard */; };
+		55FD6E101F1CFA9600322633 /* TopViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55FD6E0C1F1CFA9600322633 /* TopViewController.swift */; };
+		55FD6E111F1CFA9600322633 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55FD6E0D1F1CFA9600322633 /* ViewController.swift */; };
+		55FD6E121F1CFA9600322633 /* ComViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55FD6E0E1F1CFA9600322633 /* ComViewController.swift */; };
+		55FD6E131F1CFA9600322633 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55FD6E0F1F1CFA9600322633 /* GameViewController.swift */; };
+		55FD6E151F1CFABC00322633 /* pvpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55FD6E141F1CFABC00322633 /* pvpViewController.swift */; };
+		55FD6E171F1CFEAB00322633 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 55FD6E161F1CFEAB00322633 /* GoogleService-Info.plist */; };
+		BDE1F648D0F1E5CFBB49728C /* Pods_potipoti.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C25FFFDE6FFE5F8A0D87EC6 /* Pods_potipoti.framework */; };
+		DC24525FCC92CEF1C166A1F8 /* Pods_potipotiTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 785F1D1E84E050C20A54A9C2 /* Pods_potipotiTests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -34,10 +44,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		05CB50E1532F8D143CD5F630 /* Pods-potipotiUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-potipotiUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-potipotiUITests/Pods-potipotiUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		4C25FFFDE6FFE5F8A0D87EC6 /* Pods_potipoti.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_potipoti.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		55DA5F1C1F2B33F800EB689D /* newViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = newViewController.swift; sourceTree = "<group>"; };
+		55EF4FA51F2332B000233C2E /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		55FD6DD71F1CF95200322633 /* potipoti.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = potipoti.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		55FD6DDA1F1CF95200322633 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		55FD6DDC1F1CF95200322633 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		55FD6DDF1F1CF95200322633 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		55FD6DE11F1CF95200322633 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		55FD6DE41F1CF95200322633 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		55FD6DE61F1CF95200322633 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -47,6 +59,20 @@
 		55FD6DF61F1CF95300322633 /* potipotiUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = potipotiUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		55FD6DFA1F1CF95300322633 /* potipotiUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = potipotiUITests.swift; sourceTree = "<group>"; };
 		55FD6DFC1F1CF95300322633 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		55FD6E0A1F1CFA7D00322633 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		55FD6E0C1F1CFA9600322633 /* TopViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TopViewController.swift; sourceTree = "<group>"; };
+		55FD6E0D1F1CFA9600322633 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		55FD6E0E1F1CFA9600322633 /* ComViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComViewController.swift; sourceTree = "<group>"; };
+		55FD6E0F1F1CFA9600322633 /* GameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
+		55FD6E141F1CFABC00322633 /* pvpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = pvpViewController.swift; sourceTree = "<group>"; };
+		55FD6E161F1CFEAB00322633 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		785F1D1E84E050C20A54A9C2 /* Pods_potipotiTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_potipotiTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		7B5A15674D90DBCC3EAE5EAB /* Pods-potipotiUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-potipotiUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-potipotiUITests/Pods-potipotiUITests.release.xcconfig"; sourceTree = "<group>"; };
+		8829AE6E13B0C5A21E43C3A3 /* Pods_potipotiUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_potipotiUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A9BBAF81B08412D2F3D55E32 /* Pods-potipotiTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-potipotiTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-potipotiTests/Pods-potipotiTests.debug.xcconfig"; sourceTree = "<group>"; };
+		B336A44F7C456364C69BB87B /* Pods-potipoti.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-potipoti.debug.xcconfig"; path = "Pods/Target Support Files/Pods-potipoti/Pods-potipoti.debug.xcconfig"; sourceTree = "<group>"; };
+		B91589D51E9DE14D15429104 /* Pods-potipoti.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-potipoti.release.xcconfig"; path = "Pods/Target Support Files/Pods-potipoti/Pods-potipoti.release.xcconfig"; sourceTree = "<group>"; };
+		FF885A6FFCA6CC8EBE33D3C9 /* Pods-potipotiTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-potipotiTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-potipotiTests/Pods-potipotiTests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,6 +80,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BDE1F648D0F1E5CFBB49728C /* Pods_potipoti.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -61,6 +88,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DC24525FCC92CEF1C166A1F8 /* Pods_potipotiTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -68,12 +96,26 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0AD2B9A9640C4F31874E8CC2 /* Pods_potipotiUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		42FDC6AD5718DBF7BFC99E49 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				B336A44F7C456364C69BB87B /* Pods-potipoti.debug.xcconfig */,
+				B91589D51E9DE14D15429104 /* Pods-potipoti.release.xcconfig */,
+				A9BBAF81B08412D2F3D55E32 /* Pods-potipotiTests.debug.xcconfig */,
+				FF885A6FFCA6CC8EBE33D3C9 /* Pods-potipotiTests.release.xcconfig */,
+				05CB50E1532F8D143CD5F630 /* Pods-potipotiUITests.debug.xcconfig */,
+				7B5A15674D90DBCC3EAE5EAB /* Pods-potipotiUITests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		55FD6DCE1F1CF95200322633 = {
 			isa = PBXGroup;
 			children = (
@@ -81,6 +123,8 @@
 				55FD6DEE1F1CF95300322633 /* potipotiTests */,
 				55FD6DF91F1CF95300322633 /* potipotiUITests */,
 				55FD6DD81F1CF95200322633 /* Products */,
+				42FDC6AD5718DBF7BFC99E49 /* Pods */,
+				BF38A0A36364975A986B9C88 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -97,12 +141,19 @@
 		55FD6DD91F1CF95200322633 /* potipoti */ = {
 			isa = PBXGroup;
 			children = (
-				55FD6DDA1F1CF95200322633 /* AppDelegate.swift */,
-				55FD6DDC1F1CF95200322633 /* ViewController.swift */,
-				55FD6DDE1F1CF95200322633 /* Main.storyboard */,
+				55DA5F1C1F2B33F800EB689D /* newViewController.swift */,
+				55EF4FA51F2332B000233C2E /* LoginViewController.swift */,
+				55FD6E141F1CFABC00322633 /* pvpViewController.swift */,
+				55FD6E0C1F1CFA9600322633 /* TopViewController.swift */,
+				55FD6E0D1F1CFA9600322633 /* ViewController.swift */,
+				55FD6E0E1F1CFA9600322633 /* ComViewController.swift */,
+				55FD6E0F1F1CFA9600322633 /* GameViewController.swift */,
+				55FD6E0A1F1CFA7D00322633 /* Main.storyboard */,
 				55FD6DE11F1CF95200322633 /* Assets.xcassets */,
+				55FD6DDA1F1CF95200322633 /* AppDelegate.swift */,
 				55FD6DE31F1CF95200322633 /* LaunchScreen.storyboard */,
 				55FD6DE61F1CF95200322633 /* Info.plist */,
+				55FD6E161F1CFEAB00322633 /* GoogleService-Info.plist */,
 			);
 			path = potipoti;
 			sourceTree = "<group>";
@@ -125,6 +176,16 @@
 			path = potipotiUITests;
 			sourceTree = "<group>";
 		};
+		BF38A0A36364975A986B9C88 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				4C25FFFDE6FFE5F8A0D87EC6 /* Pods_potipoti.framework */,
+				785F1D1E84E050C20A54A9C2 /* Pods_potipotiTests.framework */,
+				8829AE6E13B0C5A21E43C3A3 /* Pods_potipotiUITests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -132,9 +193,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 55FD6DFF1F1CF95300322633 /* Build configuration list for PBXNativeTarget "potipoti" */;
 			buildPhases = (
+				895DEFFCF858953E5E11F93D /* [CP] Check Pods Manifest.lock */,
 				55FD6DD31F1CF95200322633 /* Sources */,
 				55FD6DD41F1CF95200322633 /* Frameworks */,
 				55FD6DD51F1CF95200322633 /* Resources */,
+				44CB731FC8D2B54D7E2207A6 /* [CP] Embed Pods Frameworks */,
+				90B59B910AA20587FBDFD0B4 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -149,9 +213,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 55FD6E021F1CF95300322633 /* Build configuration list for PBXNativeTarget "potipotiTests" */;
 			buildPhases = (
+				B4D486D191E6D7755B50ADC5 /* [CP] Check Pods Manifest.lock */,
 				55FD6DE71F1CF95300322633 /* Sources */,
 				55FD6DE81F1CF95300322633 /* Frameworks */,
 				55FD6DE91F1CF95300322633 /* Resources */,
+				D1D5D28E616FAC9DBED42D7A /* [CP] Embed Pods Frameworks */,
+				55BCEFFC76156D0EF1BCA6FE /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -167,9 +234,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 55FD6E051F1CF95300322633 /* Build configuration list for PBXNativeTarget "potipotiUITests" */;
 			buildPhases = (
+				3B442400D26144310BA57A1B /* [CP] Check Pods Manifest.lock */,
 				55FD6DF21F1CF95300322633 /* Sources */,
 				55FD6DF31F1CF95300322633 /* Frameworks */,
 				55FD6DF41F1CF95300322633 /* Resources */,
+				F19F586660BAE3EFED72B8E7 /* [CP] Embed Pods Frameworks */,
+				E8E9588FA7EB759EC52F04C4 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -236,8 +306,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				55FD6DE51F1CF95200322633 /* LaunchScreen.storyboard in Resources */,
+				55FD6E171F1CFEAB00322633 /* GoogleService-Info.plist in Resources */,
 				55FD6DE21F1CF95200322633 /* Assets.xcassets in Resources */,
-				55FD6DE01F1CF95200322633 /* Main.storyboard in Resources */,
+				55FD6E0B1F1CFA7D00322633 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -257,12 +328,156 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		3B442400D26144310BA57A1B /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		44CB731FC8D2B54D7E2207A6 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-potipoti/Pods-potipoti-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		55BCEFFC76156D0EF1BCA6FE /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-potipotiTests/Pods-potipotiTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		895DEFFCF858953E5E11F93D /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		90B59B910AA20587FBDFD0B4 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-potipoti/Pods-potipoti-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		B4D486D191E6D7755B50ADC5 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		D1D5D28E616FAC9DBED42D7A /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-potipotiTests/Pods-potipotiTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E8E9588FA7EB759EC52F04C4 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-potipotiUITests/Pods-potipotiUITests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F19F586660BAE3EFED72B8E7 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-potipotiUITests/Pods-potipotiUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		55FD6DD31F1CF95200322633 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				55FD6DDD1F1CF95200322633 /* ViewController.swift in Sources */,
+				55EF4FA61F2332B000233C2E /* LoginViewController.swift in Sources */,
+				55FD6E131F1CFA9600322633 /* GameViewController.swift in Sources */,
+				55FD6E121F1CFA9600322633 /* ComViewController.swift in Sources */,
+				55DA5F1D1F2B33F800EB689D /* newViewController.swift in Sources */,
+				55FD6E111F1CFA9600322633 /* ViewController.swift in Sources */,
+				55FD6E151F1CFABC00322633 /* pvpViewController.swift in Sources */,
+				55FD6E101F1CFA9600322633 /* TopViewController.swift in Sources */,
 				55FD6DDB1F1CF95200322633 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -299,14 +514,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		55FD6DDE1F1CF95200322633 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				55FD6DDF1F1CF95200322633 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		55FD6DE31F1CF95200322633 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -413,10 +620,12 @@
 		};
 		55FD6E001F1CF95300322633 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B336A44F7C456364C69BB87B /* Pods-potipoti.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = FJMPLD4D4X;
 				INFOPLIST_FILE = potipoti/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.tomoki.potipoti;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -426,10 +635,12 @@
 		};
 		55FD6E011F1CF95300322633 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B91589D51E9DE14D15429104 /* Pods-potipoti.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = FJMPLD4D4X;
 				INFOPLIST_FILE = potipoti/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.tomoki.potipoti;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -439,6 +650,7 @@
 		};
 		55FD6E031F1CF95300322633 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A9BBAF81B08412D2F3D55E32 /* Pods-potipotiTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -454,6 +666,7 @@
 		};
 		55FD6E041F1CF95300322633 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = FF885A6FFCA6CC8EBE33D3C9 /* Pods-potipotiTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -469,6 +682,7 @@
 		};
 		55FD6E061F1CF95300322633 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 05CB50E1532F8D143CD5F630 /* Pods-potipotiUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				DEVELOPMENT_TEAM = FJMPLD4D4X;
@@ -483,6 +697,7 @@
 		};
 		55FD6E071F1CF95300322633 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7B5A15674D90DBCC3EAE5EAB /* Pods-potipotiUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				DEVELOPMENT_TEAM = FJMPLD4D4X;
@@ -514,6 +729,7 @@
 				55FD6E011F1CF95300322633 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		55FD6E021F1CF95300322633 /* Build configuration list for PBXNativeTarget "potipotiTests" */ = {
 			isa = XCConfigurationList;
@@ -522,6 +738,7 @@
 				55FD6E041F1CF95300322633 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		55FD6E051F1CF95300322633 /* Build configuration list for PBXNativeTarget "potipotiUITests" */ = {
 			isa = XCConfigurationList;
@@ -530,6 +747,7 @@
 				55FD6E071F1CF95300322633 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
