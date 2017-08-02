@@ -966,7 +966,7 @@
         <!--Pvp View Controller-->
         <scene sceneID="LW4-0h-Tdo">
             <objects>
-                <viewController id="3Rg-D8-0cP" customClass="pvpViewController" customModule="potipoti" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="topvp" id="3Rg-D8-0cP" customClass="pvpViewController" customModule="potipoti" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="In1-wQ-nlu"/>
                         <viewControllerLayoutGuide type="bottom" id="1U1-YR-RE0"/>

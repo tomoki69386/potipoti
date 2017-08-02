@@ -35,6 +35,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     }
     
     @IBAction func Login() {
+        print("ログインボタンを押した")
         Auth.auth().signIn(withEmail: emailTextField.text!, password: passwordTextField.text!, completion: { user, error in
             if let error = error {
                 print("サインインできません \(error)")
@@ -55,12 +56,12 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     func transitionToLogin() {
         //self.performSegue(withIdentifier: "toLogin", sender: self)
         let storyboard: UIStoryboard = self.storyboard!
-        let nextView = storyboard.instantiateViewController(withIdentifier: "topvp") as! LoginViewController
+        let nextView = storyboard.instantiateViewController(withIdentifier: "topvp") as! pvpViewController
         self.present(nextView, animated: true, completion: nil)
     }
 
     
     func transitionToView()  {
-        self.performSegue(withIdentifier: "topvp", sender: self)
+        self.performSegue(withIdentifier: "topvp", sender: nil)
     }
 }
