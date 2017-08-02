@@ -900,7 +900,6 @@
                         <outlet property="NameTextField" destination="iUn-dW-C42" id="KNE-Do-2HY"/>
                         <outlet property="emailTextField" destination="bZQ-2T-m3q" id="tyZ-CQ-1Tp"/>
                         <outlet property="passwordTextField" destination="ItY-aj-bv1" id="7so-1x-hpe"/>
-                        <segue destination="3Rg-D8-0cP" kind="push" identifier="topvp" id="iKm-qk-B2i"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8CH-1a-DzL" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -920,7 +919,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="ユーザーネーム" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="tdC-j2-JyA">
-                                <rect key="frame" x="80" y="81" width="160" height="30"/>
+                                <rect key="frame" x="79" y="87" width="160" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -934,19 +933,25 @@
                                 <textInputTraits key="textInputTraits" keyboardType="emailAddress"/>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="password(6文字以上)" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="1Ys-cR-msk">
-                                <rect key="frame" x="80" y="175" width="160" height="30"/>
+                                <rect key="frame" x="80" y="163" width="160" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="password(確認)" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Dy9-kH-1tQ">
+                                <rect key="frame" x="79" y="201" width="163" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fre-rx-Htl">
-                                <rect key="frame" x="126" y="245" width="68" height="30"/>
+                                <rect key="frame" x="126" y="269" width="68" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="登録"/>
                                 <connections>
                                     <action selector="hoge" destination="oB9-v8-GcS" eventType="touchUpInside" id="ENR-jQ-Bns"/>
-                                    <segue destination="3Rg-D8-0cP" kind="push" identifier="topvp" id="fO1-Yz-ZsY"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -1255,7 +1260,4 @@
             <point key="canvasLocation" x="743" y="1401"/>
         </scene>
     </scenes>
-    <inferredMetricsTieBreakers>
-        <segue reference="iKm-qk-B2i"/>
-    </inferredMetricsTieBreakers>
 </document>
