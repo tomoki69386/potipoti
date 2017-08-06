@@ -45,17 +45,17 @@ class newViewController: UIViewController, UITextFieldDelegate {
         
         if pw == pw2 { //パスワードが一致したらユーザーを作る処理に移る
             
-            Auth.auth().createUser(withEmail: email!, password: pw!, completion: { user, error in
+            Auth.auth().createUser(withEmail: email!, password: pw!, completion: { (user:User?, error:NSError?) in
                 if let error = error {
-                    print("ユーザーを作れませんでした \(error)")
+                    print("Creating the user failed! \(error)")
                     return
                 }
                 
                 if let user = user {
-                    print("user : \(user.email!)のユーザーを作成しました")
+                    print("user : \(String(describing: user.email)) has been created successfully.")
                     self.transitionTopvp()
                 }
-            })
+            } as? AuthResultCallback)
         }else { //パスワードが一致しなかったらここを通る
             print("パスワードが一致しません")
         }
