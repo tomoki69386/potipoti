@@ -906,6 +906,44 @@
             </objects>
             <point key="canvasLocation" x="50.625" y="1397.5352112676057"/>
         </scene>
+        <!--Room View Controller-->
+        <scene sceneID="13l-nr-rYT">
+            <objects>
+                <viewController storyboardIdentifier="Room" id="N6I-ue-Q0E" customClass="RoomViewController" customModule="potipoti" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="37j-Kv-Qlj"/>
+                        <viewControllerLayoutGuide type="bottom" id="bw5-Hl-h2U"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="C49-7M-Mpo">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="fwB-df-soD">
+                                <rect key="frame" x="0.0" y="20" width="320" height="548"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Mycell" id="GEz-4g-PxR">
+                                        <rect key="frame" x="0.0" y="28" width="320" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="GEz-4g-PxR" id="FME-mO-n3k">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <connections>
+                        <outlet property="tableView" destination="fwB-df-soD" id="NdH-jJ-RAt"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="WDG-iV-bGI" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="742.5" y="1398.5915492957747"/>
+        </scene>
         <!--New View Controller-->
         <scene sceneID="o67-72-JQL">
             <objects>
@@ -962,6 +1000,7 @@
                         <outlet property="NameTextField" destination="tdC-j2-JyA" id="vvV-mM-dcE"/>
                         <outlet property="emailTextField" destination="zia-ID-NDW" id="WLZ-rK-m3J"/>
                         <outlet property="passwordTextField" destination="1Ys-cR-msk" id="ZPq-oy-y7Z"/>
+                        <outlet property="passwordTextField2" destination="Dy9-kH-1tQ" id="i1W-U6-QJL"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RAc-hC-uqQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1257,7 +1296,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LqA-H8-Z3F" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="743" y="1401"/>
+            <point key="canvasLocation" x="1937" y="1399"/>
         </scene>
     </scenes>
 </document>

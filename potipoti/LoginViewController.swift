@@ -12,8 +12,6 @@ import FirebaseAuth
 
 class LoginViewController: UIViewController, UITextFieldDelegate {
     
-    var defaults: UserDefaults = UserDefaults.standard
-    
     @IBOutlet var NameTextField: UITextField!
     @IBOutlet var passwordTextField: UITextField!
     @IBOutlet var emailTextField: UITextField!
@@ -25,25 +23,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         passwordTextField.delegate = self
         emailTextField.delegate = self
         passwordTextField.isSecureTextEntry  = true // 文字を非表示
-        
-        if (UserDefaults.standard.object(forKey: "image") != nil) && (UserDefaults.standard.object(forKey: "pw") != nil) {
-            print("データ有り")
-            
-            let Email = defaults.string(forKey: "email")
-            let Pw = defaults.string(forKey: "pw")
-            
-            Auth.auth().createUser(withEmail: Email!, password: Pw!, completion: { user, error in
-                if let error = error {
-                    print("サインインできません \(error)")
-                }
-                if let user = user {
-                    print("user : \(user.email!)でサインインできました")
-                    self.transitionToLogin()
-                }
-            })
-        }else {
-            print("ユーザーデフォルトにデータがない")
-        }
     }
     
     //Returmキーで閉じる
@@ -63,9 +42,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
             }
             if let user = user {
                 print("user : \(user.email!)でサインインできました")
-                
-                self.defaults.set(self.emailTextField.text, forKey: "email")
-                self.defaults.set(self.passwordTextField.text, forKey: "pw")
                 
                 self.transitionToLogin()
             }

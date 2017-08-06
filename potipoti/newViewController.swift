@@ -39,23 +39,21 @@ class newViewController: UIViewController, UITextFieldDelegate {
     }
     
     @IBAction func hoge() {
-        let email = emailTextField.text
-        let pw = passwordTextField.text
+        let pw = passwordTextField.text 
         let pw2 = passwordTextField2.text
         
         if pw == pw2 { //パスワードが一致したらユーザーを作る処理に移る
             
-            Auth.auth().createUser(withEmail: email!, password: pw!, completion: { (user:User?, error:NSError?) in
+            Auth.auth().createUser(withEmail: emailTextField.text!, password: passwordTextField.text!, completion: { (user, error) in
                 if let error = error {
                     print("Creating the user failed! \(error)")
                     return
                 }
-                
                 if let user = user {
                     print("user : \(String(describing: user.email)) has been created successfully.")
                     self.transitionTopvp()
                 }
-            } as? AuthResultCallback)
+            })
         }else { //パスワードが一致しなかったらここを通る
             print("パスワードが一致しません")
         }
