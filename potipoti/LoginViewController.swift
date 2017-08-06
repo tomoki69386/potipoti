@@ -40,9 +40,11 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
             if let error = error {
                 print("サインインできません \(error)")
             }
+            
             if let user = user {
                 print("user : \(user.email!)でサインインできました")
                 
+                //PVPViewに画面遷移
                 self.transitionToLogin()
             }
         })
@@ -51,6 +53,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     @IBAction func pw_on_off() {
         if passwordTextField.isSecureTextEntry == true {
             passwordTextField.isSecureTextEntry = false
+            
         }else if passwordTextField.isSecureTextEntry == false {
             passwordTextField.isSecureTextEntry = true
         }

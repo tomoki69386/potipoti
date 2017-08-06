@@ -9,13 +9,16 @@
 import UIKit
 import Firebase
 import FirebaseAuth
+import FirebaseDatabase
 
 class newViewController: UIViewController, UITextFieldDelegate {
     
     @IBOutlet var NameTextField: UITextField!
-    @IBOutlet var passwordTextField: UITextField!
     @IBOutlet var emailTextField: UITextField!
+    @IBOutlet var passwordTextField: UITextField!
     @IBOutlet var passwordTextField2: UITextField!
+    
+    var emailRef:DatabaseReference! //Firebase
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,7 +30,7 @@ class newViewController: UIViewController, UITextFieldDelegate {
         passwordTextField2.isSecureTextEntry = true //文字を非表示に
         passwordTextField.isSecureTextEntry  = true // 文字を非表示に
         
-        // Do any additional setup after loading the view.
+        emailRef = Database.database().reference()
     }
     
     //Returmキーで閉じる
@@ -35,15 +38,15 @@ class newViewController: UIViewController, UITextFieldDelegate {
         emailTextField.resignFirstResponder()
         passwordTextField.resignFirstResponder()
         NameTextField.resignFirstResponder()
+        passwordTextField2.resignFirstResponder()
         return true
     }
     
     @IBAction func hoge() {
-        let pw = passwordTextField.text 
+        let pw = passwordTextField.text
         let pw2 = passwordTextField2.text
         
         if pw == pw2 { //パスワードが一致したらユーザーを作る処理に移る
-            
             Auth.auth().createUser(withEmail: emailTextField.text!, password: passwordTextField.text!, completion: { (user, error) in
                 if let error = error {
                     print("Creating the user failed! \(error)")
@@ -51,6 +54,8 @@ class newViewController: UIViewController, UITextFieldDelegate {
                 }
                 if let user = user {
                     print("user : \(String(describing: user.email)) has been created successfully.")
+                    
+                    //画面遷移
                     self.transitionTopvp()
                 }
             })
@@ -59,15 +64,20 @@ class newViewController: UIViewController, UITextFieldDelegate {
         }
     }
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    func fuga() {
+        //いおりデータサンプル
+        //DBRef.child("falseband/\(sendoutInt+1)/Vo").updateChildValues(["Name": vocalBandNameArray[sendoutInt]]
     }
     
+    //PVPViewに画面遷移
     func transitionTopvp() {
         //self.performSegue(withIdentifier: "toLogin", sender: self)
         let storyboard: UIStoryboard = self.storyboard!
         let nextView = storyboard.instantiateViewController(withIdentifier: "topvp") as! pvpViewController
         self.present(nextView, animated: true, completion: nil)
+    }
+    
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
     }
 }

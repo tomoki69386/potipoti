@@ -246,7 +246,7 @@ class pvpViewController: UIViewController {
         switch sender.tag {
         case 0:
             let messageDate = ["number" : "0"]
-            databaseRef.childByAutoId().setValue(messageDate)
+            databaseRef.childByAutoId().setValue(messageDate) 
         case 1:
             let messageDate = ["number" : "1"]
             databaseRef.childByAutoId().setValue(messageDate)
