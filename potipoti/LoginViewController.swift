@@ -9,61 +9,65 @@
 import UIKit
 import Firebase
 import FirebaseAuth
+import SVProgressHUD
 
 class LoginViewController: UIViewController, UITextFieldDelegate {
     
-    @IBOutlet var NameTextField: UITextField!
     @IBOutlet var passwordTextField: UITextField!
     @IBOutlet var emailTextField: UITextField!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        NameTextField.delegate = self
         passwordTextField.delegate = self
         emailTextField.delegate = self
         passwordTextField.isSecureTextEntry  = true // 文字を非表示
+        
+        emailTextField.layer.borderWidth = 2
+        passwordTextField.layer.borderWidth = 2
     }
     
     //Returmキーで閉じる
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         emailTextField.resignFirstResponder()
         passwordTextField.resignFirstResponder()
-        NameTextField.resignFirstResponder()
         return true
     }
     
-    @IBAction func Login() {
-        print("ログインボタンを押した")
-        
-        Auth.auth().signIn(withEmail: emailTextField.text!, password: passwordTextField.text!, completion: { user, error in
-            if let error = error {
-                print("サインインできません \(error)")
+    @IBAction func pushSigninButton(_ sender: Any) {
+        if let email = emailTextField.text,
+            let password = passwordTextField.text {
+            if email.characters.isEmpty {
+                SVProgressHUD.showError(withStatus: "Oops!")
+                emailTextField.layer.borderColor = UIColor.red.cgColor
+                return
             }
-            
-            if let user = user {
-                print("user : \(user.email!)でサインインできました")
-                
-                //PVPViewに画面遷移
-                self.transitionToLogin()
+            if password.characters.isEmpty {
+                SVProgressHUD.showError(withStatus: "Oops!")
+                passwordTextField.layer.borderColor = UIColor.red.cgColor
+                return
             }
-        })
-    }
-    
-    @IBAction func pw_on_off() {
-        if passwordTextField.isSecureTextEntry == true {
-            passwordTextField.isSecureTextEntry = false
+            emailTextField.layer.borderColor = UIColor.black.cgColor
+            passwordTextField.layer.borderColor = UIColor.black.cgColor
             
-        }else if passwordTextField.isSecureTextEntry == false {
-            passwordTextField.isSecureTextEntry = true
+            SVProgressHUD.show()
+            
+            // ログイン
+            Auth.auth().signIn(withEmail: email, password: password) { user, error in
+                if let error = error {
+                    print(error)
+                    SVProgressHUD.showError(withStatus: "Error!")
+                    return
+                } else {
+                    SVProgressHUD.showSuccess(withStatus: "Success!")
+                    let when = DispatchTime.now() + 2
+                    DispatchQueue.main.asyncAfter(deadline: when) {
+                        self.present((self.storyboard?.instantiateViewController(withIdentifier: "TabBarController"))!,
+                                     animated: true,
+                                     completion: nil)
+                    }
+                }
+            }
         }
-    }
-    
-    //pvp画面への遷移
-    func transitionToLogin() {
-        //self.performSegue(withIdentifier: "toLogin", sender: self)
-        let storyboard: UIStoryboard = self.storyboard!
-        let nextView = storyboard.instantiateViewController(withIdentifier: "topvp") as! pvpViewController
-        self.present(nextView, animated: true, completion: nil)
     }
 }

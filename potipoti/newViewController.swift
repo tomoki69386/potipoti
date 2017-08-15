@@ -10,6 +10,7 @@ import UIKit
 import Firebase
 import FirebaseAuth
 import FirebaseDatabase
+import SVProgressHUD
 
 class newViewController: UIViewController, UITextFieldDelegate {
     
@@ -30,6 +31,12 @@ class newViewController: UIViewController, UITextFieldDelegate {
         passwordTextField2.isSecureTextEntry = true //文字を非表示に
         passwordTextField.isSecureTextEntry  = true // 文字を非表示に
         
+        //枠を黒くする
+        NameTextField.layer.borderWidth = 2
+        passwordTextField.layer.borderWidth = 2
+        emailTextField.layer.borderWidth = 2
+        passwordTextField2.layer.borderWidth = 2
+        
         emailRef = Database.database().reference()
     }
     
@@ -42,25 +49,65 @@ class newViewController: UIViewController, UITextFieldDelegate {
         return true
     }
     
-    @IBAction func hoge() {
-        let pw = passwordTextField.text
-        let pw2 = passwordTextField2.text
+    //ユーザー作成
+    @IBAction func new(_ sender: Any) {
         
-        if pw == pw2 { //パスワードが一致したらユーザーを作る処理に移る
-            Auth.auth().createUser(withEmail: emailTextField.text!, password: passwordTextField.text!, completion: { (user, error) in
+        if let username = NameTextField.text,
+            let email = emailTextField.text,
+            let password = passwordTextField.text {
+            if username.characters.isEmpty {
+                SVProgressHUD.showError(withStatus: "Oops!")
+                NameTextField.layer.borderColor = UIColor.red.cgColor
+                return
+            }
+            if email.characters.isEmpty {
+                SVProgressHUD.showError(withStatus: "Oops!")
+                emailTextField.layer.borderColor = UIColor.red.cgColor
+                return
+            }
+            if password.characters.isEmpty {
+                SVProgressHUD.showError(withStatus: "Oops!")
+                passwordTextField.layer.borderColor = UIColor.red.cgColor
+                return
+            }
+            NameTextField.layer.borderColor = UIColor.black.cgColor
+            emailTextField.layer.borderColor = UIColor.black.cgColor
+            passwordTextField.layer.borderColor = UIColor.black.cgColor
+            
+            SVProgressHUD.show()
+            
+            // ユーザー作成
+            Auth.auth().createUser(withEmail: email, password: password) { user, error in
                 if let error = error {
-                    print("Creating the user failed! \(error)")
+                    print(error)
+                    SVProgressHUD.showError(withStatus: "Error!")
                     return
                 }
+                // ユーザーネームを設定
+                let user = Auth.auth().currentUser
                 if let user = user {
-                    print("user : \(String(describing: user.email)) has been created successfully.")
-                    
-                    //画面遷移
-                    self.transitionTopvp()
+                    let changeRequest = user.createProfileChangeRequest()
+                    changeRequest.displayName = username
+                    changeRequest.commitChanges { error in
+                        if let error = error {
+                            print(error)
+                            SVProgressHUD.showError(withStatus: "Error!")
+                            return
+                        }
+                        SVProgressHUD.showSuccess(withStatus: "Success!")
+                        
+                        let when = DispatchTime.now() + 2
+                        DispatchQueue.main.asyncAfter(deadline: when) {
+                            self.present((self.storyboard?.instantiateViewController(withIdentifier: "TabBarController"))!,
+                                         animated: true,
+                                         completion: nil)
+                        }
+                    }
+                } else {
+                    print("Error - User not found")
                 }
-            })
-        }else { //パスワードが一致しなかったらここを通る
-            print("パスワードが一致しません")
+                SVProgressHUD.dismiss()
+            }
         }
     }
     
@@ -71,9 +118,8 @@ class newViewController: UIViewController, UITextFieldDelegate {
     
     //PVPViewに画面遷移
     func transitionTopvp() {
-        //self.performSegue(withIdentifier: "toLogin", sender: self)
         let storyboard: UIStoryboard = self.storyboard!
-        let nextView = storyboard.instantiateViewController(withIdentifier: "topvp") as! pvpViewController
+        let nextView = storyboard.instantiateViewController(withIdentifier: "Profile") as! ProfileViewController
         self.present(nextView, animated: true, completion: nil)
     }
     
