@@ -8,11 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		0AD2B9A9640C4F31874E8CC2 /* Pods_potipotiUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8829AE6E13B0C5A21E43C3A3 /* Pods_potipotiUITests.framework */; };
-		554C1EE01F36B982009F6E37 /* roomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 554C1EDF1F36B982009F6E37 /* roomViewController.swift */; };
 		55CB56031F3F163800F6F9B2 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55CB56021F3F163800F6F9B2 /* ProfileViewController.swift */; };
-		55CB563F1F43334600F6F9B2 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55CB563E1F43334600F6F9B2 /* HomeViewController.swift */; };
 		55CB56411F43345700F6F9B2 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55CB56401F43345700F6F9B2 /* TabBarController.swift */; };
 		55CB56431F436EC200F6F9B2 /* Profile_EditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55CB56421F436EC200F6F9B2 /* Profile_EditViewController.swift */; };
+		55CB56451F442D5400F6F9B2 /* PlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55CB56441F442D5400F6F9B2 /* PlayerViewController.swift */; };
 		55DA5F1D1F2B33F800EB689D /* newViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55DA5F1C1F2B33F800EB689D /* newViewController.swift */; };
 		55EF4FA61F2332B000233C2E /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55EF4FA51F2332B000233C2E /* LoginViewController.swift */; };
 		55FD6DDB1F1CF95200322633 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55FD6DDA1F1CF95200322633 /* AppDelegate.swift */; };
@@ -51,11 +50,10 @@
 /* Begin PBXFileReference section */
 		05CB50E1532F8D143CD5F630 /* Pods-potipotiUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-potipotiUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-potipotiUITests/Pods-potipotiUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		4C25FFFDE6FFE5F8A0D87EC6 /* Pods_potipoti.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_potipoti.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		554C1EDF1F36B982009F6E37 /* roomViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = roomViewController.swift; sourceTree = "<group>"; };
 		55CB56021F3F163800F6F9B2 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
-		55CB563E1F43334600F6F9B2 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		55CB56401F43345700F6F9B2 /* TabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		55CB56421F436EC200F6F9B2 /* Profile_EditViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Profile_EditViewController.swift; sourceTree = "<group>"; };
+		55CB56441F442D5400F6F9B2 /* PlayerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerViewController.swift; sourceTree = "<group>"; };
 		55DA5F1C1F2B33F800EB689D /* newViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = newViewController.swift; sourceTree = "<group>"; };
 		55EF4FA51F2332B000233C2E /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		55FD6DD71F1CF95200322633 /* potipoti.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = potipoti.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -151,11 +149,10 @@
 		55FD6DD91F1CF95200322633 /* potipoti */ = {
 			isa = PBXGroup;
 			children = (
+				55CB56441F442D5400F6F9B2 /* PlayerViewController.swift */,
 				55CB56421F436EC200F6F9B2 /* Profile_EditViewController.swift */,
 				55CB56401F43345700F6F9B2 /* TabBarController.swift */,
-				55CB563E1F43334600F6F9B2 /* HomeViewController.swift */,
 				55CB56021F3F163800F6F9B2 /* ProfileViewController.swift */,
-				554C1EDF1F36B982009F6E37 /* roomViewController.swift */,
 				55DA5F1C1F2B33F800EB689D /* newViewController.swift */,
 				55EF4FA51F2332B000233C2E /* LoginViewController.swift */,
 				55FD6E141F1CFABC00322633 /* pvpViewController.swift */,
@@ -491,9 +488,8 @@
 				55CB56031F3F163800F6F9B2 /* ProfileViewController.swift in Sources */,
 				55FD6E121F1CFA9600322633 /* ComViewController.swift in Sources */,
 				55DA5F1D1F2B33F800EB689D /* newViewController.swift in Sources */,
-				554C1EE01F36B982009F6E37 /* roomViewController.swift in Sources */,
+				55CB56451F442D5400F6F9B2 /* PlayerViewController.swift in Sources */,
 				55FD6E111F1CFA9600322633 /* ViewController.swift in Sources */,
-				55CB563F1F43334600F6F9B2 /* HomeViewController.swift in Sources */,
 				55CB56431F436EC200F6F9B2 /* Profile_EditViewController.swift in Sources */,
 				55FD6E151F1CFABC00322633 /* pvpViewController.swift in Sources */,
 				55CB56411F43345700F6F9B2 /* TabBarController.swift in Sources */,

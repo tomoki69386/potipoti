@@ -20,10 +20,12 @@ class newViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet var passwordTextField2: UITextField!
     
     var emailRef:DatabaseReference! //Firebase
+    let userDefault = UserDefaults.standard //アプリをDLしてから一度もuserを作成したことがないかを判断するために使う
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        //デリゲートのセット
         NameTextField.delegate = self
         passwordTextField.delegate = self
         emailTextField.delegate = self
@@ -49,9 +51,9 @@ class newViewController: UIViewController, UITextFieldDelegate {
         return true
     }
     
-    //ユーザー作成
+    //ユーザー作成と作成時のアニメーション
     @IBAction func new(_ sender: Any) {
-        
+
         if let username = NameTextField.text,
             let email = emailTextField.text,
             let password = passwordTextField.text {
@@ -92,11 +94,18 @@ class newViewController: UIViewController, UITextFieldDelegate {
                         if let error = error {
                             print(error)
                             SVProgressHUD.showError(withStatus: "Error!")
+                            //アカウントの作成に失敗
                             return
                         }
+                        //アカウント作成成功時に処理する
                         SVProgressHUD.showSuccess(withStatus: "Success!")
                         
+                        //初めてuserを作成したことを伝える
+                        self.userDefault.set(false, forKey: "firstLaunch")
+                        
+                        //2秒の間待つ
                         let when = DispatchTime.now() + 2
+                        //画面遷移
                         DispatchQueue.main.asyncAfter(deadline: when) {
                             self.present((self.storyboard?.instantiateViewController(withIdentifier: "TabBarController"))!,
                                          animated: true,
@@ -112,15 +121,9 @@ class newViewController: UIViewController, UITextFieldDelegate {
     }
     
     func fuga() {
+        //多分使わない
         //いおりデータサンプル
         //DBRef.child("falseband/\(sendoutInt+1)/Vo").updateChildValues(["Name": vocalBandNameArray[sendoutInt]]
-    }
-    
-    //PVPViewに画面遷移
-    func transitionTopvp() {
-        let storyboard: UIStoryboard = self.storyboard!
-        let nextView = storyboard.instantiateViewController(withIdentifier: "Profile") as! ProfileViewController
-        self.present(nextView, animated: true, completion: nil)
     }
     
     override func didReceiveMemoryWarning() {

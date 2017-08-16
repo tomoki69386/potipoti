@@ -10,6 +10,7 @@ target 'potipoti' do
   pod 'Firebase/Auth'
   pod 'Firebase/Storage'
   pod 'SVProgressHUD'
+  pod 'FirebaseUI/Storage', '~> 0.6'
 
   # Pods for potipoti
 

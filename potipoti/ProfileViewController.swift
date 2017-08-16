@@ -20,7 +20,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     @IBOutlet var button1: UIButton!
     @IBOutlet var TableView: UITableView!
     
-    let Array = ["情報","Top画面に戻る","アカウント削除","ログアウト"]
+    let Array = ["hoge","fuga","アカウント削除","ログアウト"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,6 +33,34 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         button1.layer.cornerRadius = 5
         
         TableView.delegate = self
+        
+    }
+    
+    //画面を開いたとき
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        print("viewWillAppearを処理する")
+        
+        let user = Auth.auth().currentUser
+        let uid = user?.uid
+        
+        let storage = Storage.storage()
+        let storageRef = storage.reference(forURL: "gs://potipoti-e1d0e.appspot.com/image")
+        
+        // Create a reference to the file you want to download
+        let islandRef = storageRef.child("\(uid).jpg")
+        
+        // Download in memory with a maximum allowed size of 1MB (1 * 1024 * 1024 bytes)
+        islandRef.getData(maxSize: 50 * 1024 * 1024) { (data, error) -> Void in
+            if (error != nil) {
+                // Uh-oh, an error occurred!
+                print(error)
+            } else {
+                // Data for "images/island.jpg" is returned
+                self.ImageView.image = UIImage(data: data!)
+                print("imageを表示した")
+            }
+        }
     }
     
     /// セルの個数を指定するデリゲートメソッド（必須）
@@ -56,54 +84,33 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         if indexPath.row == 0 {
-            print("情報")
+            //仮
+            print("hoge")
         }else if indexPath.row == 1 {
-            self.To_Top()
+            print("fuga")
         }else if indexPath.row == 2 {
             //アカウント削除
             self.user_delete()
-            
         }else if indexPath.row == 3 {
             //ログアウト
             self.signOut()
         }
-        
-    }
-    
-    //top画面に戻る+サインアウト
-    func To_Top() {
-        print("サインアウトボタンを押した")
-        let firebaseAuth = Auth.auth()
-        
-        do {
-            try firebaseAuth.signOut()
-            print("サインアウトに成功しました")
-            //画面遷移
-            let storyboard: UIStoryboard = self.storyboard!
-            let nextView = storyboard.instantiateViewController(withIdentifier: "TopViewController") as! TopViewController
-            self.present(nextView, animated: true, completion: nil)
-            
-        } catch let signOutError as NSError {
-            print ("サインアウト時にerrorが発生しました",signOutError)
-        }
-
     }
     
     //サインアウトのメソッド
     func signOut() {
         print("サインアウトボタンを押した")
         let firebaseAuth = Auth.auth()
-        
         do {
             try firebaseAuth.signOut()
-            print("サインアウトに成功しました")
+            print("サインアウト出来ました")
             //画面遷移
             let storyboard: UIStoryboard = self.storyboard!
             let nextView = storyboard.instantiateViewController(withIdentifier: "LoginViewController") as! LoginViewController
             self.present(nextView, animated: true, completion: nil)
             
         } catch let signOutError as NSError {
-            print ("サインアウト時にerrorが発生しました",signOutError)
+            print ("サインアウト時にエラーが発生しました",signOutError)
         }
     }
     
@@ -128,6 +135,6 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-
+        
     }
 }
