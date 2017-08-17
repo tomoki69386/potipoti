@@ -20,7 +20,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     @IBOutlet var button1: UIButton!
     @IBOutlet var TableView: UITableView!
     
-    let Array = ["hoge","fuga","アカウント削除","ログアウト"]
+    let Array = ["hoge","fuga","piyo","ログアウト"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -84,13 +84,11 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         if indexPath.row == 0 {
-            //仮
             print("hoge")
         }else if indexPath.row == 1 {
             print("fuga")
         }else if indexPath.row == 2 {
-            //アカウント削除
-            self.user_delete()
+            print("piyo")
         }else if indexPath.row == 3 {
             //ログアウト
             self.signOut()
@@ -111,25 +109,6 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
             
         } catch let signOutError as NSError {
             print ("サインアウト時にエラーが発生しました",signOutError)
-        }
-    }
-    
-    //アカウント削除メソッド
-    func user_delete() {
-        print("アカウント削除ボタンを押した")
-        let user = Auth.auth().currentUser
-        
-        user?.delete { error in
-            if let error = error {
-                print("errorが発生しました")
-                print(error)
-            } else {
-                print("アカウントを削除")
-                //画面遷移
-                let storyboard: UIStoryboard = self.storyboard!
-                let nextView = storyboard.instantiateViewController(withIdentifier: "newViewController") as! newViewController
-                self.present(nextView, animated: true, completion: nil)
-            }
         }
     }
     
