@@ -47,14 +47,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         if let _ = Auth.auth().currentUser {
             //ログイン中
-            
             let user = Auth.auth().currentUser
             let uid = user?.uid
             let name = user?.displayName
             ref = Database.database().reference()
             
-            self.ref.child("Active_users").child(user!.uid).setValue(["username": name, "uid": uid])
-        
+            self.ref.child("Active_users").child(user!.uid).setValue(["username": name, "uid": uid, "Active": 1, "Invitation": "false"])
+            
             let storyboard:UIStoryboard =  UIStoryboard(name: "Main",bundle:nil)
             window?.rootViewController
                 = storyboard.instantiateViewController(withIdentifier: "TabBarController")
@@ -66,6 +65,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     //アプリを閉じた時に呼ばれるメソッド
     func applicationDidEnterBackground(application: UIApplication) {
         print("アプリを閉じた時に呼ばれる")
+        
+        //Activeを0に書き換える
+        let user = Auth.auth().currentUser
+        let uid = user?.uid
+        let name = user?.displayName
+        ref = Database.database().reference()
+        
+        self.ref.child("Active_users").child(user!.uid).setValue(["username": name, "uid": uid, "Active": 0])
     }
     
     

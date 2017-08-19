@@ -18,8 +18,8 @@ class newViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet var emailTextField: UITextField!
     @IBOutlet var passwordTextField: UITextField!
     @IBOutlet var passwordTextField2: UITextField!
-    var ref:DatabaseReference!
     
+    var ref:DatabaseReference!
     var emailRef:DatabaseReference! //Firebase
     let userDefault = UserDefaults.standard //アプリをDLしてから一度もuserを作成したことがないかを判断するために使う
     
@@ -94,19 +94,19 @@ class newViewController: UIViewController, UITextFieldDelegate {
                     changeRequest.commitChanges { error in
                         if let error = error {
                             print(error)
-                            SVProgressHUD.showError(withStatus: "Error!")
+                            SVProgressHUD.showError(withStatus: "エラー!")
                             //アカウントの作成に失敗
                             return
                         }
                         //アカウント作成成功時に処理する
-                        SVProgressHUD.showSuccess(withStatus: "Success!")
+                        SVProgressHUD.showSuccess(withStatus: "作成しました!")
                         
                         let user = Auth.auth().currentUser
                         let uid = user?.uid
                         let name = user?.displayName
                         self.ref = Database.database().reference()
                         
-                        self.ref.child("Active_users").child(user!.uid).setValue(["username": name, "uid": uid])
+                        self.ref.child("Active_users").child(user!.uid).setValue(["username": name, "uid": uid, "Active": 1])
                         
                         //初めてuserを作成したことを伝える
                         self.userDefault.set(false, forKey: "firstLaunch")

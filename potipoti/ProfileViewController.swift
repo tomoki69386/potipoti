@@ -20,6 +20,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     @IBOutlet var button1: UIButton!
     @IBOutlet var TableView: UITableView!
     
+    var ref: DatabaseReference!
     let Array = ["hoge","fuga","piyo","ログアウト"]
     
     override func viewDidLoad() {
@@ -102,6 +103,15 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         do {
             try firebaseAuth.signOut()
             print("サインアウト出来ました")
+            
+            //Activeを0に書き換える
+            let user = Auth.auth().currentUser
+            let uid = user?.uid
+            let name = user?.displayName
+            ref = Database.database().reference()
+            
+            ref.child("Active_users").child(user!.uid).setValue(["username": name, "uid": uid, "Active": 0])
+            
             //画面遷移
             let storyboard: UIStoryboard = self.storyboard!
             let nextView = storyboard.instantiateViewController(withIdentifier: "LoginViewController") as! LoginViewController

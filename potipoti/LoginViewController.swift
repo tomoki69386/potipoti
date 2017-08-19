@@ -66,7 +66,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                     let name = user?.displayName
                     self.ref = Database.database().reference()
                     
-                    self.ref.child("Active_users").child(user!.uid).setValue(["username": name, "uid": uid])
+                    self.ref.child("Active_users").child(user!.uid).setValue(["username": name, "uid": uid, "Active": 1])
                     
                     SVProgressHUD.showSuccess(withStatus: "Success!")
                     let when = DispatchTime.now() + 2
