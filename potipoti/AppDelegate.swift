@@ -15,6 +15,8 @@ import SVProgressHUD
 class AppDelegate: UIResponder, UIApplicationDelegate {
     
     var window: UIWindow?
+    var ref:DatabaseReference!
+    var isCreate = true //データの作成か更新かを判定、trueなら作成、falseなら更新
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
@@ -31,7 +33,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         // "firstLaunch"に紐づく値がtrueなら(=初回起動)、値をfalseに更新して処理を行う
         if userDefault.bool(forKey: "firstLaunch") {
-//            userDefault.set(false, forKey: "firstLaunch")
+            //            userDefault.set(false, forKey: "firstLaunch")
             print("初回起動時だけ処理")
             let storyboard:UIStoryboard =  UIStoryboard(name: "Main",bundle:nil)
             window?.rootViewController
@@ -39,11 +41,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             
         }
         
-        print("初回起動時じゃなくても処理する")
+        print("毎回処理する")
         
         //ログインしてたら、画面遷移
+        
         if let _ = Auth.auth().currentUser {
-            // ログイン中
+            //ログイン中
+            
+            let user = Auth.auth().currentUser
+            let uid = user?.uid
+            let name = user?.displayName
+            ref = Database.database().reference()
+            
+            self.ref.child("Active_users").child(user!.uid).setValue(["username": name, "uid": uid])
+        
             let storyboard:UIStoryboard =  UIStoryboard(name: "Main",bundle:nil)
             window?.rootViewController
                 = storyboard.instantiateViewController(withIdentifier: "TabBarController")
@@ -51,6 +62,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         return true
     }
+    
+    //アプリを閉じた時に呼ばれるメソッド
+    func applicationDidEnterBackground(application: UIApplication) {
+        print("アプリを閉じた時に呼ばれる")
+    }
+    
+    
     
     func applicationWillResignActive(_ application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.

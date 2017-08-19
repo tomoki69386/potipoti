@@ -15,6 +15,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     
     @IBOutlet var passwordTextField: UITextField!
     @IBOutlet var emailTextField: UITextField!
+    var ref: DatabaseReference!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -59,6 +60,14 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                     SVProgressHUD.showError(withStatus: "Error!")
                     return
                 } else {
+                    //ログインしたデータを送る
+                    let user = Auth.auth().currentUser
+                    let uid = user?.uid
+                    let name = user?.displayName
+                    self.ref = Database.database().reference()
+                    
+                    self.ref.child("Active_users").child(user!.uid).setValue(["username": name, "uid": uid])
+                    
                     SVProgressHUD.showSuccess(withStatus: "Success!")
                     let when = DispatchTime.now() + 2
                     DispatchQueue.main.asyncAfter(deadline: when) {

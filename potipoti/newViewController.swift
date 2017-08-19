@@ -18,6 +18,7 @@ class newViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet var emailTextField: UITextField!
     @IBOutlet var passwordTextField: UITextField!
     @IBOutlet var passwordTextField2: UITextField!
+    var ref:DatabaseReference!
     
     var emailRef:DatabaseReference! //Firebase
     let userDefault = UserDefaults.standard //アプリをDLしてから一度もuserを作成したことがないかを判断するために使う
@@ -100,6 +101,13 @@ class newViewController: UIViewController, UITextFieldDelegate {
                         //アカウント作成成功時に処理する
                         SVProgressHUD.showSuccess(withStatus: "Success!")
                         
+                        let user = Auth.auth().currentUser
+                        let uid = user?.uid
+                        let name = user?.displayName
+                        self.ref = Database.database().reference()
+                        
+                        self.ref.child("Active_users").child(user!.uid).setValue(["username": name, "uid": uid])
+                        
                         //初めてuserを作成したことを伝える
                         self.userDefault.set(false, forKey: "firstLaunch")
                         
@@ -121,7 +129,6 @@ class newViewController: UIViewController, UITextFieldDelegate {
     }
     
     func fuga() {
-        //多分使わない
         //いおりデータサンプル
         //DBRef.child("falseband/\(sendoutInt+1)/Vo").updateChildValues(["Name": vocalBandNameArray[sendoutInt]]
     }
