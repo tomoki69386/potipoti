@@ -20,12 +20,12 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     @IBOutlet var button1: UIButton!
     @IBOutlet var TableView: UITableView!
     
+    let userDefault = UserDefaults.standard
     var ref: DatabaseReference!
     let Array = ["hoge","fuga","piyo","ログアウト"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         let user = Auth.auth().currentUser
         
         userNameLabel.text = (user?.displayName)
@@ -45,22 +45,39 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         let user = Auth.auth().currentUser
         let uid = user?.uid
         
+        
+        if (UserDefaults.standard.object(forKey: "MyPhoto") != nil) {
+            print("データ有り")
+            let imageDate:NSData = UserDefaults.standard.object(forKey: "MyPhoto") as! NSData
+            ImageView.image = UIImage(data:imageDate as Data)
+        }else {
+            print("データ無し")
+            
+        }
         let storage = Storage.storage()
         let storageRef = storage.reference(forURL: "gs://potipoti-e1d0e.appspot.com/image")
         
-        // Create a reference to the file you want to download
-        let islandRef = storageRef.child("\(uid).jpg")
-        
-        // Download in memory with a maximum allowed size of 1MB (1 * 1024 * 1024 bytes)
-        islandRef.getData(maxSize: 50 * 1024 * 1024) { (data, error) -> Void in
-            if (error != nil) {
-                // Uh-oh, an error occurred!
-                print(error)
-            } else {
-                // Data for "images/island.jpg" is returned
-                self.ImageView.image = UIImage(data: data!)
-                print("imageを表示した")
+        if ImageView.image == nil {
+            print("UIImageViewに画像がないとき")
+            // Create a reference to the file you want to download
+            let islandRef = storageRef.child("\(uid).jpg")
+            
+            // Download in memory with a maximum allowed size of 1MB (1 * 1024 * 1024 bytes)
+            islandRef.getData(maxSize: 50 * 1024 * 1024) { (data, error) -> Void in
+                if (error != nil) {
+                    // Uh-oh, an error occurred!
+                    print(error)
+                    self.Alert()
+                } else {
+                    // Data for "images/island.jpg" is returned
+                    self.ImageView.image = UIImage(data: data!)
+                    self.self.userDefault.set(UIImagePNGRepresentation(self.ImageView.image!), forKey: "MyPhoto")
+                    print("imageを保存")
+                    print("imageを表示した")
+                }
             }
+        }else {
+            print("UIImageViewに画像をあるとき")
         }
     }
     
@@ -104,13 +121,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
             try firebaseAuth.signOut()
             print("サインアウト出来ました")
             
-            //Activeを0に書き換える
-            let user = Auth.auth().currentUser
-            let uid = user?.uid
-            let name = user?.displayName
-            ref = Database.database().reference()
-            
-            ref.child("Active_users").child(user!.uid).setValue(["username": name, "uid": uid, "Active": 0])
+            userDefault.removeObject(forKey: "MyPhoto")
             
             //画面遷移
             let storyboard: UIStoryboard = self.storyboard!
@@ -120,6 +131,25 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         } catch let signOutError as NSError {
             print ("サインアウト時にエラーが発生しました",signOutError)
         }
+    }
+    
+    func Alert() {
+        // アラートを作成
+        let alert = UIAlertController(
+            title: "注意！",
+            message: "プロフィール画像が設定されていません",
+            preferredStyle: .alert)
+        
+        // アラートにボタンをつける
+        alert.addAction(UIAlertAction(title: "設定する", style: .default, handler: { action in
+            let storyboard:UIStoryboard =  UIStoryboard(name: "Main",bundle:nil)
+            
+            let nextView = storyboard.instantiateViewController(withIdentifier: "Profile_EditViewController") as! Profile_EditViewController
+            self.present(nextView, animated: true, completion: nil)
+        }))
+        
+        // アラート表示
+        self.present(alert, animated: true, completion: nil)
     }
     
     override func didReceiveMemoryWarning() {

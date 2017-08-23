@@ -10,6 +10,7 @@ import UIKit
 import Firebase
 import FirebaseAuth
 import SVProgressHUD
+import JSQMessagesViewController
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -38,13 +39,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             let storyboard:UIStoryboard =  UIStoryboard(name: "Main",bundle:nil)
             window?.rootViewController
                 = storyboard.instantiateViewController(withIdentifier: "newViewController")
-            
         }
         
         print("毎回処理する")
         
         //ログインしてたら、画面遷移
-        
         if let _ = Auth.auth().currentUser {
             //ログイン中
             let user = Auth.auth().currentUser
@@ -58,24 +57,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             window?.rootViewController
                 = storyboard.instantiateViewController(withIdentifier: "TabBarController")
         }
-        
         return true
     }
     
     //アプリを閉じた時に呼ばれるメソッド
     func applicationDidEnterBackground(application: UIApplication) {
         print("アプリを閉じた時に呼ばれる")
-        
-        //Activeを0に書き換える
-        let user = Auth.auth().currentUser
-        let uid = user?.uid
-        let name = user?.displayName
-        ref = Database.database().reference()
-        
-        self.ref.child("Active_users").child(user!.uid).setValue(["username": name, "uid": uid, "Active": 0])
+        self.ref.child("Active_users/(user.uid)/Active").setValue(0)
     }
     
+    func applicationWillResignActive(application: UIApplication) {
+        print("アプリ閉じそうな時に呼ばれる")
+        self.ref.child("Active_users/(user.uid)/Active").setValue(0)
+    }
     
+    func applicationWillTerminate(application: UIApplication) {
+        print("フリックしてアプリを終了させた時に呼ばれる")
+        self.ref.child("Active_users/(user.uid)/Active").setValue(0)
+    }
     
     func applicationWillResignActive(_ application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.

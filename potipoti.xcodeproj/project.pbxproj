@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		0AD2B9A9640C4F31874E8CC2 /* Pods_potipotiUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8829AE6E13B0C5A21E43C3A3 /* Pods_potipotiUITests.framework */; };
+		55782D661F48553500C18897 /* RoomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55782D651F48553500C18897 /* RoomViewController.swift */; };
 		55CB56031F3F163800F6F9B2 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55CB56021F3F163800F6F9B2 /* ProfileViewController.swift */; };
 		55CB56411F43345700F6F9B2 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55CB56401F43345700F6F9B2 /* TabBarController.swift */; };
 		55CB56431F436EC200F6F9B2 /* Profile_EditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55CB56421F436EC200F6F9B2 /* Profile_EditViewController.swift */; };
@@ -50,6 +51,7 @@
 /* Begin PBXFileReference section */
 		05CB50E1532F8D143CD5F630 /* Pods-potipotiUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-potipotiUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-potipotiUITests/Pods-potipotiUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		4C25FFFDE6FFE5F8A0D87EC6 /* Pods_potipoti.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_potipoti.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		55782D651F48553500C18897 /* RoomViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoomViewController.swift; sourceTree = "<group>"; };
 		55CB56021F3F163800F6F9B2 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		55CB56401F43345700F6F9B2 /* TabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		55CB56421F436EC200F6F9B2 /* Profile_EditViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Profile_EditViewController.swift; sourceTree = "<group>"; };
@@ -149,6 +151,7 @@
 		55FD6DD91F1CF95200322633 /* potipoti */ = {
 			isa = PBXGroup;
 			children = (
+				55782D651F48553500C18897 /* RoomViewController.swift */,
 				55CB56441F442D5400F6F9B2 /* PlayerViewController.swift */,
 				55CB56421F436EC200F6F9B2 /* Profile_EditViewController.swift */,
 				55CB56401F43345700F6F9B2 /* TabBarController.swift */,
@@ -485,6 +488,7 @@
 			files = (
 				55EF4FA61F2332B000233C2E /* LoginViewController.swift in Sources */,
 				55FD6E131F1CFA9600322633 /* GameViewController.swift in Sources */,
+				55782D661F48553500C18897 /* RoomViewController.swift in Sources */,
 				55CB56031F3F163800F6F9B2 /* ProfileViewController.swift in Sources */,
 				55FD6E121F1CFA9600322633 /* ComViewController.swift in Sources */,
 				55DA5F1D1F2B33F800EB689D /* newViewController.swift in Sources */,

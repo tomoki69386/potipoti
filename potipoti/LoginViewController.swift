@@ -57,7 +57,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
             Auth.auth().signIn(withEmail: email, password: password) { user, error in
                 if let error = error {
                     print(error)
-                    SVProgressHUD.showError(withStatus: "Error!")
+                    SVProgressHUD.showError(withStatus: "エラー!")
                     return
                 } else {
                     //ログインしたデータを送る
@@ -68,7 +68,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                     
                     self.ref.child("Active_users").child(user!.uid).setValue(["username": name, "uid": uid, "Active": 1])
                     
-                    SVProgressHUD.showSuccess(withStatus: "Success!")
+                    SVProgressHUD.showSuccess(withStatus: "ログイン出来ました！")
                     let when = DispatchTime.now() + 2
                     DispatchQueue.main.asyncAfter(deadline: when) {
                         self.present((self.storyboard?.instantiateViewController(withIdentifier: "TabBarController"))!,

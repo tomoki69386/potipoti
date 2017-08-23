@@ -13,9 +13,10 @@ import FirebaseDatabase
 
 class Profile_EditViewController: UIViewController, UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
-    //使うUI
     @IBOutlet var ImageView: UIImageView!
     @IBOutlet var TextField: UITextField!
+    
+    let userDefault = UserDefaults.standard
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -70,6 +71,7 @@ class Profile_EditViewController: UIViewController, UITextFieldDelegate, UIImage
         
         //ImageViewに選択した画像を表示する
         ImageView.image = info[UIImagePickerControllerOriginalImage] as? UIImage
+        userDefault.set(UIImagePNGRepresentation(ImageView.image!), forKey: "MyPhoto")
         
         let user = Auth.auth().currentUser
         let uid = user?.uid 

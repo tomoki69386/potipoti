@@ -18,6 +18,7 @@ class newViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet var emailTextField: UITextField!
     @IBOutlet var passwordTextField: UITextField!
     @IBOutlet var passwordTextField2: UITextField!
+    @IBOutlet var button: UIButton!
     
     var ref:DatabaseReference!
     var emailRef:DatabaseReference! //Firebase
@@ -25,6 +26,13 @@ class newViewController: UIViewController, UITextFieldDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        //trueがアカウントを作成したことがない
+        let hoge = userDefault.bool(forKey: "firstLaunch")
+        if hoge == true {
+             button.isHidden = true
+        }
+        
         
         //デリゲートのセット
         NameTextField.delegate = self
@@ -54,7 +62,7 @@ class newViewController: UIViewController, UITextFieldDelegate {
     
     //ユーザー作成と作成時のアニメーション
     @IBAction func new(_ sender: Any) {
-
+        
         if let username = NameTextField.text,
             let email = emailTextField.text,
             let password = passwordTextField.text {
