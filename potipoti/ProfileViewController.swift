@@ -35,6 +35,52 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         
         TableView.delegate = self
         
+        ref = Database.database().reference()
+        let uid = user?.uid
+        
+        //変更があれば処理する
+        ref.child("users").child((user?.uid)!).observe(.value, with: {(snapShots) in
+            
+            let RoomID = String(describing: snapShots.childSnapshot(forPath: "RoomID").value!)
+            print("RoomIDは...\(RoomID)")
+            
+            if RoomID != "<null>" {
+                //nullじゃない時の処理
+                //対戦の挑戦状が届いたことを画面にアラートで表示
+                let Alert = UIAlertController(title: "対戦しますか？",message: "対戦の挑戦状が届きました、通信対戦をしますか？", preferredStyle: UIAlertControllerStyle.alert)
+                
+                let battle = UIAlertAction(title: "承諾", style:UIAlertActionStyle.default){
+                    (action: UIAlertAction) in
+                    // 以下はボタンがクリックされた時の処理
+                    //通信対戦画面に画面遷移
+                    print("承諾をタップした")
+                    
+                    //ルームに入ったことをのデータを追加
+                    self.ref.child("rooms").child(RoomID).child("messages").updateChildValues(["対戦": "する"])
+                    
+                    //EnemyRoomViewに画面遷移
+                    let targetViewController = self.storyboard!.instantiateViewController( withIdentifier: "EnemyRoomViewController" ) as! EnemyRoomViewController
+                    self.present( targetViewController, animated: true, completion: nil)
+                }
+                
+                let cancel = UIAlertAction(title: "拒否", style:UIAlertActionStyle.cancel){
+                    (action: UIAlertAction) in
+                    // 以下はボタンがクリックされた時の処理
+                    //拒否したことを伝える
+                    print("拒否をタップした")
+                    
+                    //拒否したことを伝える
+                    self.ref.child("rooms").child(RoomID).child("messages").updateChildValues(["対戦": "しない"])
+                }
+                
+                //部品をアラートコントローラーに追加していく
+                Alert.addAction(battle)//battleを追加
+                Alert.addAction(cancel)//cancelを追加
+                
+                //アラートを表示
+                self.present(Alert,animated: true, completion: nil)
+            }
+        })
     }
     
     //画面を開いたとき
@@ -142,10 +188,6 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         
         // アラートにボタンをつける
         alert.addAction(UIAlertAction(title: "設定する", style: .default, handler: { action in
-            let storyboard:UIStoryboard =  UIStoryboard(name: "Main",bundle:nil)
-            
-            let nextView = storyboard.instantiateViewController(withIdentifier: "Profile_EditViewController") as! Profile_EditViewController
-            self.present(nextView, animated: true, completion: nil)
         }))
         
         // アラート表示

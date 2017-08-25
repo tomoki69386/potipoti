@@ -14,28 +14,30 @@ import FirebaseDatabase
 class PlayerViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     @IBOutlet var TableView: UITableView! //データを表示するtableView
-    var UserArray: [String] = [] //データを収納する配列
-    var UserIDArray: [String] = [] //userIDを収納する配列
+    var enemyNameArray: [String] = [] //データを収納する配列
+    var enemyIDArray: [String] = [] //userIDを収納する配列
     var ref: DatabaseReference! //Firebase
     var snap: DataSnapshot! //FetchしたSnapshotsを格納する変数
     let userDefault = UserDefaults.standard
+    let user = Auth.auth().currentUser
+    var enemyID: String!
+    var number: Int!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         //データを取得
-        ref = Database.database().reference()
-        self.ref?.child("Active_users").observe(.childAdded, with: { [weak self](snapshot) -> Void in
-            let username = String(describing: snapshot.childSnapshot(forPath: "username").value!)
-            let userID = String(describing: snapshot.childSnapshot(forPath: "uid").value!)
-            print(username)
-            print(userID)
-            self?.UserArray.append(username) //取得したuserの名前を収納する
-            self?.UserIDArray.append(userID) //取得したuserのIDを収納する
-            
-            self?.TableView.reloadData() //リロード
-        })
+                ref = Database.database().reference()
+                self.ref?.child("users").observe(.childAdded, with: { [weak self](snapshot) -> Void in
+                    let username = String(describing: snapshot.childSnapshot(forPath: "username").value!)
+                    let userID = String(describing: snapshot.childSnapshot(forPath: "uid").value!)
+                    print(username)
+                    print(userID)
+                    self?.enemyNameArray.append(username) //取得したuserの名前を収納する
+                    self?.enemyIDArray.append(userID) //取得したuserのIDを収納する
         
+                    self?.TableView.reloadData() //リロード
+                })
         //デリゲートをセット
         TableView.delegate = self
         TableView.dataSource = self
@@ -48,7 +50,7 @@ class PlayerViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     /// セルの個数を指定するデリゲートメソッド（必須）
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return UserArray.count
+        return enemyNameArray.count
     }
     
     /// セルに値を設定するデータソースメソッド（必須）
@@ -58,7 +60,7 @@ class PlayerViewController: UIViewController, UITableViewDelegate, UITableViewDa
         let cell: UITableViewCell = tableView.dequeueReusableCell(withIdentifier: "MyCell", for: indexPath as IndexPath)
         
         // セルに表示する値を設定する
-        cell.textLabel!.text = UserArray[indexPath.row]
+        cell.textLabel!.text = enemyNameArray[indexPath.row]
         
         return cell
     }
@@ -66,20 +68,30 @@ class PlayerViewController: UIViewController, UITableViewDelegate, UITableViewDa
     // セルが選択された時に呼ばれるデリゲートメソッド
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        //相手のIDと名前を保存する
-        userDefault.set(UserIDArray[indexPath.row], forKey: "EnemyPlayerID")
-        userDefault.set(UserArray[indexPath.row], forKey: "EnemyPlayerName")
-        print("相手のIDは...\(UserIDArray[indexPath.row])")
-        print("相手の名前は...\(UserArray[indexPath.row])")
+        print("相手のIDは...\(enemyIDArray[indexPath.row])")
+        print("相手の名前は...\(enemyNameArray[indexPath.row])")
+        enemyID = enemyIDArray[indexPath.row]
+        
+        ref = Database.database().reference()
+        number = Int(arc4random_uniform(100000))
+        
+        print(number) //乱数
+        userDefault.set(number, forKey: "ルームID")
+        
+        //Roomの作成
+        //RoomIDは乱数(number)
+        self.ref.child("rooms").child(String(number)).child("messages").setValue(["roomID": number, "enemyID": enemyIDArray[indexPath.row], "enemyName": enemyNameArray[indexPath.row]])
+        
+        //相手にRoomIDを教える
+        self.ref.child("users").child(enemyIDArray[indexPath.row]).updateChildValues(["RoomID": number,])
+        userDefault.set(enemyIDArray[indexPath.row], forKey: "enemyID")
         
         // 8. SecondViewControllerへ遷移するSegueを呼び出す
         performSegue(withIdentifier: "toRoomViewController",sender: nil)
     }
-    
+    //画面遷移
     func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
         if (segue.identifier == "toRoomViewController") {
-            let secondVC: RoomViewController = (segue.destination as? RoomViewController)!
-            
         }
     }
     

@@ -114,7 +114,7 @@ class newViewController: UIViewController, UITextFieldDelegate {
                         let name = user?.displayName
                         self.ref = Database.database().reference()
                         
-                        self.ref.child("Active_users").child(user!.uid).setValue(["username": name, "uid": uid, "Active": 1])
+                        self.ref.child("users").child(user!.uid).setValue(["username": name,"uid": user?.uid,"inRoom": false])
                         
                         //初めてuserを作成したことを伝える
                         self.userDefault.set(false, forKey: "firstLaunch")

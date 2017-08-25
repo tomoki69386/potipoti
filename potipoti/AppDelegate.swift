@@ -1,19 +1,19 @@
-//
-//  AppDelegate.swift
-//  potipoti
-//
-//  Created by 築山朋紀 on 2017/07/17.
-//  Copyright © 2017年 築山朋紀. All rights reserved.
-//
-
-import UIKit
-import Firebase
-import FirebaseAuth
-import SVProgressHUD
-import JSQMessagesViewController
-
-@UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+ //
+ //  AppDelegate.swift
+ //  potipoti
+ //
+ //  Created by 築山朋紀 on 2017/07/17.
+ //  Copyright © 2017年 築山朋紀. All rights reserved.
+ //
+ 
+ import UIKit
+ import Firebase
+ import FirebaseAuth
+ import SVProgressHUD
+ import JSQMessagesViewController
+ 
+ @UIApplicationMain
+ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     var window: UIWindow?
     var ref:DatabaseReference!
@@ -40,22 +40,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             window?.rootViewController
                 = storyboard.instantiateViewController(withIdentifier: "newViewController")
         }
-        
         print("毎回処理する")
         
         //ログインしてたら、画面遷移
         if let _ = Auth.auth().currentUser {
             //ログイン中
             let user = Auth.auth().currentUser
-            let uid = user?.uid
-            let name = user?.displayName
+            let name = user?.displayName //ユーザーの名前の定数
+//            let uid = user?.uid //ユーザーのID用を定数
             ref = Database.database().reference()
             
-            self.ref.child("Active_users").child(user!.uid).setValue(["username": name, "uid": uid, "Active": 1, "Invitation": "false"])
+            self.ref.child("users").child(user!.uid).setValue(["username": name,"uid": user?.uid,"inRoom": false])
             
             let storyboard:UIStoryboard =  UIStoryboard(name: "Main",bundle:nil)
             window?.rootViewController
                 = storyboard.instantiateViewController(withIdentifier: "TabBarController")
+          
         }
         return true
     }
@@ -99,5 +99,5 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     
-}
-
+ }
+ 
