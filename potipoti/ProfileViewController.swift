@@ -58,6 +58,9 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
                     //ルームに入ったことをのデータを追加
                     self.ref.child("rooms").child(RoomID).child("messages").updateChildValues(["対戦": "する"])
                     
+                    //自分のデータのinRoomに対戦中であることを書く
+                    self.ref.child("users").child((user?.uid)!).updateChildValues(["inRoom": "true"])
+                    
                     //EnemyRoomViewに画面遷移
                     let targetViewController = self.storyboard!.instantiateViewController( withIdentifier: "EnemyRoomViewController" ) as! EnemyRoomViewController
                     self.present( targetViewController, animated: true, completion: nil)

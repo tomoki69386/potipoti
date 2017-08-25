@@ -27,17 +27,27 @@ class PlayerViewController: UIViewController, UITableViewDelegate, UITableViewDa
         super.viewDidLoad()
         
         //データを取得
-                ref = Database.database().reference()
-                self.ref?.child("users").observe(.childAdded, with: { [weak self](snapshot) -> Void in
-                    let username = String(describing: snapshot.childSnapshot(forPath: "username").value!)
-                    let userID = String(describing: snapshot.childSnapshot(forPath: "uid").value!)
-                    print(username)
-                    print(userID)
+        ref = Database.database().reference()
+        self.ref?.child("users").observe(.childAdded, with: { [weak self](snapshot) -> Void in
+            let username = String(describing: snapshot.childSnapshot(forPath: "username").value!)
+            let userID = String(describing: snapshot.childSnapshot(forPath: "uid").value!)
+            let inRoom = String(describing: snapshot.childSnapshot(forPath: "inRoom").value!)
+            print(username)
+            print(userID)
+            print(inRoom)
+            
+            //ルームに入ってないユーザーだけ配列に追加していく
+            if inRoom == "false" {
+                //ルームに入ってないユーザーから自分を抜いて配列に入れる
+                if self?.user?.uid == userID {
                     self?.enemyNameArray.append(username) //取得したuserの名前を収納する
                     self?.enemyIDArray.append(userID) //取得したuserのIDを収納する
-        
-                    self?.TableView.reloadData() //リロード
-                })
+                }
+            }
+            
+            
+            self?.TableView.reloadData() //リロード
+        })
         //デリゲートをセット
         TableView.delegate = self
         TableView.dataSource = self
@@ -80,11 +90,17 @@ class PlayerViewController: UIViewController, UITableViewDelegate, UITableViewDa
         
         //Roomの作成
         //RoomIDは乱数(number)
-        self.ref.child("rooms").child(String(number)).child("messages").setValue(["roomID": number, "enemyID": enemyIDArray[indexPath.row], "enemyName": enemyNameArray[indexPath.row]])
+        //Roomに必要なデータを保存
+        self.ref.child("rooms").child(String(number)).child("messages").setValue(["roomID": number, "enemyID": enemyIDArray[indexPath.row], "enemyName": enemyNameArray[indexPath.row], "myName": user?.displayName, "myID": user?.uid])
         
         //相手にRoomIDを教える
         self.ref.child("users").child(enemyIDArray[indexPath.row]).updateChildValues(["RoomID": number,])
+        
+        //相手のIDを保存しておく
         userDefault.set(enemyIDArray[indexPath.row], forKey: "enemyID")
+        
+        //自分のデータのinRoomに対戦中であることを書く
+        self.ref.child("users").child((user?.uid)!).updateChildValues(["inRoom": "true"])
         
         // 8. SecondViewControllerへ遷移するSegueを呼び出す
         performSegue(withIdentifier: "toRoomViewController",sender: nil)

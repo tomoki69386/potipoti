@@ -50,7 +50,7 @@
 //            let uid = user?.uid //ユーザーのID用を定数
             ref = Database.database().reference()
             
-            self.ref.child("users").child(user!.uid).setValue(["username": name,"uid": user?.uid,"inRoom": false])
+            self.ref.child("users").child(user!.uid).setValue(["username": name,"uid": user?.uid,"inRoom": "false"])
             
             let storyboard:UIStoryboard =  UIStoryboard(name: "Main",bundle:nil)
             window?.rootViewController

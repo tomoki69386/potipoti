@@ -17,6 +17,7 @@ class RoomViewController: UIViewController{
     let userDefault = UserDefaults.standard
     var ref: DatabaseReference! //Firebase
     let user = Auth.auth().currentUser
+    var num : Int! //どちらから始めるか決めるのに使う
     
     //使うボタンたち
     @IBOutlet var button0: UIButton!
@@ -42,6 +43,9 @@ class RoomViewController: UIViewController{
     
     //ハズレかアタリか表示
     @IBOutlet var HanteiLabel: UILabel!
+    
+    //どちらの番か表示
+    @IBOutlet var Playerlable: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -112,17 +116,75 @@ class RoomViewController: UIViewController{
                 print("画面を戻る")
                 
             }else if battle == "する" {
-                //対戦するの時の処理
-                //相手が入室した時の処理でもある
+                //相手が入室した時の処理
                 SVProgressHUD.showSuccess(withStatus: "対戦者入室")
                 
-                //2秒の間待つ
-                let when = DispatchTime.now() + 2
+                self.num = Int(arc4random_uniform(1))
+                let enemyID = self.userDefault.string(forKey: "enemyID")
+                
+                //0なら自分からタップできる
+                if self.num == 0 {
+                    self.ref.child("rooms").child(String(RoomID)).child("battle").setValue(["Tap Player ID": self.user?.uid,])
+                    
+                    //1なら相手からタップできる
+                }else if self.num == 1 {
+                    self.ref.child("rooms").child(String(RoomID)).child("battle").setValue(["Tap Player ID": enemyID,])
+                }
+                
+                //0.5秒の間待つ
+                let when = DispatchTime.now() + 0.5
                 
                 DispatchQueue.main.asyncAfter(deadline: when) {
+                    
                 }
             }
         })
+    }
+    
+    //ボタンを押したときの処理
+    @IBAction func tap(sender: UIButton) {
+        switch sender.tag {
+        case 0:
+            self.ref.child("rooms").child(RoomID).child("battle").child("Tap button").setValue(["Button": 0])
+        case 1:
+            self.ref.child("rooms").child(RoomID).child("battle").child("Tap button").setValue(["Button": 1])
+        case 2:
+            self.ref.child("rooms").child(RoomID).child("battle").child("Tap button").setValue(["Button": 2])
+        case 3:
+            self.ref.child("rooms").child(RoomID).child("battle").child("Tap button").setValue(["Button": 3])
+        case 4:
+            self.ref.child("rooms").child(RoomID).child("battle").child("Tap button").setValue(["Button": 4])
+        case 5:
+            self.ref.child("rooms").child(RoomID).child("battle").child("Tap button").setValue(["Button": 5])
+        case 6:
+            self.ref.child("rooms").child(RoomID).child("battle").child("Tap button").setValue(["Button": 6])
+        case 7:
+            self.ref.child("rooms").child(RoomID).child("battle").child("Tap button").setValue(["Button": 7])
+        case 8:
+            self.ref.child("rooms").child(RoomID).child("battle").child("Tap button").setValue(["Button": 8])
+        case 9:
+            self.ref.child("rooms").child(RoomID).child("battle").child("Tap button").setValue(["Button": 9])
+        case 10:
+            self.ref.child("rooms").child(RoomID).child("battle").child("Tap button").setValue(["Button": 10])
+        case 11:
+            self.ref.child("rooms").child(RoomID).child("battle").child("Tap button").setValue(["Button": 11])
+        case 12:
+            self.ref.child("rooms").child(RoomID).child("battle").child("Tap button").setValue(["Button": 12])
+        case 13:
+            self.ref.child("rooms").child(RoomID).child("battle").child("Tap button").setValue(["Button": 13])
+        case 14:
+            self.ref.child("rooms").child(RoomID).child("battle").child("Tap button").setValue(["Button": 14])
+        case 15:
+            self.ref.child("rooms").child(RoomID).child("battle").child("Tap button").setValue(["Button": 15])
+        case 16:
+            self.ref.child("rooms").child(RoomID).child("battle").child("Tap button").setValue(["Button": 16])
+        case 17:
+            self.ref.child("rooms").child(RoomID).child("battle").child("Tap button").setValue(["Button": 17])
+        case 18:
+            self.ref.child("rooms").child(RoomID).child("battle").child("Tap button").setValue(["Button": 18])
+        case 19:
+            self.ref.child("rooms").child(RoomID).child("battle").child("Tap button").setValue(["Button": 19])
+        }
     }
     
     override func didReceiveMemoryWarning() {
