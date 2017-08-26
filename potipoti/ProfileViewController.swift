@@ -35,9 +35,8 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         
         TableView.delegate = self
         
-        ref = Database.database().reference()
-        let uid = user?.uid
         
+        ref = Database.database().reference()
         //変更があれば処理する
         ref.child("users").child((user?.uid)!).observe(.value, with: {(snapShots) in
             

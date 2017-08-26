@@ -157,11 +157,9 @@
 				55782D651F48553500C18897 /* RoomViewController.swift */,
 				55CB56441F442D5400F6F9B2 /* PlayerViewController.swift */,
 				55CB56421F436EC200F6F9B2 /* Profile_EditViewController.swift */,
-				55CB56401F43345700F6F9B2 /* TabBarController.swift */,
 				55CB56021F3F163800F6F9B2 /* ProfileViewController.swift */,
 				55DA5F1C1F2B33F800EB689D /* newViewController.swift */,
 				55EF4FA51F2332B000233C2E /* LoginViewController.swift */,
-				55FD6E141F1CFABC00322633 /* pvpViewController.swift */,
 				55FD6E0C1F1CFA9600322633 /* TopViewController.swift */,
 				55FD6E0D1F1CFA9600322633 /* ViewController.swift */,
 				55FD6E0E1F1CFA9600322633 /* ComViewController.swift */,
@@ -172,6 +170,8 @@
 				55FD6DE31F1CF95200322633 /* LaunchScreen.storyboard */,
 				55FD6DE61F1CF95200322633 /* Info.plist */,
 				55FD6E161F1CFEAB00322633 /* GoogleService-Info.plist */,
+				55CB56401F43345700F6F9B2 /* TabBarController.swift */,
+				55FD6E141F1CFABC00322633 /* pvpViewController.swift */,
 			);
 			path = potipoti;
 			sourceTree = "<group>";

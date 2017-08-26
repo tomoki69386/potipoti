@@ -36,14 +36,9 @@ class PlayerViewController: UIViewController, UITableViewDelegate, UITableViewDa
             print(userID)
             print(inRoom)
             
-            //ルームに入ってないユーザーだけ配列に追加していく
-            if inRoom == "false" {
-                //ルームに入ってないユーザーから自分を抜いて配列に入れる
-                if self?.user?.uid == userID {
-                    self?.enemyNameArray.append(username) //取得したuserの名前を収納する
-                    self?.enemyIDArray.append(userID) //取得したuserのIDを収納する
-                }
-            }
+            
+            self?.enemyNameArray.append(username) //取得したuserの名前を収納する
+            self?.enemyIDArray.append(userID) //取得したuserのIDを収納する
             
             
             self?.TableView.reloadData() //リロード
@@ -98,6 +93,7 @@ class PlayerViewController: UIViewController, UITableViewDelegate, UITableViewDa
         
         //相手のIDを保存しておく
         userDefault.set(enemyIDArray[indexPath.row], forKey: "enemyID")
+        userDefault.set(enemyNameArray[indexPath.row], forKey: "enemyName")
         
         //自分のデータのinRoomに対戦中であることを書く
         self.ref.child("users").child((user?.uid)!).updateChildValues(["inRoom": "true"])
