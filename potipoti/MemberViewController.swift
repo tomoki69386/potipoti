@@ -38,6 +38,8 @@ class MemberViewController: UIViewController {
     var ref: DatabaseReference! //Firebase
     let user = Auth.auth().currentUser
     let userDefault = UserDefaults.standard
+    @IBOutlet var Label: UILabel!
+    @IBOutlet var hantei: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -65,6 +67,12 @@ class MemberViewController: UIViewController {
                 //最初にボタンを押せるユーザーを取得
                 let TP = String(describing: snapShots.childSnapshot(forPath: "TP").value!)
                 
+                let hostName = String(describing: snapShots.childSnapshot(forPath: "HostName").value!)
+                
+                let memberName = String(describing: snapShots.childSnapshot(forPath: "MemberName").value!)
+                
+                self.userDefault.set(LosingButton, forKey: "LosingButton")
+                
                 print("ハズレのボタンは...\(LosingButton)")
                 print("最初にボタンを押せるのは...\(TP)")
                 
@@ -72,13 +80,221 @@ class MemberViewController: UIViewController {
                     //hostが押せる時の処理
                     print("ボタンを無効化")
                     self.button_Disabled()
+                    self.Label.text = hostName
+                    self.button_Reading()
+                    
                 }else if TP == "1" {
                     //memberが押せる時の処理
                     print("ボタン有効化")
                     self.button_Effectiveness()
+                    self.Label.text = memberName
+                    self.button_Reading()
+                    
                 }
             })
         })
+        //押したボタンの取得
+        self.button_Reading()
+    }
+    
+    //押したボタンの取得メソッド
+    func button_Reading() {
+        print("押したボタンの取得メソッド")
+        let roomID = userDefault.string(forKey: "RoomID")
+        let LosingButton = userDefault.string(forKey: "LosingButton")
+        ref.child("rooms").child(roomID!).child("battle").child("Tap_button").observe(.value, with: {(snapShots) in
+            
+            let button = String(describing: snapShots.childSnapshot(forPath: "button").value!)
+            print("押したボタンは...\(button)")
+            
+            if button == "0" {
+                if LosingButton == "0" {
+                    self.out()
+                }else {
+                    self.safe()
+                }
+                self.button0.isHidden = true
+                
+            }else if button == "1" {
+                if LosingButton == "1" {
+                    self.out()
+                }else {
+                    self.safe()
+                }
+                self.button1.isHidden = true
+                
+            }else if button == "2" {
+                if LosingButton == "2" {
+                    self.out()
+                }else {
+                    self.safe()
+                }
+                self.button2.isHidden = true
+                
+            }else if button == "3" {
+                if LosingButton == "3" {
+                    self.out()
+                }else {
+                    self.safe()
+                }
+                self.button3.isHidden = true
+                
+            }else if button == "4" {
+                if LosingButton == "4" {
+                    self.out()
+                }else {
+                    self.safe()
+                }
+                self.button4.isHidden = true
+                
+            }else if button == "5" {
+                if LosingButton == "5" {
+                    self.out()
+                }else {
+                    self.safe()
+                }
+                self.button5.isHidden = true
+                
+            }else if button == "6" {
+                if LosingButton == "6" {
+                    self.out()
+                }else {
+                    self.safe()
+                }
+                self.button6.isHidden = true
+                
+            }else if button == "7" {
+                if LosingButton == "7" {
+                    self.out()
+                }else {
+                    self.safe()
+                }
+                self.button7.isHidden = true
+                
+            }else if button == "8" {
+                if LosingButton == "8" {
+                    self.out()
+                }else {
+                    self.safe()
+                }
+                self.button8.isHidden = true
+                
+            }else if button == "9" {
+                if LosingButton == "9" {
+                    self.out()
+                }else {
+                    self.safe()
+                }
+                self.button9.isHidden = true
+                
+            }else if button == "10" {
+                if LosingButton == "10" {
+                    self.out()
+                }else {
+                    self.safe()
+                }
+                self.button10.isHidden = true
+                
+            }else if button == "11" {
+                if LosingButton == "11" {
+                    self.out()
+                }else {
+                    self.safe()
+                }
+                self.button11.isHidden = true
+                
+            }else if button == "12" {
+                if LosingButton == "12" {
+                    self.out()
+                }else {
+                    self.safe()
+                }
+                self.button12.isHidden = true
+                
+            }else if button == "13" {
+                if LosingButton == "13" {
+                    self.out()
+                }else {
+                    self.safe()
+                }
+                self.button13.isHidden = true
+                
+            }else if button == "14" {
+                if LosingButton == "14" {
+                    self.out()
+                }else {
+                    self.safe()
+                }
+                self.button14.isHidden = true
+                
+            }else if button == "15" {
+                if LosingButton == "15" {
+                    self.out()
+                }else {
+                    self.safe()
+                }
+                self.button15.isHidden = true
+                
+            }else if button == "16" {
+                if LosingButton == "16" {
+                    self.out()
+                }else {
+                    self.safe()
+                }
+                self.button16.isHidden = true
+                
+            }else if button == "17" {
+                if LosingButton == "17" {
+                    self.out()
+                }else {
+                    self.safe()
+                }
+                self.button17.isHidden = true
+                
+            }else if button == "18" {
+                if LosingButton == "18" {
+                    self.out()
+                }else {
+                    self.safe()
+                }
+                self.button18.isHidden = true
+                
+            }else if button == "19" {
+                if LosingButton == "19" {
+                    self.out()
+                }else {
+                    self.safe()
+                }
+                self.button19.isHidden = true
+                
+            }
+        })
+    }
+    
+    func safe() {
+        hantei.text = "セーフ"
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
+            self.hantei.text = ""
+        }
+    }
+    
+    func out() {
+        // アラートを作成
+        let alert = UIAlertController(
+            title: "負けました",
+            message: "終了",
+            preferredStyle: .alert)
+        
+        // アラートにボタンをつける
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { action in
+            self.dismiss(animated: true, completion: nil)
+            
+            self.ref.child("users").child((user?.uid)!).updateChildValues(["RoomID": nil, "inRoom": "false"])
+        }))
+        
+        // アラート表示
+        self.present(alert, animated: true, completion: nil)
+        
     }
     
     //ボタンを押した時の処理
@@ -151,7 +367,7 @@ class MemberViewController: UIViewController {
         default:
             print("当てはまらない")
         }
-        self.ref.child("rooms").child(roomID!).child("messages").setValue(["TP": 0])
+        self.ref.child("rooms").child(roomID!).child("messages").updateChildValues(["TP": 0])
     }
     
     //ボタン有効化する処理
