@@ -50,7 +50,7 @@ class TopViewController: UIViewController {
                     self.ref.child("users").child((user?.uid)!).updateChildValues(["inRoom": "true"])
                     
                     //EnemyRoomViewに画面遷移
-                    let targetViewController = self.storyboard!.instantiateViewController( withIdentifier: "EnemyRoomViewController" ) as! EnemyRoomViewController
+                    let targetViewController = self.storyboard!.instantiateViewController( withIdentifier: "MemberViewController" ) as! MemberViewController
                     self.present( targetViewController, animated: true, completion: nil)
                 }
                 

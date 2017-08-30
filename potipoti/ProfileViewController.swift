@@ -32,19 +32,17 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         
         button1.layer.borderWidth = 1
         button1.layer.cornerRadius = 5
-        
         TableView.delegate = self
-        
         
         ref = Database.database().reference()
         //変更があれば処理する
         ref.child("users").child((user?.uid)!).observe(.value, with: {(snapShots) in
             
             let RoomID = String(describing: snapShots.childSnapshot(forPath: "RoomID").value!)
-            print("RoomIDは...\(RoomID)")
             
             if RoomID != "<null>" {
                 //nullじゃない時の処理
+                print("RoomIDは...\(RoomID)")
                 //対戦の挑戦状が届いたことを画面にアラートで表示
                 let Alert = UIAlertController(title: "対戦しますか？",message: "対戦の挑戦状が届きました、通信対戦をしますか？", preferredStyle: UIAlertControllerStyle.alert)
                 
@@ -52,17 +50,17 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
                     (action: UIAlertAction) in
                     // 以下はボタンがクリックされた時の処理
                     //通信対戦画面に画面遷移
-                    print("承諾をタップした")
-                    
-                    //ルームに入ったことをのデータを追加
-                    self.ref.child("rooms").child(RoomID).child("messages").updateChildValues(["対戦": "する"])
+                    print("承諾をタップした")                    
                     
                     //自分のデータのinRoomに対戦中であることを書く
                     self.ref.child("users").child((user?.uid)!).updateChildValues(["inRoom": "true"])
                     
                     //EnemyRoomViewに画面遷移
-                    let targetViewController = self.storyboard!.instantiateViewController( withIdentifier: "EnemyRoomViewController" ) as! EnemyRoomViewController
+                    let targetViewController = self.storyboard!.instantiateViewController( withIdentifier: "MemberViewController" ) as! MemberViewController
                     self.present( targetViewController, animated: true, completion: nil)
+                    
+                    //ルームに入ったことをのデータを追加
+                    self.ref.child("rooms").child(RoomID).child("messages").updateChildValues(["対戦": "する"])
                 }
                 
                 let cancel = UIAlertAction(title: "拒否", style:UIAlertActionStyle.cancel){
@@ -88,11 +86,9 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     //画面を開いたとき
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        print("viewWillAppearを処理する")
         
         let user = Auth.auth().currentUser
         let uid = user?.uid
-        
         
         if (UserDefaults.standard.object(forKey: "MyPhoto") != nil) {
             print("データ有り")
