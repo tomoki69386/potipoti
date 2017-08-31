@@ -22,7 +22,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     let userDefault = UserDefaults.standard
     var ref: DatabaseReference!
-    let Array = ["hoge","fuga","piyo","ログアウト"]
+    let Array = ["質問","ルール","パスワードを忘れた","ログアウト"]
     
     override func viewDidLoad() {
         super.viewDidLoad()

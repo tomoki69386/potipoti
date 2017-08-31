@@ -30,10 +30,10 @@ class TopViewController: UIViewController {
         ref.child("users").child((user?.uid)!).observe(.value, with: {(snapShots) in
             
             let RoomID = String(describing: snapShots.childSnapshot(forPath: "RoomID").value!)
-            print("RoomIDは...\(RoomID)")
             
             if RoomID != "<null>" {
                 //nullじゃない時の処理
+                print("RoomIDは...\(RoomID)")
                 //対戦の挑戦状が届いたことを画面にアラートで表示
                 let Alert = UIAlertController(title: "対戦しますか？",message: "対戦の挑戦状が届きました、通信対戦をしますか？", preferredStyle: UIAlertControllerStyle.alert)
                 
@@ -43,15 +43,15 @@ class TopViewController: UIViewController {
                     //通信対戦画面に画面遷移
                     print("承諾をタップした")
                     
-                    //ルームに入ったことをのデータを追加
-                    self.ref.child("rooms").child(RoomID).child("messages").updateChildValues(["対戦": "する"])
-                    
                     //自分のデータのinRoomに対戦中であることを書く
                     self.ref.child("users").child((user?.uid)!).updateChildValues(["inRoom": "true"])
                     
                     //EnemyRoomViewに画面遷移
                     let targetViewController = self.storyboard!.instantiateViewController( withIdentifier: "MemberViewController" ) as! MemberViewController
                     self.present( targetViewController, animated: true, completion: nil)
+                    
+                    //ルームに入ったことをのデータを追加
+                    self.ref.child("rooms").child(RoomID).child("messages").updateChildValues(["対戦": "する"])
                 }
                 
                 let cancel = UIAlertAction(title: "拒否", style:UIAlertActionStyle.cancel){

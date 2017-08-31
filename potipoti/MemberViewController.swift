@@ -279,22 +279,59 @@ class MemberViewController: UIViewController {
     }
     
     func out() {
-        // アラートを作成
-        let alert = UIAlertController(
-            title: "負けました",
-            message: "終了",
-            preferredStyle: .alert)
+        //Firebase
+        ref = Database.database().reference()
         
-        // アラートにボタンをつける
-        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { action in
-            self.dismiss(animated: true, completion: nil)
+        //RoomIDの取得
+        self.ref.child("users").child((self.user?.uid)!).observe(.value, with: {(snapShots) in
             
-            self.ref.child("users").child((self.user?.uid)!).updateChildValues(["RoomID": "<null>", "inRoom": "false"])
-        }))
-        
-        // アラート表示
-        self.present(alert, animated: true, completion: nil)
-        
+            //RoomIDの宣言
+            let RoomID = String(describing: snapShots.childSnapshot(forPath: "RoomID").value!)
+            
+            self.ref.child("rooms").child(RoomID).child("messages").observe(.value, with: {(snapShots) in
+                
+                let TP = String(describing: snapShots.childSnapshot(forPath: "TP").value!)
+                
+                let hostName = String(describing: snapShots.childSnapshot(forPath: "HostName").value!)
+                
+                let memberName = String(describing: snapShots.childSnapshot(forPath: "MemberName").value!)
+                
+                var MS: String!
+                
+                if TP == "0" {
+                    //hostが押せる時の処理
+                    //memberの負け
+                    MS = "\(memberName)の負け"
+                    
+                }else if TP == "1" {
+                    //memberが押せる時の処理
+                    //memberの勝ち
+                    MS = "\(memberName)の勝ち"
+                }
+                
+                // アラートを作成
+                let alert = UIAlertController(
+                    title: "終了",
+                    message: MS,
+                    preferredStyle: .alert)
+                
+                // アラートにボタンをつける
+                alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { action in
+                    self.dismiss(animated: true, completion: nil)
+                    
+                    
+                    
+                    //ルームの削除
+                    self.ref.child("rooms").child(RoomID).removeValue()
+                    print("ルームの削除")
+                    
+                    self.ref.child("users").child((self.user?.uid)!).updateChildValues(["RoomID": "<null>", "inRoom": "false"])
+                })
+                )
+                // アラート表示
+                self.present(alert, animated: true, completion: nil)
+            })
+        })
     }
     
     //ボタンを押した時の処理

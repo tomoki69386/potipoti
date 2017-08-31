@@ -41,6 +41,8 @@ class HostViewController: UIViewController {
     @IBOutlet var Label: UILabel!
     @IBOutlet var hantei: UILabel!
     var count = false
+    var timer: Timer = Timer()
+    var number: Int = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -99,6 +101,8 @@ class HostViewController: UIViewController {
                         print("ボタンを有効化")
                         self.button_Effectiveness()
                         self.Label.text = hostName
+                        
+                        //押したボタンの取得
                         self.button_Reading()
                         
                     }else if TP == "1" {
@@ -106,14 +110,37 @@ class HostViewController: UIViewController {
                         print("ボタンを無効化")
                         self.button_Disabled()
                         self.Label.text = memberName
+                        
+                        //押したボタンの取得
                         self.button_Reading()
                     }
                 }
             })
         })
-        
-        //押したボタンの取得
-        self.button_Reading()
+    }
+    
+    
+    func time() {
+        if !timer.isValid {
+            //タイマーが動作していなかったら動かす
+            timer = Timer.scheduledTimer(
+                timeInterval: 1.0,
+                target: self,
+                selector: #selector(self.up),
+                userInfo: nil,
+                repeats: true
+            )
+        }
+    }
+    
+    func up() {
+        if number >= 60 {
+            //60未満の時の処理
+            number += 1
+        }else {
+            //60以上の時の処理
+            
+        }
     }
     
     //押したボタンの取得メソッド
@@ -301,33 +328,56 @@ class HostViewController: UIViewController {
         //Firebase
         ref = Database.database().reference()
         
-        // アラートを作成
-        let alert = UIAlertController(
-            title: "負けました",
-            message: "終了",
-            preferredStyle: .alert)
-        
-        // アラートにボタンをつける
-        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { action in
-            self.dismiss(animated: true, completion: nil)
+        //RoomIDの取得
+        self.ref.child("users").child((self.user?.uid)!).observe(.value, with: {(snapShots) in
             
-            //RoomIDの取得
-            self.ref.child("users").child((self.user?.uid)!).observe(.value, with: {(snapShots) in
+            //RoomIDの宣言
+            let RoomID = String(describing: snapShots.childSnapshot(forPath: "RoomID").value!)
+            
+            self.ref.child("rooms").child(RoomID).child("messages").observe(.value, with: {(snapShots) in
                 
-                //RoomIDの宣言
-                let RoomID = String(describing: snapShots.childSnapshot(forPath: "RoomID").value!)
+                let TP = String(describing: snapShots.childSnapshot(forPath: "TP").value!)
                 
-                //ルームの削除
-                self.ref.child("rooms").child(RoomID).removeValue()
-                print("ルームの削除")
+                let hostName = String(describing: snapShots.childSnapshot(forPath: "HostName").value!)
                 
-                self.ref.child("users").child((self.user?.uid)!).updateChildValues(["RoomID": "<null>", "inRoom": "false"])
+                let memberName = String(describing: snapShots.childSnapshot(forPath: "MemberName").value!)
+                
+                var MS: String!
+                
+                if TP == "0" {
+                    //hostが押せる時の処理
+                    //hostの勝ち
+                    MS = "\(hostName)の勝ち"
+                    
+                }else if TP == "1" {
+                    //memberが押せる時の処理
+                    //hostの負け
+                    MS = "\(hostName)の負け"
+                }
+                
+                // アラートを作成
+                let alert = UIAlertController(
+                    title: "終了",
+                    message: MS,
+                    preferredStyle: .alert)
+                
+                // アラートにボタンをつける
+                alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { action in
+                    self.dismiss(animated: true, completion: nil)
+                    
+                    
+                    
+                    //ルームの削除
+                    self.ref.child("rooms").child(RoomID).removeValue()
+                    print("ルームの削除")
+                    
+                    self.ref.child("users").child((self.user?.uid)!).updateChildValues(["RoomID": "<null>", "inRoom": "false"])
+                })
+                )
+                // アラート表示
+                self.present(alert, animated: true, completion: nil)
             })
-        }))
-        
-        // アラート表示
-        self.present(alert, animated: true, completion: nil)
-        
+        })
     }
     
     //ボタンを押した時の処理
@@ -469,7 +519,6 @@ class HostViewController: UIViewController {
             
             //自分のデータのinRoomをfalseに変える
             self.self.ref.child("users").child((self.user?.uid)!).updateChildValues(["inRoom": "false"])
-            
             //相手のIDを取得
             self.ref.child("rooms").child(RoomID).child("messages").observe(.value, with: {(snapShots) in
                 
