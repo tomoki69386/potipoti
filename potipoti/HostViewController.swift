@@ -298,6 +298,9 @@ class HostViewController: UIViewController {
     }
     
     func out() {
+        //Firebase
+        ref = Database.database().reference()
+        
         // アラートを作成
         let alert = UIAlertController(
             title: "負けました",
@@ -309,7 +312,7 @@ class HostViewController: UIViewController {
             self.dismiss(animated: true, completion: nil)
             
             //RoomIDの取得
-            self.ref.child("users").child((user?.uid)!).observe(.value, with: {(snapShots) in
+            self.ref.child("users").child((self.user?.uid)!).observe(.value, with: {(snapShots) in
                 
                 //RoomIDの宣言
                 let RoomID = String(describing: snapShots.childSnapshot(forPath: "RoomID").value!)
@@ -318,7 +321,7 @@ class HostViewController: UIViewController {
                 self.ref.child("rooms").child(RoomID).removeValue()
                 print("ルームの削除")
                 
-                self.ref.child("users").child((user?.uid)!).updateChildValues(["RoomID": nil, "inRoom": "false"])
+                self.ref.child("users").child((self.user?.uid)!).updateChildValues(["RoomID": "<null>", "inRoom": "false"])
             })
         }))
         

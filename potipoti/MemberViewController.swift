@@ -289,7 +289,7 @@ class MemberViewController: UIViewController {
         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { action in
             self.dismiss(animated: true, completion: nil)
             
-            self.ref.child("users").child((user?.uid)!).updateChildValues(["RoomID": nil, "inRoom": "false"])
+            self.ref.child("users").child((self.user?.uid)!).updateChildValues(["RoomID": "<null>", "inRoom": "false"])
         }))
         
         // アラート表示
