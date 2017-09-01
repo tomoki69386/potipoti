@@ -116,8 +116,6 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
                     // Data for "images/island.jpg" is returned
                     self.ImageView.image = UIImage(data: data!)
                     self.self.userDefault.set(UIImagePNGRepresentation(self.ImageView.image!), forKey: "MyPhoto")
-                    print("imageを保存")
-                    print("imageを表示した")
                 }
             }
         }else {
@@ -159,7 +157,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     //サインアウトのメソッド
     func signOut() {
-        print("サインアウトボタンを押した")
+
         let firebaseAuth = Auth.auth()
         do {
             try firebaseAuth.signOut()

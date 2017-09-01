@@ -30,7 +30,7 @@ class newViewController: UIViewController, UITextFieldDelegate {
         //trueがアカウントを作成したことがない
         let hoge = userDefault.bool(forKey: "firstLaunch")
         if hoge == true {
-             button.isHidden = true
+            button.isHidden = true
         }
         
         
@@ -109,8 +109,8 @@ class newViewController: UIViewController, UITextFieldDelegate {
                         //アカウント作成成功時に処理する
                         SVProgressHUD.showSuccess(withStatus: "作成しました!")
                         
+                        //user
                         let user = Auth.auth().currentUser
-                        let uid = user?.uid
                         let name = user?.displayName
                         self.ref = Database.database().reference()
                         
@@ -118,6 +118,9 @@ class newViewController: UIViewController, UITextFieldDelegate {
                         
                         //初めてuserを作成したことを伝える
                         self.userDefault.set(false, forKey: "firstLaunch")
+                        
+                        //inRoomをfalseに、inAppをtrue
+                        self.ref.child("users").child(user!.uid).updateChildValues(["inRoom": "false", "inApp": "true"])
                         
                         //2秒の間待つ
                         let when = DispatchTime.now() + 2
