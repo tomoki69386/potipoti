@@ -26,6 +26,8 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        print("111111111")
         let user = Auth.auth().currentUser
         
         userNameLabel.text = (user?.displayName)
@@ -50,7 +52,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
                     (action: UIAlertAction) in
                     // 以下はボタンがクリックされた時の処理
                     //通信対戦画面に画面遷移
-                    print("承諾をタップした")                    
+                    print("承諾をタップした")
                     
                     //自分のデータのinRoomに対戦中であることを書く
                     self.ref.child("users").child((user?.uid)!).updateChildValues(["inRoom": "true"])
@@ -157,7 +159,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     //サインアウトのメソッド
     func signOut() {
-
+        
         let firebaseAuth = Auth.auth()
         do {
             try firebaseAuth.signOut()

@@ -37,17 +37,26 @@ class PlayerViewController: UIViewController, UITableViewDelegate, UITableViewDa
             let userID = String(describing: snapshot.childSnapshot(forPath: "uid").value!)
             //ルームに入ってるか検索
             let inRoom = String(describing: snapshot.childSnapshot(forPath: "inRoom").value!)
-            //表示
-            print(username)
-            print(userID)
-            print(inRoom)
             
-            //memberのデータを配列に収納
-            self?.MemberNameArray.append(username) //取得したuserの名前を収納する
-            self?.MemberIDArray.append(userID) //取得したuserのIDを収納する
+            let inApp = String(describing: snapshot.childSnapshot(forPath: "inRoom").value!)
             
-            //リロード
-            self?.TableView.reloadData()
+            if inRoom == "false" && inApp == "true" {
+                //アプリを起動していて、Roomに入っていないuserを取得
+                
+                //表示
+                print(username)
+                print(userID)
+                print(inRoom)
+                
+                //memberのデータを配列に収納
+                self?.MemberNameArray.append(username) //取得したuserの名前を収納する
+                self?.MemberIDArray.append(userID) //取得したuserのIDを収納する
+                
+                //リロード
+                self?.TableView.reloadData()
+            }
+            
+            
         })
         //デリゲートをセット
         TableView.delegate = self

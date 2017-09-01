@@ -1056,7 +1056,7 @@
                                         <rect key="frame" x="0.0" y="28" width="315" height="53"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="4Ig-OB-xGS" id="V1S-BJ-cib">
-                                            <rect key="frame" x="0.0" y="0.0" width="315" height="52.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="315" height="53"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -1075,7 +1075,7 @@
                     </view>
                     <tabBarItem key="tabBarItem" systemItem="contacts" id="BpE-MV-gUM"/>
                     <connections>
-                        <outlet property="ImageView" destination="geO-4r-ax0" id="HX1-LC-ulH"/>
+                        <outlet property="ImageView" destination="geO-4r-ax0" id="GS0-bt-dwG"/>
                         <outlet property="TableView" destination="pVm-Ua-3Gc" id="u2B-T5-a8T"/>
                         <outlet property="button1" destination="ye4-hF-MNi" id="W1l-oR-Dxi"/>
                         <outlet property="userNameLabel" destination="Ped-Qa-wGX" id="NWP-LF-bVp"/>
@@ -1106,7 +1106,7 @@
                                         <rect key="frame" x="0.0" y="28" width="320" height="51"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="fyF-ky-jz1" id="bzy-BS-Oja">
-                                            <rect key="frame" x="0.0" y="0.0" width="253" height="51"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="253" height="50"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -1303,7 +1303,7 @@
                     </tabBar>
                     <connections>
                         <segue destination="iHd-Hq-szb" kind="relationship" relationship="viewControllers" id="erf-zy-OaC"/>
-                        <segue destination="PPJ-uX-HXD" kind="relationship" relationship="viewControllers" id="GAA-c1-zlS"/>
+                        <segue destination="PPJ-uX-HXD" kind="relationship" relationship="viewControllers" id="onD-Cb-Bca"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NmM-nH-8OR" userLabel="First Responder" sceneMemberID="firstResponder"/>
