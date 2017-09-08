@@ -27,14 +27,12 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        print("111111111")
         let user = Auth.auth().currentUser
         
-        userNameLabel.text = (user?.displayName)
+        userNameLabel.text = user?.displayName
         
         button1.layer.borderWidth = 1
         button1.layer.cornerRadius = 5
-        TableView.delegate = self
         
         ref = Database.database().reference()
         //変更があれば処理する
@@ -85,7 +83,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         })
     }
     
-    //画面を開いたとき
+//    //画面を開いたとき
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
@@ -98,6 +96,16 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
             ImageView.image = UIImage(data:imageDate as Data)
         }else {
             print("データ無し")
+            //ここに画像を入れる
+            ImageView.image = #imageLiteral(resourceName: "test.png")
+            
+            var num: Int!
+            num = Int(arc4random_uniform(9))
+            
+            //画像データがない時10%の確率でアラートを表示する
+            if num == 0 {
+                self.Alert()
+            }
             
         }
         let storage = Storage.storage()
@@ -120,8 +128,6 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
                     self.self.userDefault.set(UIImagePNGRepresentation(self.ImageView.image!), forKey: "MyPhoto")
                 }
             }
-        }else {
-            print("UIImageViewに画像をあるとき")
         }
     }
     
@@ -146,20 +152,19 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         if indexPath.row == 0 {
-            print("hoge")
+            print("質問")
         }else if indexPath.row == 1 {
-            print("fuga")
+            print("ルール")
         }else if indexPath.row == 2 {
-            print("piyo")
+            print("パスワードを忘れた")
         }else if indexPath.row == 3 {
-            //ログアウト
+            print("ログアウト")
             self.signOut()
         }
     }
     
     //サインアウトのメソッド
     func signOut() {
-        
         let firebaseAuth = Auth.auth()
         do {
             try firebaseAuth.signOut()
@@ -194,6 +199,5 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        
     }
 }

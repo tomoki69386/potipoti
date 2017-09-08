@@ -620,12 +620,10 @@ class GameViewController: UIViewController {
         
         // アラートにボタンをつける
         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { action in self.dismiss(animated: true, completion: nil)
-            
         }))
         
         // アラート表示
         self.present(alert, animated: true, completion: nil)
-        
     }
     
     func kati() {
@@ -637,7 +635,6 @@ class GameViewController: UIViewController {
         
         // アラートにボタンをつける
         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { action in self.dismiss(animated: true, completion: nil)
-            
         }))
         
         // アラート表示
@@ -660,9 +657,7 @@ class GameViewController: UIViewController {
                 
             }else {
                 index = 0
-                
             }
-            
             
         }else if ninzuu == 3 {
             darelabel.text = ninzuu3Array[index]
@@ -685,7 +680,6 @@ class GameViewController: UIViewController {
                 
             }else {
                 index = 0
-                
             }
         }
     }

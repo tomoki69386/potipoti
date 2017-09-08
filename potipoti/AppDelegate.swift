@@ -10,7 +10,6 @@
  import Firebase
  import FirebaseAuth
  import SVProgressHUD
- import JSQMessagesViewController
  
  @UIApplicationMain
  class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -39,23 +38,22 @@
             let storyboard:UIStoryboard =  UIStoryboard(name: "Main",bundle:nil)
             window?.rootViewController
                 = storyboard.instantiateViewController(withIdentifier: "newViewController")
+        }else {
+            print("2回目以降の処理")
+            //ログインしてたら、画面遷移
+            if let _ = Auth.auth().currentUser {
+                //ログイン中
+                let user = Auth.auth().currentUser
+                let name = user?.displayName //ユーザーの名前の定数
+                ref = Database.database().reference()
+                
+                self.ref.child("users").child(user!.uid).setValue(["username": name,"uid": user?.uid,"inRoom": "false", "inApp": "true"])
+                
+                let storyboard:UIStoryboard =  UIStoryboard(name: "Main",bundle:nil)
+                window?.rootViewController
+                    = storyboard.instantiateViewController(withIdentifier: "TabBarController")
+            }
         }
-        print("毎回処理する")
-        
-        //ログインしてたら、画面遷移
-        if let _ = Auth.auth().currentUser {
-            //ログイン中
-            let user = Auth.auth().currentUser
-            let name = user?.displayName //ユーザーの名前の定数
-            ref = Database.database().reference()
-            
-            self.ref.child("users").child(user!.uid).setValue(["username": name,"uid": user?.uid,"inRoom": "false", "inApp": "true"])
-            
-            let storyboard:UIStoryboard =  UIStoryboard(name: "Main",bundle:nil)
-            window?.rootViewController
-                = storyboard.instantiateViewController(withIdentifier: "TabBarController")
-        }
-        
         return true
     }
     

@@ -61,7 +61,7 @@ class HostViewController: UIViewController {
             
             self.userDefault.set(RoomID, forKey: "RoomID")
             
-            print(RoomID)
+            print("ルームIDは...\(RoomID)")
             
             
             //対戦者の選択待ち
@@ -365,12 +365,9 @@ class HostViewController: UIViewController {
                 alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { action in
                     self.dismiss(animated: true, completion: nil)
                     
-                    
-                    
                     //ルームの削除
                     self.ref.child("rooms").child(RoomID).removeValue()
                     print("ルームの削除")
-                    
                     self.ref.child("users").child((self.user?.uid)!).updateChildValues(["RoomID": "<null>", "inRoom": "false"])
                 })
                 )
@@ -453,6 +450,8 @@ class HostViewController: UIViewController {
             default:
                 print("当てはまらない")
             }
+            
+            //次にボタンを押せる人をMemberにする
             self.ref.child("rooms").child(roomID).child("messages").updateChildValues(["TP": 1])
         })
     }

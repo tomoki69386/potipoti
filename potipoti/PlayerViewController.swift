@@ -40,9 +40,8 @@ class PlayerViewController: UIViewController, UITableViewDelegate, UITableViewDa
             
             let inApp = String(describing: snapshot.childSnapshot(forPath: "inRoom").value!)
             
-            if inRoom == "false" && inApp == "true" {
+//            if inRoom == "false" && inApp == "true" {
                 //アプリを起動していて、Roomに入っていないuserを取得
-                
                 //表示
                 print(username)
                 print(userID)
@@ -54,7 +53,7 @@ class PlayerViewController: UIViewController, UITableViewDelegate, UITableViewDa
                 
                 //リロード
                 self?.TableView.reloadData()
-            }
+//            }
             
             
         })
@@ -110,7 +109,7 @@ class PlayerViewController: UIViewController, UITableViewDelegate, UITableViewDa
         //Roomの作成
         //RoomIDは乱数(number)
         //Roomに必要なデータを保存
-        self.ref.child("rooms").child(String(RoomID)).child("messages").setValue(
+        self.ref.child("rooms").child(String(RoomID)).child("messages").updateChildValues(
             ["roomID": RoomID, "MamberID": MemberIDArray[indexPath.row], "MemberName": MemberNameArray[indexPath.row], "HostName": user?.displayName, "HostID": user?.uid, "ハズレボタン": hazure, "TP": Tap_Player])
         
         //相手にRoomIDを教える

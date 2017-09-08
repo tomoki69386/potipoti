@@ -404,6 +404,8 @@ class MemberViewController: UIViewController {
         default:
             print("当てはまらない")
         }
+        
+        //次にボタンを押せる人をHostにする
         self.ref.child("rooms").child(roomID!).child("messages").updateChildValues(["TP": 0])
     }
     
