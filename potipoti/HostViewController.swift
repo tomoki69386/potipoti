@@ -367,7 +367,7 @@ class HostViewController: UIViewController {
                     
                     //ルームの削除
                     self.ref.child("rooms").child(RoomID).removeValue()
-                    print("ルームの削除")
+                    print("ルームを削除")
                     self.ref.child("users").child((self.user?.uid)!).updateChildValues(["RoomID": "<null>", "inRoom": "false"])
                 })
                 )
