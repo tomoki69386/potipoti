@@ -23,6 +23,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     let userDefault = UserDefaults.standard
     var ref: DatabaseReference!
     let Array = ["質問","ルール","パスワードを忘れた","ログアウト"]
+    var Existence: Bool = false //trueならアラートを表示中、falseならアラートを表示していない
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -46,11 +47,17 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
                 //対戦の挑戦状が届いたことを画面にアラートで表示
                 let Alert = UIAlertController(title: "対戦しますか？",message: "対戦の挑戦状が届きました、通信対戦をしますか？", preferredStyle: UIAlertControllerStyle.alert)
                 
+                //アラートを表示したのでExistenceをtrueに変える
+                self.Existence = true
+                
                 let battle = UIAlertAction(title: "承諾", style:UIAlertActionStyle.default){
                     (action: UIAlertAction) in
                     // 以下はボタンがクリックされた時の処理
                     //通信対戦画面に画面遷移
                     print("承諾をタップした")
+                    
+                    //アラートのボタンを押したのでExistenceをfalseに変える
+                    self.Existence = false
                     
                     //自分のデータのinRoomに対戦中であることを書く
                     self.ref.child("users").child((user?.uid)!).updateChildValues(["inRoom": "true"])
@@ -69,6 +76,9 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
                     //拒否したことを伝える
                     print("拒否をタップした")
                     
+                    //アラートのボタンを押したのでExistenceをfalseに変える
+                    self.Existence = false
+                    
                     //拒否したことを伝える
                     self.ref.child("rooms").child(RoomID).child("messages").updateChildValues(["対戦": "しない"])
                 }
@@ -79,11 +89,19 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
                 
                 //アラートを表示
                 self.present(Alert,animated: true, completion: nil)
+                
+                //アラートを表示してから60秒経てばアラートを閉じる
+                let when = DispatchTime.now() + 60
+                //アラートを閉じる
+                DispatchQueue.main.asyncAfter(deadline: when) {
+                    Alert.dismiss(animated: true, completion: nil)
+                }
+            
             }
         })
     }
     
-//    //画面を開いたとき
+    //画面を開いたとき
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
@@ -120,7 +138,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
             islandRef.getData(maxSize: 50 * 1024 * 1024) { (data, error) -> Void in
                 if (error != nil) {
                     // Uh-oh, an error occurred!
-                    print(error)
+                    print("エラーの内容は...\(error)")
                     self.Alert()
                 } else {
                     // Data for "images/island.jpg" is returned

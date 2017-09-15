@@ -15,6 +15,7 @@
 		55DA5F1D1F2B33F800EB689D /* newViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55DA5F1C1F2B33F800EB689D /* newViewController.swift */; };
 		55DFCDB11F55914E000E54DC /* MemberViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55DFCDB01F55914E000E54DC /* MemberViewController.swift */; };
 		55DFCDB31F55915C000E54DC /* HostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55DFCDB21F55915C000E54DC /* HostViewController.swift */; };
+		55EE85FC1F67D690003600E7 /* RuleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55EE85FB1F67D690003600E7 /* RuleViewController.swift */; };
 		55EF4FA61F2332B000233C2E /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55EF4FA51F2332B000233C2E /* LoginViewController.swift */; };
 		55FD6DDB1F1CF95200322633 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55FD6DDA1F1CF95200322633 /* AppDelegate.swift */; };
 		55FD6DE21F1CF95200322633 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 55FD6DE11F1CF95200322633 /* Assets.xcassets */; };
@@ -59,6 +60,7 @@
 		55DA5F1C1F2B33F800EB689D /* newViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = newViewController.swift; sourceTree = "<group>"; };
 		55DFCDB01F55914E000E54DC /* MemberViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MemberViewController.swift; sourceTree = "<group>"; };
 		55DFCDB21F55915C000E54DC /* HostViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HostViewController.swift; sourceTree = "<group>"; };
+		55EE85FB1F67D690003600E7 /* RuleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RuleViewController.swift; sourceTree = "<group>"; };
 		55EF4FA51F2332B000233C2E /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		55FD6DD71F1CF95200322633 /* potipoti.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = potipoti.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		55FD6DDA1F1CF95200322633 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -163,6 +165,7 @@
 				55FD6E0E1F1CFA9600322633 /* ComViewController.swift */,
 				55FD6E0F1F1CFA9600322633 /* GameViewController.swift */,
 				55FD6E0A1F1CFA7D00322633 /* Main.storyboard */,
+				55EE85FB1F67D690003600E7 /* RuleViewController.swift */,
 				55DFCDB01F55914E000E54DC /* MemberViewController.swift */,
 				55DFCDB21F55915C000E54DC /* HostViewController.swift */,
 				55FD6DE11F1CF95200322633 /* Assets.xcassets */,
@@ -503,6 +506,7 @@
 				55CB56411F43345700F6F9B2 /* TabBarController.swift in Sources */,
 				55FD6E101F1CFA9600322633 /* TopViewController.swift in Sources */,
 				55FD6DDB1F1CF95200322633 /* AppDelegate.swift in Sources */,
+				55EE85FC1F67D690003600E7 /* RuleViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

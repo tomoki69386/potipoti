@@ -319,13 +319,11 @@ class MemberViewController: UIViewController {
                 alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { action in
                     self.dismiss(animated: true, completion: nil)
                     
+                    let user = Auth.auth().currentUser
+                    let name = user?.displayName
                     
-                    
-                    //ルームの削除
-                    self.ref.child("rooms").child(RoomID).removeValue()
-                    print("ルームを削除")
-                    
-                    self.ref.child("users").child((self.user?.uid)!).updateChildValues(["RoomID": "<null>", "inRoom": "false"])
+                    //自分のデータを初期値に戻す
+                    self.ref.child("users").child((self.user?.uid)!).setValue(["username": name,"uid": user?.uid,"inRoom": "false", "inApp": "true"])
                 })
                 )
                 // アラート表示
@@ -338,75 +336,18 @@ class MemberViewController: UIViewController {
     @IBAction func tap(sender: UIButton) {
         
         let roomID = userDefault.string(forKey: "RoomID")
-        print("ルームIDは...\(roomID)")
         
-        switch sender.tag {
-        case 0:
-            let hoge = ["button": "0"]
-            self.ref.child("rooms").child(roomID!).child("battle").child("Tap_button").setValue(hoge)
-        case 1:
-            let hoge = ["button": "1"]
-            self.ref.child("rooms").child(roomID!).child("battle").child("Tap_button").setValue(hoge)
-        case 2:
-            let hoge = ["button": "2"]
-            self.ref.child("rooms").child(roomID!).child("battle").child("Tap_button").setValue(hoge)
-        case 3:
-            let hoge = ["button": "3"]
-            self.ref.child("rooms").child(roomID!).child("battle").child("Tap_button").setValue(hoge)
-        case 4:
-            let hoge = ["button": "4"]
-            self.ref.child("rooms").child(roomID!).child("battle").child("Tap_button").setValue(hoge)
-        case 5:
-            let hoge = ["button": "5"]
-            self.ref.child("rooms").child(roomID!).child("battle").child("Tap_button").setValue(hoge)
-        case 6:
-            let hoge = ["button": "6"]
-            self.ref.child("rooms").child(roomID!).child("battle").child("Tap_button").setValue(hoge)
-        case 7:
-            let hoge = ["button": "7"]
-            self.ref.child("rooms").child(roomID!).child("battle").child("Tap_button").setValue(hoge)
-        case 8:
-            let hoge = ["button": "8"]
-            self.ref.child("rooms").child(roomID!).child("battle").child("Tap_button").setValue(hoge)
-        case 9:
-            let hoge = ["button": "9"]
-            self.ref.child("rooms").child(roomID!).child("battle").child("Tap_button").setValue(hoge)
-        case 10:
-            let hoge = ["button": "10"]
-            self.ref.child("rooms").child(roomID!).child("battle").child("Tap_button").setValue(hoge)
-        case 11:
-            let hoge = ["button": "11"]
-            self.ref.child("rooms").child(roomID!).child("battle").child("Tap_button").setValue(hoge)
-        case 12:
-            let hoge = ["button": "12"]
-            self.ref.child("rooms").child(roomID!).child("battle").child("Tap_button").setValue(hoge)
-        case 13:
-            let hoge = ["button": "13"]
-            self.ref.child("rooms").child(roomID!).child("battle").child("Tap_button").setValue(hoge)
-        case 14:
-            let hoge = ["button": "14"]
-            self.ref.child("rooms").child(roomID!).child("battle").child("Tap_button").setValue(hoge)
-        case 15:
-            let hoge = ["button": "15"]
-            self.ref.child("rooms").child(roomID!).child("battle").child("Tap_button").setValue(hoge)
-        case 16:
-            let hoge = ["button": "16"]
-            self.ref.child("rooms").child(roomID!).child("battle").child("Tap_button").setValue(hoge)
-        case 17:
-            let hoge = ["button": "17"]
-            self.ref.child("rooms").child(roomID!).child("battle").child("Tap_button").setValue(hoge)
-        case 18:
-            let hoge = ["button": "18"]
-            self.ref.child("rooms").child(roomID!).child("battle").child("Tap_button").setValue(hoge)
-        case 19:
-            let hoge = ["button": "19"]
-            self.ref.child("rooms").child(roomID!).child("battle").child("Tap_button").setValue(hoge)
-        default:
-            print("当てはまらない")
+        if roomID != "<null>" {
+            //nullじゃなかったらprint(sender.tag)
+            
+            //hogeに押したボタンを入れる
+            let hoge = ["button": sender.tag]
+            
+            self.ref.child("rooms").child(roomID!).child("battle").child("Tap_button").updateChildValues(hoge)
+            
+            //次にボタンを押せる人をHostにする
+            self.ref.child("rooms").child(roomID!).child("messages").updateChildValues(["TP": 0])
         }
-        
-        //次にボタンを押せる人をHostにする
-        self.ref.child("rooms").child(roomID!).child("messages").updateChildValues(["TP": 0])
     }
     
     //ボタン有効化する処理

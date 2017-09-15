@@ -1060,7 +1060,7 @@
                                         <rect key="frame" x="0.0" y="28" width="315" height="53"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="4Ig-OB-xGS" id="V1S-BJ-cib">
-                                            <rect key="frame" x="0.0" y="0.0" width="315" height="52"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="315" height="53"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -1084,6 +1084,33 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="v6m-tM-2Bg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="428" y="2737"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="zkt-u0-Whd">
+            <objects>
+                <viewController id="3Dm-eY-jQR" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="ACu-gG-wwr"/>
+                        <viewControllerLayoutGuide type="bottom" id="ppG-lC-ITa"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="SXq-7U-2ph">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="Button Checker" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="C0o-hG-jUV">
+                                <rect key="frame" x="40" y="79" width="240" height="449"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Y3d-UT-gmA" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="427.5" y="3457.394366197183"/>
         </scene>
         <!--Player View Controller-->
         <scene sceneID="6v6-Li-hyO">
