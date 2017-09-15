@@ -104,7 +104,7 @@ class PlayerViewController: UIViewController, UITableViewDelegate, UITableViewDa
         print("ハズレのボタンは...\(hazure)")
         
         //最初にタップできるユーザーを決める
-        Tap_Player = Int(arc4random_uniform(1))
+        Tap_Player = Int(arc4random_uniform(2))
         
         //Roomの作成
         //RoomIDは乱数(number)
