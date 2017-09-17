@@ -23,7 +23,9 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     let userDefault = UserDefaults.standard
     var ref: DatabaseReference!
     let Array = ["質問","ルール","パスワードを忘れた","ログアウト"]
-    var Existence: Bool = false //trueならアラートを表示中、falseならアラートを表示していない
+    
+    //trueならアラートを表示中、falseならアラートを表示していない
+    var Existence: Bool = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
