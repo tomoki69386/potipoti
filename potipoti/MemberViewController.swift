@@ -74,23 +74,22 @@ class MemberViewController: UIViewController {
                 self.userDefault.set(LosingButton, forKey: "LosingButton")
                 
                 print("ハズレのボタンは...\(LosingButton)")
-                print("最初にボタンを押せるのは...\(TP)")
+                print("ボタンを押せるのは...\(TP)")
                 
                 if TP == "0" {
                     //hostが押せる時の処理
                     print("ボタンを無効化")
                     self.button_Disabled()
                     self.Label.text = hostName
-                    self.button_Reading()
                     
                 }else if TP == "1" {
                     //memberが押せる時の処理
                     print("ボタン有効化")
                     self.button_Effectiveness()
                     self.Label.text = memberName
-                    self.button_Reading()
-                    
                 }
+                //だれがButtonを押したか取得する
+                self.button_Reading()
             })
         })
     }

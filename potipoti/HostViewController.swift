@@ -63,7 +63,6 @@ class HostViewController: UIViewController {
             
             print("ルームIDは...\(RoomID)")
             
-            
             //対戦者の選択待ち
             self.ref.child("rooms").child(RoomID).child("messages").observe(.value, with: {(snapShots) in
                 
@@ -88,7 +87,6 @@ class HostViewController: UIViewController {
                     self.No_battle()
                     
                 }else if battle == "する" {
-                    
                     //タイマーのカウントをストップさせる
                     self.timer.invalidate()
                     
@@ -105,18 +103,14 @@ class HostViewController: UIViewController {
                         self.button_Effectiveness()
                         self.Label.text = hostName
                         
-                        //押したボタンの取得
-                        self.button_Reading()
-                        
                     }else if TP == "1" {
                         //memberが押せる時の処理
                         print("ボタンを無効化")
                         self.button_Disabled()
                         self.Label.text = memberName
-                        
-                        //押したボタンの取得
-                        self.button_Reading()
                     }
+                    //押したButtonの取得
+                    self.button_Reading()
                 }
             })
         })
