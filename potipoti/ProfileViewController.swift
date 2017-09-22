@@ -98,7 +98,6 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
                 DispatchQueue.main.asyncAfter(deadline: when) {
                     Alert.dismiss(animated: true, completion: nil)
                 }
-            
             }
         })
     }
@@ -126,8 +125,8 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
             if num == 0 {
                 self.Alert()
             }
-            
         }
+        
         let storage = Storage.storage()
         let storageRef = storage.reference(forURL: "gs://potipoti-e1d0e.appspot.com/image")
         
@@ -190,6 +189,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
             try firebaseAuth.signOut()
             print("サインアウト出来ました")
             
+            //サインアウトと同時にユーザーデフォルトに入っている画像データを削除する
             userDefault.removeObject(forKey: "MyPhoto")
             
             //画面遷移
@@ -212,7 +212,6 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         // アラートにボタンをつける
         alert.addAction(UIAlertAction(title: "設定する", style: .default, handler: { action in
         }))
-        
         // アラート表示
         self.present(alert, animated: true, completion: nil)
     }
