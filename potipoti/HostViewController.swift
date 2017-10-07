@@ -150,10 +150,11 @@ class HostViewController: UIViewController {
         ref.child("rooms").child(roomID!).child("battle").child("Tap_button").observe(.value, with: {(snapShots) in
             
             let button = String(describing: snapShots.childSnapshot(forPath: "button").value!)
-            print("押したボタンは...\(button)番")
             
             if button != "<null>" {
                 //nullじゃなかったら処理する
+                print("押したボタンは...\(button)")
+                
                 if button == "0" {
                     if LosingButton == "0" {
                         self.out()
@@ -321,7 +322,7 @@ class HostViewController: UIViewController {
     func safe() {
         hantei.text = "セーフ"
         DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
-            self.hantei.text = ""
+            self.hantei.text = " "
         }
     }
     
@@ -404,10 +405,10 @@ class HostViewController: UIViewController {
                 //hogeに押したボタンの番号を入れる
                 let hoge = ["button": sender.tag]
                 
-                self.ref.child("rooms").child(roomID).child("battle").child("Tap_button").updateChildValues(hoge)
+            self.ref.child("rooms").child(roomID).child("battle").child("Tap_button").updateChildValues(hoge)
                 
                 //次にボタンを押せる人をMemberにする
-                self.ref.child("rooms").child(roomID).child("messages").updateChildValues(["TP": 1])
+            self.ref.child("rooms").child(roomID).child("messages").updateChildValues(["TP": 1])
             }
         })
     }

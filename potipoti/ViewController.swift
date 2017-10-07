@@ -11,22 +11,22 @@ import UIKit
 class ViewController: UIViewController, UITextFieldDelegate {
     
     @IBOutlet var button1: UIButton!
-    
     @IBOutlet var PlayerLabel1: UILabel!
     @IBOutlet var PlayerLabel2: UILabel!
     @IBOutlet var PlayerLabel3: UILabel!
     @IBOutlet var PlayerLabel4: UILabel!
-    
     @IBOutlet var PlayertextField1: UITextField!
     @IBOutlet var PlayertextField2: UITextField!
     @IBOutlet var PlayertextField3: UITextField!
     @IBOutlet var PlayertextField4: UITextField!
-    
     @IBOutlet var label: UILabel!
+    
     var index: Int = 0
     var defaults: UserDefaults = UserDefaults.standard
-    
     let ninzuuArrey: [String] = ["２人","３人","４人"]
+    
+    //追記
+    let SCREEN_SIZE = UIScreen.main.bounds.size
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,6 +43,12 @@ class ViewController: UIViewController, UITextFieldDelegate {
         
         //ボタンを丸める
         button1.layer.cornerRadius = 30
+        
+        //以下追記
+        NotificationCenter.default.addObserver(self, selector: #selector(ViewController.keyboardWillShow(_:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        //ここでUIKeyboardWillShowという名前の通知のイベントをオブザーバー登録をしている
+        NotificationCenter.default.addObserver(self, selector: #selector(ViewController.keyboardWillHide(_:)), name: NSNotification.Name.UIKeyboardDidHide, object: nil)
+        //ここでUIKeyboardWillHideという名前の通知のイベントをオブザーバー登録をしている
         
     }
     
@@ -110,13 +116,12 @@ class ViewController: UIViewController, UITextFieldDelegate {
     
     
     @IBAction func Play() {
-        
         if label.text == ("４人") {
+            //TextFieldに文字が入ってないと以下の処理をしない
             guard (PlayerLabel1.text != nil) else { return }
             guard (PlayerLabel2.text != nil) else { return }
             guard (PlayerLabel3.text != nil) else { return }
             guard (PlayerLabel4.text != nil) else { return }
-            print("文字がある")
             
             defaults.set(PlayertextField1.text, forKey: "Player1")
             defaults.set(PlayertextField2.text, forKey: "Player2")
@@ -127,6 +132,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
             defaults.set(4, forKey: "ninzuu")
             
         }else if label.text == ("３人") {
+            //TextFieldに文字が入ってないと以下の処理をしない
             defaults.set(PlayertextField1.text, forKey: "Player1")
             defaults.set(PlayertextField2.text, forKey: "Player2")
             defaults.set(PlayertextField3.text, forKey: "Player3")
@@ -135,12 +141,12 @@ class ViewController: UIViewController, UITextFieldDelegate {
             defaults.set(3, forKey: "ninzuu")
             
         }else if label.text == ("２人") {
+            //TextFieldに文字が入ってないと以下の処理をしない
             defaults.set(PlayertextField1.text, forKey: "Player1")
             defaults.set(PlayertextField2.text, forKey: "Player2")
             
             //人数を記録
             defaults.set(2, forKey: "ninzuu")
-         
         }
         
         //画面遷移
@@ -179,6 +185,30 @@ class ViewController: UIViewController, UITextFieldDelegate {
         }else if (PlayertextField4.isFirstResponder){
             PlayertextField4.resignFirstResponder()
         }
-        
+    }
+    
+    //以下追記
+    
+    //Viewをタップした時に起こる処理を描く関数
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        //キーボードを閉じる処理
+        view.endEditing(true)
+    }
+    
+    //UIKeyboardWillShow通知を受けて、実行される関数
+    func keyboardWillShow(_ notification: NSNotification){
+        let keyboardHeight = (notification.userInfo![UIKeyboardFrameEndUserInfoKey] as AnyObject).cgRectValue.height
+        PlayertextField1.frame.origin.y = SCREEN_SIZE.height - keyboardHeight - PlayertextField1.frame.height
+        PlayertextField2.frame.origin.y = SCREEN_SIZE.height - keyboardHeight - PlayertextField2.frame.height
+        PlayertextField3.frame.origin.y = SCREEN_SIZE.height - keyboardHeight - PlayertextField3.frame.height
+        PlayertextField4.frame.origin.y = SCREEN_SIZE.height - keyboardHeight - PlayertextField4.frame.height
+    }
+    
+    //UIKeyboardWillShow通知を受けて、実行される関数
+    func keyboardWillHide(_ notification: NSNotification){
+        PlayertextField1.frame.origin.y = SCREEN_SIZE.height - PlayertextField1.frame.height
+        PlayertextField2.frame.origin.y = SCREEN_SIZE.height - PlayertextField2.frame.height
+        PlayertextField3.frame.origin.y = SCREEN_SIZE.height - PlayertextField3.frame.height
+        PlayertextField4.frame.origin.y = SCREEN_SIZE.height - PlayertextField4.frame.height
     }
 }

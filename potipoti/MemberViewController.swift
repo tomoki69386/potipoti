@@ -102,10 +102,11 @@ class MemberViewController: UIViewController {
         ref.child("rooms").child(roomID!).child("battle").child("Tap_button").observe(.value, with: {(snapShots) in
             
             let button = String(describing: snapShots.childSnapshot(forPath: "button").value!)
-            print("押したボタンは...\(button)")
             
             if button != "<null>" {
                 //nullじゃなかったら処理する
+                print("押したボタンは...\(button)")
+                
                 if button == "0" {
                     if LosingButton == "0" {
                         self.out()
