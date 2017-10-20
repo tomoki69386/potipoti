@@ -26,12 +26,21 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         
         emailTextField.layer.borderWidth = 2
         passwordTextField.layer.borderWidth = 2
+        
+        //キーボードのフォーカスをあわせる
+        emailTextField.becomeFirstResponder()
     }
     
     //Returmキーで閉じる
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        emailTextField.resignFirstResponder()
-        passwordTextField.resignFirstResponder()
+        if textField == (emailTextField) {
+            //キーボードのフォーカスをあわせる
+            passwordTextField.becomeFirstResponder()
+        }else {
+            //キーボードを閉じる
+            passwordTextField.resignFirstResponder()
+        }
+        
         return true
     }
     

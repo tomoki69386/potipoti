@@ -33,7 +33,6 @@ class newViewController: UIViewController, UITextFieldDelegate {
             button.isHidden = true
         }
         
-        
         //デリゲートのセット
         NameTextField.delegate = self
         passwordTextField.delegate = self
@@ -49,10 +48,14 @@ class newViewController: UIViewController, UITextFieldDelegate {
         passwordTextField2.layer.borderWidth = 2
         
         emailRef = Database.database().reference()
+        
+        //キーボードのフォーカスをあわせる
+        NameTextField.becomeFirstResponder()
     }
     
     //Returmキーで閉じる
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        
         emailTextField.resignFirstResponder()
         passwordTextField.resignFirstResponder()
         NameTextField.resignFirstResponder()

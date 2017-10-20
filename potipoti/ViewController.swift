@@ -25,9 +25,6 @@ class ViewController: UIViewController, UITextFieldDelegate {
     var defaults: UserDefaults = UserDefaults.standard
     let ninzuuArrey: [String] = ["２人","３人","４人"]
     
-    //追記
-    let SCREEN_SIZE = UIScreen.main.bounds.size
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         PlayertextField1.delegate = self
@@ -43,12 +40,6 @@ class ViewController: UIViewController, UITextFieldDelegate {
         
         //ボタンを丸める
         button1.layer.cornerRadius = 30
-        
-        //以下追記
-        NotificationCenter.default.addObserver(self, selector: #selector(ViewController.keyboardWillShow(_:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
-        //ここでUIKeyboardWillShowという名前の通知のイベントをオブザーバー登録をしている
-        NotificationCenter.default.addObserver(self, selector: #selector(ViewController.keyboardWillHide(_:)), name: NSNotification.Name.UIKeyboardDidHide, object: nil)
-        //ここでUIKeyboardWillHideという名前の通知のイベントをオブザーバー登録をしている
         
     }
     
@@ -187,28 +178,4 @@ class ViewController: UIViewController, UITextFieldDelegate {
         }
     }
     
-    //以下追記
-    
-    //Viewをタップした時に起こる処理を描く関数
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        //キーボードを閉じる処理
-        view.endEditing(true)
-    }
-    
-    //UIKeyboardWillShow通知を受けて、実行される関数
-    func keyboardWillShow(_ notification: NSNotification){
-        let keyboardHeight = (notification.userInfo![UIKeyboardFrameEndUserInfoKey] as AnyObject).cgRectValue.height
-        PlayertextField1.frame.origin.y = SCREEN_SIZE.height - keyboardHeight - PlayertextField1.frame.height
-        PlayertextField2.frame.origin.y = SCREEN_SIZE.height - keyboardHeight - PlayertextField2.frame.height
-        PlayertextField3.frame.origin.y = SCREEN_SIZE.height - keyboardHeight - PlayertextField3.frame.height
-        PlayertextField4.frame.origin.y = SCREEN_SIZE.height - keyboardHeight - PlayertextField4.frame.height
-    }
-    
-    //UIKeyboardWillShow通知を受けて、実行される関数
-    func keyboardWillHide(_ notification: NSNotification){
-        PlayertextField1.frame.origin.y = SCREEN_SIZE.height - PlayertextField1.frame.height
-        PlayertextField2.frame.origin.y = SCREEN_SIZE.height - PlayertextField2.frame.height
-        PlayertextField3.frame.origin.y = SCREEN_SIZE.height - PlayertextField3.frame.height
-        PlayertextField4.frame.origin.y = SCREEN_SIZE.height - PlayertextField4.frame.height
-    }
 }
