@@ -50,7 +50,6 @@ class GameViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
         ninzuu = defaults.integer(forKey: "ninzuu")
         print("プレイヤーの人数は...\(ninzuu)人")
         

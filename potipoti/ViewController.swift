@@ -72,7 +72,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
             PlayerLabel3.isHidden = true
             
         }
- 
+        
     }
     
     @IBAction func down() {
@@ -105,7 +105,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
         }
     }
     
-    
+    //ゲームスタートButton
     @IBAction func Play() {
         if label.text == ("４人") {
             //TextFieldに文字が入ってないと以下の処理をしない
@@ -122,8 +122,16 @@ class ViewController: UIViewController, UITextFieldDelegate {
             //人数を記録
             defaults.set(4, forKey: "ninzuu")
             
+            //画面遷移
+            let targetViewController = self.storyboard!.instantiateViewController( withIdentifier: "Game" ) as! GameViewController
+            self.present( targetViewController, animated: true, completion: nil)
+            
         }else if label.text == ("３人") {
             //TextFieldに文字が入ってないと以下の処理をしない
+            guard (PlayerLabel1.text != nil) else { return }
+            guard (PlayerLabel2.text != nil) else { return }
+            guard (PlayerLabel3.text != nil) else { return }
+            
             defaults.set(PlayertextField1.text, forKey: "Player1")
             defaults.set(PlayertextField2.text, forKey: "Player2")
             defaults.set(PlayertextField3.text, forKey: "Player3")
@@ -131,27 +139,66 @@ class ViewController: UIViewController, UITextFieldDelegate {
             //人数を記録
             defaults.set(3, forKey: "ninzuu")
             
+            //画面遷移
+            let targetViewController = self.storyboard!.instantiateViewController( withIdentifier: "Game" ) as! GameViewController
+            self.present( targetViewController, animated: true, completion: nil)
+            
         }else if label.text == ("２人") {
             //TextFieldに文字が入ってないと以下の処理をしない
+            guard (PlayerLabel1.text != nil) else { return }
+            guard (PlayerLabel2.text != nil) else { return }
+            
             defaults.set(PlayertextField1.text, forKey: "Player1")
             defaults.set(PlayertextField2.text, forKey: "Player2")
             
             //人数を記録
             defaults.set(2, forKey: "ninzuu")
+            
+            //画面遷移
+            let targetViewController = self.storyboard!.instantiateViewController( withIdentifier: "Game" ) as! GameViewController
+            self.present( targetViewController, animated: true, completion: nil)
         }
-        
-        //画面遷移
-        let targetViewController = self.storyboard!.instantiateViewController( withIdentifier: "Game" ) as! GameViewController
-        self.present( targetViewController, animated: true, completion: nil)
-        
     }
     
-    //リターンでキーボードを閉じる
+    //Enterでフォーカスを変えるかキーボードを閉じる
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        PlayertextField1.resignFirstResponder()
-        PlayertextField2.resignFirstResponder()
-        PlayertextField3.resignFirstResponder()
-        PlayertextField4.resignFirstResponder()
+        if textField == PlayertextField1 {
+            PlayertextField2.becomeFirstResponder()
+        }else if textField == PlayertextField2 {
+            PlayertextField3.becomeFirstResponder()
+        }else if textField == PlayertextField3 {
+            PlayertextField4.becomeFirstResponder()
+        }else if textField == PlayertextField4 {
+            PlayertextField4.resignFirstResponder()
+        }
+        
+//        if label.text == "2人" {
+//            if textField == PlayertextField1 {
+//                PlayertextField2.becomeFirstResponder()
+//            }else {
+//                PlayertextField2.resignFirstResponder()
+//            }
+//
+//        }else if label.text == "3人" {
+//            if textField == PlayertextField1 {
+//                PlayertextField2.becomeFirstResponder()
+//            }else if textField == PlayertextField2 {
+//                PlayertextField3.becomeFirstResponder()
+//            }else {
+//                PlayertextField3.resignFirstResponder()
+//            }
+//
+//        }else if label.text == "4人" {
+//            if textField == PlayertextField1 {
+//                PlayertextField2.becomeFirstResponder()
+//            }else if textField == PlayertextField2 {
+//             PlayertextField3.becomeFirstResponder()
+//            }else if textField == PlayertextField3 {
+//                PlayertextField4.becomeFirstResponder()
+//            }else {
+//                PlayertextField4.resignFirstResponder()
+//            }
+//        }
         return true
     }
     
@@ -160,22 +207,10 @@ class ViewController: UIViewController, UITextFieldDelegate {
         dismiss(animated: true, completion: nil)
     }
     
-    //キーボード以外をタップした時キーボードを下げる
-    //正常に動いてない。けど問題ない
-    func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
-        //非表示にする。
-        if(PlayertextField1.isFirstResponder){
-            PlayertextField1.resignFirstResponder()
-            
-        }else if (PlayertextField2.isFirstResponder){
-            PlayertextField2.resignFirstResponder()
-            
-        }else if (PlayertextField3.isFirstResponder){
-            PlayertextField3.resignFirstResponder()
-            
-        }else if (PlayertextField4.isFirstResponder){
-            PlayertextField4.resignFirstResponder()
-        }
+    //Viewをタップした時に起こる処理を描く関数
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        //キーボードを閉じる処理
+        view.endEditing(true)
     }
     
 }

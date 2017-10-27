@@ -151,6 +151,7 @@ class HostViewController: UIViewController {
             
             let button = String(describing: snapShots.childSnapshot(forPath: "button").value!)
             
+            
             if button != "<null>" {
                 //nullじゃなかったら処理する
                 print("押したボタンは...\(button)")
@@ -357,6 +358,10 @@ class HostViewController: UIViewController {
                     MS = "\(hostName)の負け"
                 }
                 
+                let hoge = ["button": "<null>"]
+                self.ref.child("rooms").child(RoomID).child("battle").child("Tap_button").setValue(hoge)
+                self.button_Reading()
+                
                 // アラートを作成
                 let alert = UIAlertController(
                     title: "終了",
@@ -391,7 +396,6 @@ class HostViewController: UIViewController {
     
     //ボタンを押した時の処理
     @IBAction func tap(sender: UIButton) {
-        
         //RoomIDの取得
         self.ref.child("users").child((user?.uid)!).observe(.value, with: {(snapShots) in
             
@@ -399,9 +403,6 @@ class HostViewController: UIViewController {
             let roomID = String(describing: snapShots.childSnapshot(forPath: "RoomID").value!)
             
             if roomID != "<null>" {
-                //nullじゃなかったら
-                print(sender.tag)
-                
                 //hogeに押したボタンの番号を入れる
                 let hoge = ["button": sender.tag]
                 

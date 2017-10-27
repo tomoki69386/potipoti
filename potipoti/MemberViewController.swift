@@ -310,6 +310,10 @@ class MemberViewController: UIViewController {
                     MS = "\(memberName)の勝ち"
                 }
                 
+                let hoge = ["button": "<null>"]
+                self.ref.child("rooms").child(RoomID).child("battle").child("Tap_button").setValue(hoge)
+                self.button_Reading()
+                
                 // アラートを作成
                 let alert = UIAlertController(
                     title: "終了",
@@ -342,8 +346,6 @@ class MemberViewController: UIViewController {
         let roomID = userDefault.string(forKey: "RoomID")
         
         if roomID != "<null>" {
-            //nullじゃなかったらprint(sender.tag)
-            
             //hogeに押したボタンを入れる
             let hoge = ["button": sender.tag]
             

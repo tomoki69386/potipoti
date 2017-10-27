@@ -55,12 +55,24 @@ class newViewController: UIViewController, UITextFieldDelegate {
     
     //Returmキーで閉じる
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        
-        emailTextField.resignFirstResponder()
-        passwordTextField.resignFirstResponder()
-        NameTextField.resignFirstResponder()
-        passwordTextField2.resignFirstResponder()
+
+        //キーボードのフォーカスの変更
+        if (textField == NameTextField) {
+            emailTextField.becomeFirstResponder()
+        }else if (textField == emailTextField) {
+            passwordTextField.becomeFirstResponder()
+        }else if (textField == passwordTextField) {
+            passwordTextField2.becomeFirstResponder()
+        }else if (textField == passwordTextField2) {
+            passwordTextField2.resignFirstResponder()
+        }
         return true
+    }
+    
+    //Viewをタップした時に起こる処理を描く関数
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        //キーボードを閉じる処理
+        view.endEditing(true)
     }
     
     //ユーザー作成と作成時のアニメーション
@@ -140,11 +152,6 @@ class newViewController: UIViewController, UITextFieldDelegate {
                 SVProgressHUD.dismiss()
             }
         }
-    }
-    
-    func fuga() {
-        //いおりデータサンプル
-        //DBRef.child("falseband/\(sendoutInt+1)/Vo").updateChildValues(["Name": vocalBandNameArray[sendoutInt]]
     }
     
     override func didReceiveMemoryWarning() {

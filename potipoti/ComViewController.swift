@@ -13,7 +13,6 @@ class ComViewController: UIViewController {
     @IBOutlet var label: UILabel!
     var defaults: UserDefaults = UserDefaults.standard
     var number: Int = 0
-    
     var count: Int = 19
     var j: Int = 0 //あたりかハズレを調べる変数
     
