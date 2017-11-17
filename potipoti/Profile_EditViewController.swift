@@ -21,6 +21,9 @@ class Profile_EditViewController: UIViewController, UITextFieldDelegate, UIImage
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        //キーボードのフォーカスをあわせる
+        TextField.becomeFirstResponder()
+        
         let user = Auth.auth().currentUser
         
         //TextFieldにuserNmaeを表示する

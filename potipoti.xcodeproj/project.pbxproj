@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		0AD2B9A9640C4F31874E8CC2 /* Pods_potipotiUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8829AE6E13B0C5A21E43C3A3 /* Pods_potipotiUITests.framework */; };
 		5512A6F11F62ACC000004E99 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55CB56021F3F163800F6F9B2 /* ProfileViewController.swift */; };
+		5571630E1FB5B5110068FAE9 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5571630D1FB5B5100068FAE9 /* AVFoundation.framework */; };
 		55CB56411F43345700F6F9B2 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55CB56401F43345700F6F9B2 /* TabBarController.swift */; };
 		55CB56431F436EC200F6F9B2 /* Profile_EditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55CB56421F436EC200F6F9B2 /* Profile_EditViewController.swift */; };
 		55CB56451F442D5400F6F9B2 /* PlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55CB56441F442D5400F6F9B2 /* PlayerViewController.swift */; };
@@ -52,6 +53,9 @@
 /* Begin PBXFileReference section */
 		05CB50E1532F8D143CD5F630 /* Pods-potipotiUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-potipotiUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-potipotiUITests/Pods-potipotiUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		4C25FFFDE6FFE5F8A0D87EC6 /* Pods_potipoti.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_potipoti.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		5571630D1FB5B5100068FAE9 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		5588366C1FB5B691008E25D6 /* ハズレ.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "ハズレ.mp3"; sourceTree = "<group>"; };
+		5588366D1FB5B691008E25D6 /* 正解.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "正解.mp3"; sourceTree = "<group>"; };
 		55CB56021F3F163800F6F9B2 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		55CB56401F43345700F6F9B2 /* TabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		55CB56421F436EC200F6F9B2 /* Profile_EditViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Profile_EditViewController.swift; sourceTree = "<group>"; };
@@ -92,6 +96,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5571630E1FB5B5110068FAE9 /* AVFoundation.framework in Frameworks */,
 				BDE1F648D0F1E5CFBB49728C /* Pods_potipoti.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -172,6 +177,8 @@
 				55FD6E161F1CFEAB00322633 /* GoogleService-Info.plist */,
 				55CB56401F43345700F6F9B2 /* TabBarController.swift */,
 				55FD6E141F1CFABC00322633 /* pvpViewController.swift */,
+				5588366C1FB5B691008E25D6 /* ハズレ.mp3 */,
+				5588366D1FB5B691008E25D6 /* 正解.mp3 */,
 			);
 			path = potipoti;
 			sourceTree = "<group>";
@@ -197,6 +204,7 @@
 		BF38A0A36364975A986B9C88 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				5571630D1FB5B5100068FAE9 /* AVFoundation.framework */,
 				4C25FFFDE6FFE5F8A0D87EC6 /* Pods_potipoti.framework */,
 				785F1D1E84E050C20A54A9C2 /* Pods_potipotiTests.framework */,
 				8829AE6E13B0C5A21E43C3A3 /* Pods_potipotiUITests.framework */,

@@ -129,13 +129,13 @@ class newViewController: UIViewController, UITextFieldDelegate {
                         let name = user?.displayName
                         self.ref = Database.database().reference()
                         
-                        self.ref.child("users").child(user!.uid).setValue(["username": name,"uid": user?.uid,"inRoom": "false"])
+                        self.ref.child("users").child(user!.uid).setValue(["username": name,"uid": user?.uid,"App":"1"])
                         
                         //初めてuserを作成したことを伝える
                         self.userDefault.set(false, forKey: "firstLaunch")
                         
                         //inRoomをfalseに、inAppをtrue
-                        self.ref.child("users").child(user!.uid).updateChildValues(["inRoom": "false", "inApp": "true"])
+                        self.ref.child("users").child(user!.uid).updateChildValues(["App":"1"])
                         
                         //2秒の間待つ
                         let when = DispatchTime.now() + 2

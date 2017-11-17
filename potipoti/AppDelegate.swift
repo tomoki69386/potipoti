@@ -49,7 +49,7 @@
                 let name = user?.displayName //ユーザーの名前の定数
                 ref = Database.database().reference()
                 
-                self.ref.child("users").child(user!.uid).setValue(["username": name,"uid": user?.uid,"inRoom": "false", "inApp": "true"])
+                self.ref.child("users").child(user!.uid).setValue(["username": name,"uid": user?.uid,"App": "1"])
                 
                 let storyboard:UIStoryboard =  UIStoryboard(name: "Main",bundle:nil)
                 window?.rootViewController
@@ -69,7 +69,7 @@
             let user = Auth.auth().currentUser
             ref = Database.database().reference()
             
-            self.ref.child("users").child(user!.uid).updateChildValues(["inRoom": "false", "inApp": "false"])
+            self.ref.child("users").child(user!.uid).updateChildValues(["App":"0"])
         }
     }
     
@@ -82,7 +82,7 @@
             let user = Auth.auth().currentUser
             ref = Database.database().reference()
             
-            self.ref.child("users").child(user!.uid).updateChildValues(["inRoom": "false", "inApp": "false"])
+            self.ref.child("users").child(user!.uid).updateChildValues(["App":"0"])
         }
     }
     
@@ -95,7 +95,7 @@
             let user = Auth.auth().currentUser
             ref = Database.database().reference()
             
-            self.ref.child("users").child(user!.uid).updateChildValues(["inRoom": "false", "inApp": "true"])
+            self.ref.child("users").child(user!.uid).updateChildValues(["App":"1"])
         }
     }
  }

@@ -11,7 +11,8 @@ target 'potipoti' do
   pod 'Firebase/Storage'
   pod 'SVProgressHUD'
   pod 'FirebaseUI/Storage', '~> 0.6'
-  pod 'JSQMessagesViewController'
+  pod 'JSQMessagesViewController' 
+  pod 'LineSDK', '~> 4.0.2'
 
   # Pods for potipoti
 

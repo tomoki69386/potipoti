@@ -11,6 +11,8 @@ import Firebase
 import FirebaseDatabase
 import FirebaseAuth
 import SVProgressHUD
+import AVFoundation
+import AudioToolbox //バイブレーション
 
 class HostViewController: UIViewController {
     
@@ -44,11 +46,34 @@ class HostViewController: UIViewController {
     var timer: Timer = Timer()
     var number: Int = 1
     
+    //音楽再生
+    var seikaiplayer:AVAudioPlayer!
+    var hazureplayer:AVAudioPlayer!
+    let seikaiurl = Bundle.main.bundleURL.appendingPathComponent("正解.mp3")
+    let hazureurl = Bundle.main.bundleURL.appendingPathComponent("ハズレ.mp3")
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         //ロード画面の表示
         SVProgressHUD.show()
+        
+        //SEの設定
+        do {
+            try seikaiplayer = AVAudioPlayer(contentsOf:seikaiurl)
+            //音楽をバッファに読み込んでおく
+            seikaiplayer.prepareToPlay()
+        } catch {
+            print("インスタンスエラー...\(error)")
+        }
+        
+        do {
+            try hazureplayer = AVAudioPlayer(contentsOf:hazureurl)
+            //音楽をバッファに読み込んでおく
+            hazureplayer.prepareToPlay()
+        } catch {
+            print("インスタンスエラー...\(error)")
+        }
         
         //Firebase
         ref = Database.database().reference()
@@ -321,6 +346,7 @@ class HostViewController: UIViewController {
     }
     
     func safe() {
+        seikaiplayer.play()
         hantei.text = "セーフ"
         DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
             self.hantei.text = " "
@@ -331,66 +357,68 @@ class HostViewController: UIViewController {
         //Firebase
         ref = Database.database().reference()
         
-        //RoomIDの取得
-        self.ref.child("users").child((self.user?.uid)!).observe(.value, with: {(snapShots) in
+        //バイブレーション
+        AudioServicesPlaySystemSound(SystemSoundID(kSystemSoundID_Vibrate))
+        
+        //サウンド再生
+        hazureplayer.play()
+        
+        //RoomIDの宣言
+        let RoomID = userDefault.string(forKey: "RoomID")
+        
+        self.ref.child("rooms").child(RoomID!).child("messages").observe(.value, with: {(snapShots) in
             
-            //RoomIDの宣言
-            let RoomID = String(describing: snapShots.childSnapshot(forPath: "RoomID").value!)
+            let TP = String(describing: snapShots.childSnapshot(forPath: "TP").value!)
             
-            self.ref.child("rooms").child(RoomID).child("messages").observe(.value, with: {(snapShots) in
+            let hostName = String(describing: snapShots.childSnapshot(forPath: "HostName").value!)
+            
+            let memberName = String(describing: snapShots.childSnapshot(forPath: "MemberName").value!)
+            
+            var MS: String!
+            
+            if TP == "0" {
+                //hostが押せる時の処理
+                //hostの勝ち
+                MS = "\(hostName)の勝ち"
                 
-                let TP = String(describing: snapShots.childSnapshot(forPath: "TP").value!)
+            }else if TP == "1" {
+                //memberが押せる時の処理
+                //hostの負け
+                MS = "\(hostName)の負け"
+            }
+            
+            let hoge = ["button": "<null>"]
+            self.ref.child("rooms").child(RoomID!).child("battle").child("Tap_button").setValue(hoge)
+            self.button_Reading()
+            
+            // アラートを作成
+            let alert = UIAlertController(
+                title: "終了",
+                message: MS,
+                preferredStyle: .alert)
+            
+            // アラートにボタンをつける
+            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { action in
+                self.dismiss(animated: true, completion: nil)
                 
-                let hostName = String(describing: snapShots.childSnapshot(forPath: "HostName").value!)
+                //ルームの削除
+                self.ref.child("rooms").child(RoomID!).child("bettle").child("Tap_button").removeValue()
                 
-                let memberName = String(describing: snapShots.childSnapshot(forPath: "MemberName").value!)
+                self.ref.child("rooms").child(RoomID!).child("battle").removeValue()
                 
-                var MS: String!
+                self.ref.child("rooms").child(RoomID!).child("messages").removeValue()
                 
-                if TP == "0" {
-                    //hostが押せる時の処理
-                    //hostの勝ち
-                    MS = "\(hostName)の勝ち"
-                    
-                }else if TP == "1" {
-                    //memberが押せる時の処理
-                    //hostの負け
-                    MS = "\(hostName)の負け"
-                }
+                self.ref.child("rooms").child(RoomID!).removeValue()
+                print("ルームを削除")
                 
-                let hoge = ["button": "<null>"]
-                self.ref.child("rooms").child(RoomID).child("battle").child("Tap_button").setValue(hoge)
-                self.button_Reading()
+                let user = Auth.auth().currentUser
+                let name = user?.displayName
                 
-                // アラートを作成
-                let alert = UIAlertController(
-                    title: "終了",
-                    message: MS,
-                    preferredStyle: .alert)
-                
-                // アラートにボタンをつける
-                alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { action in
-                    self.dismiss(animated: true, completion: nil)
-                    
-                    //ルームの削除
-                    self.ref.child("rooms").child(RoomID).child("bettle").child("Tap_button").removeValue()
-                    
-                    self.ref.child("rooms").child(RoomID).child("battle").removeValue()
-                    
-                    self.ref.child("rooms").child(RoomID).child("messages").removeValue()
-                    
-                    self.ref.child("rooms").child(RoomID).removeValue()
-                    print("ルームを削除")
-                    
-                    let user = Auth.auth().currentUser
-                    let name = user?.displayName
-                    
-                    self.ref.child("users").child((user?.uid)!).setValue(["username": name,"uid": user?.uid,"inRoom": "false", "inApp": "true"])
-                })
-                )
-                // アラート表示
-                self.present(alert, animated: true, completion: nil)
+                self.ref.child("users").child((user?.uid)!).setValue(["username": name,"uid": user?.uid])
             })
+            )
+            // アラート表示
+            self.present(alert, animated: true, completion: nil)
         })
     }
     
@@ -406,10 +434,10 @@ class HostViewController: UIViewController {
                 //hogeに押したボタンの番号を入れる
                 let hoge = ["button": sender.tag]
                 
-            self.ref.child("rooms").child(roomID).child("battle").child("Tap_button").updateChildValues(hoge)
+                self.ref.child("rooms").child(roomID).child("battle").child("Tap_button").updateChildValues(hoge)
                 
                 //次にボタンを押せる人をMemberにする
-            self.ref.child("rooms").child(roomID).child("messages").updateChildValues(["TP": 1])
+                self.ref.child("rooms").child(roomID).child("messages").updateChildValues(["TP": 1])
             }
         })
     }
@@ -462,55 +490,47 @@ class HostViewController: UIViewController {
     
     //バトルしない時の処理
     func No_battle() {
+        //RoomIDの宣言
+        let RoomID = userDefault.string(forKey: "RoomID")
         
-        //RoomIDの取得
-        ref.child("users").child((user?.uid)!).observe(.value, with: {(snapShots) in
+        //ルームの削除
+        self.ref.child("rooms").child(RoomID!).removeValue()
+        
+        //相手のIDを取得
+        self.ref.child("rooms").child(RoomID!).child("messages").observe(.value, with: {(snapShots) in
             
-            //RoomIDの宣言
-            let RoomID = String(describing: snapShots.childSnapshot(forPath: "RoomID").value!)
+            //メンバーIDを宣言
+            let MemberID = String(describing: snapShots.childSnapshot(forPath: "MamberID").value!)
             
-            //ルームの削除
-            self.ref.child("rooms").child(RoomID).removeValue()
-            print("ルームの削除")
+            //相手のデータベースにあるRoomIDを削除
+            self.ref.child("users").child(MemberID).child("RoomID").removeValue()
             
-            //自分のデータのinRoomをfalseに変える
-            self.self.ref.child("users").child((self.user?.uid)!).updateChildValues(["inRoom": "false"])
-            //相手のIDを取得
-            self.ref.child("rooms").child(RoomID).child("messages").observe(.value, with: {(snapShots) in
-                
-                //メンバーIDを宣言
-                let MemberID = String(describing: snapShots.childSnapshot(forPath: "MamberID").value!)
-                
-                //相手のusersにあるRoomIDを削除
-                self.ref.child("users").child(MemberID).child("RoomID").removeValue()
-                print("MemberのRoomIDを削除")
-                
-                //自分のデータにあるRoomIDも削除
-                self.ref.child("users").child((self.user?.uid)!).child("RoomID").removeValue()
-                
-                SVProgressHUD.showSuccess(withStatus: "error")
-                
-                //2秒の間待つ
-                let when = DispatchTime.now() + 1
-                //2秒後にアラートを表示
-                DispatchQueue.main.asyncAfter(deadline: when) {
-                    //対戦を拒否されたので画面を1つ戻る
-                    let alert = UIAlertController(
-                        title: "拒否されました",
-                        message: "対戦を拒否されたので新しく対戦者を選択して下さい",
-                        preferredStyle: .alert)
-                    // アラートにボタンをつける
-                    alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { action in
-                        self.dismiss(animated: true, completion: nil)
-                    }))
-                    // アラート表示
-                    self.present(alert, animated: true, completion: nil)
-                }
-                print("画面を戻る")
-            })
+            //自分のデータベースにあるRoomIDも削除
+            self.ref.child("users").child((self.user?.uid)!).child("RoomID").removeValue()
+            
+            SVProgressHUD.showSuccess(withStatus: "error")
+            
+            //2秒の間待つ
+            let when = DispatchTime.now() + 1
+            //2秒後にアラートを表示
+            DispatchQueue.main.asyncAfter(deadline: when) {
+                //対戦を拒否されたので画面を1つ戻る
+                let alert = UIAlertController(
+                    title: "拒否されました",
+                    message: "対戦を拒否されたので新しく対戦者を選択して下さい",
+                    preferredStyle: .alert)
+                // アラートにボタンをつける
+                alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { action in
+                    self.dismiss(animated: true, completion: nil)
+                }))
+                // アラート表示
+                self.present(alert, animated: true, completion: nil)
+            }
+            print("画面を戻る")
         })
     }
-     override func didReceiveMemoryWarning() {
+    
+    override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
 }

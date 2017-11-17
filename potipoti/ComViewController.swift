@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import AVFoundation
+import AudioToolbox
 
 class ComViewController: UIViewController {
     
@@ -37,8 +39,30 @@ class ComViewController: UIViewController {
     @IBOutlet var button18: UIButton!
     @IBOutlet var button19: UIButton!
     
+    //音楽再生
+    var seikaiplayer:AVAudioPlayer!
+    var hazureplayer:AVAudioPlayer!
+    let seikaiurl = Bundle.main.bundleURL.appendingPathComponent("正解.mp3")
+    let hazureurl = Bundle.main.bundleURL.appendingPathComponent("ハズレ.mp3")
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        do {
+            try seikaiplayer = AVAudioPlayer(contentsOf:seikaiurl)
+            //音楽をバッファに読み込んでおく
+            seikaiplayer.prepareToPlay()
+        } catch {
+            print(error)
+        }
+        
+        do {
+            try hazureplayer = AVAudioPlayer(contentsOf:hazureurl)
+            //音楽をバッファに読み込んでおく
+            hazureplayer.prepareToPlay()
+        } catch {
+            print(error)
+        }
         
         button1.isHidden = false
         button2.isHidden = false
@@ -337,6 +361,8 @@ class ComViewController: UIViewController {
     
     func hazure() {
         label.text = ("ハズレ")
+        //バイブレーション
+        AudioServicesPlaySystemSound(SystemSoundID(kSystemSoundID_Vibrate))
         // アラートを作成
         let alert = UIAlertController(
             title: "負けました",

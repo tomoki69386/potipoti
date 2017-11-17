@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import AVFoundation
+import AudioToolbox
 
 class GameViewController: UIViewController {
     
@@ -47,8 +49,30 @@ class GameViewController: UIViewController {
     @IBOutlet var button18: UIButton!
     @IBOutlet var button19: UIButton!
     
+    //音楽再生
+    var seikaiplayer:AVAudioPlayer!
+    var hazureplayer:AVAudioPlayer!
+    let seikaiurl = Bundle.main.bundleURL.appendingPathComponent("正解.mp3")
+    let hazureurl = Bundle.main.bundleURL.appendingPathComponent("ハズレ.mp3")
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        do {
+            try seikaiplayer = AVAudioPlayer(contentsOf:seikaiurl)
+            //音楽をバッファに読み込んでおく
+            seikaiplayer.prepareToPlay()
+        } catch {
+            print(error)
+        }
+        
+        do {
+            try hazureplayer = AVAudioPlayer(contentsOf:hazureurl)
+            //音楽をバッファに読み込んでおく
+            hazureplayer.prepareToPlay()
+        } catch {
+            print(error)
+        }
         
         ninzuu = defaults.integer(forKey: "ninzuu")
         print("プレイヤーの人数は...\(ninzuu)人")
@@ -120,51 +144,8 @@ class GameViewController: UIViewController {
         
         //0~19までのランダムな数字を発生させる
         number = Int(arc4random_uniform(20))
-        
-        switch number {
-        case 19:
-            j = 19
-        case 18:
-            j = 18
-        case 17:
-            j = 17
-        case 16:
-            j = 16
-        case 15:
-            j = 15
-        case 14:
-            j = 14
-        case 13:
-            j = 13
-        case 12:
-            j = 12
-        case 11:
-            j = 11
-        case 10:
-            j = 10
-        case 9:
-            j = 9
-        case 8:
-            j = 8
-        case 7:
-            j = 7
-        case 6:
-            j = 6
-        case 5:
-            j = 5
-        case 4:
-            j = 4
-        case 3:
-            j = 3
-        case 2:
-            j = 2
-        case 1:
-            j = 1
-        case 0:
-            j = 0
-        default:
-            print("当てはまらない")
-        }
+    
+        j = number
     }
     
     override func didReceiveMemoryWarning() {
@@ -174,7 +155,6 @@ class GameViewController: UIViewController {
     
     @IBAction func hoge0() {
         if j == 0 {
-            label.text = ("ハズレ")
             self.arato()
         }else {
             label.text = ("セーフ！！")
@@ -190,12 +170,10 @@ class GameViewController: UIViewController {
             }
         }
         self.dare()
-        
     }
     
     @IBAction func hoge1() {
         if j == 1 {
-            label.text = ("ハズレ")
             self.arato()
         }else {
             label.text = ("セーフ！！")
@@ -216,7 +194,6 @@ class GameViewController: UIViewController {
     
     @IBAction func hoge2() {
         if j == 2 {
-            label.text = ("ハズレ")
             self.arato()
         }else {
             label.text = ("セーフ！！")
@@ -238,7 +215,6 @@ class GameViewController: UIViewController {
     
     @IBAction func hoge3() {
         if j == 3 {
-            label.text = ("ハズレ")
             self.arato()
         }else {
             label.text = ("セーフ！！")
@@ -260,7 +236,6 @@ class GameViewController: UIViewController {
     
     @IBAction func hoge4() {
         if j == 4 {
-            label.text = ("ハズレ")
             self.arato()
         }else {
             label.text = ("セーフ！！")
@@ -282,7 +257,6 @@ class GameViewController: UIViewController {
     
     @IBAction func hoge5() {
         if j == 5 {
-            label.text = ("ハズレ")
             self.arato()
         }else {
             label.text = ("セーフ！！")
@@ -304,7 +278,6 @@ class GameViewController: UIViewController {
     
     @IBAction func hoge6() {
         if j == 6 {
-            label.text = ("ハズレ")
             self.arato()
         }else {
             label.text = ("セーフ！！")
@@ -326,7 +299,6 @@ class GameViewController: UIViewController {
     
     @IBAction func hoge7() {
         if j == 7 {
-            label.text = ("ハズレ")
             self.arato()
         }else {
             label.text = ("セーフ！！")
@@ -348,7 +320,6 @@ class GameViewController: UIViewController {
     
     @IBAction func hoge8() {
         if j == 8 {
-            label.text = ("ハズレ")
             self.arato()
         }else {
             label.text = ("セーフ！！")
@@ -370,7 +341,6 @@ class GameViewController: UIViewController {
     
     @IBAction func hoge9() {
         if j == 9 {
-            label.text = ("ハズレ")
             self.arato()
         }else {
             label.text = ("セーフ！！")
@@ -390,7 +360,6 @@ class GameViewController: UIViewController {
     
     @IBAction func hoge10() {
         if j == 10 {
-            label.text = ("ハズレ")
             self.arato()
         }else {
             label.text = ("セーフ！！")
@@ -412,7 +381,6 @@ class GameViewController: UIViewController {
     
     @IBAction func hoge11() {
         if j == 11 {
-            label.text = ("ハズレ")
             self.arato()
         }else {
             label.text = ("セーフ！！")
@@ -434,7 +402,6 @@ class GameViewController: UIViewController {
     
     @IBAction func hoge12() {
         if j == 12 {
-            label.text = ("ハズレ")
             self.arato()
         }else {
             label.text = ("セーフ！！")
@@ -448,15 +415,12 @@ class GameViewController: UIViewController {
             if count == 0 {
                 self.kati()
             }
-            
         }
         self.dare()
-        
     }
     
     @IBAction func hoge13() {
         if j == 13 {
-            label.text = ("ハズレ")
             self.arato()
         }else {
             label.text = ("セーフ！！")
@@ -470,16 +434,12 @@ class GameViewController: UIViewController {
             if count == 0 {
                 self.kati()
             }
-            
         }
         self.dare()
-        
     }
     
     @IBAction func hoge14() {
-        
         if j == 14 {
-            label.text = ("ハズレ")
             self.arato()
         }else {
             label.text = ("セーフ！！")
@@ -500,10 +460,7 @@ class GameViewController: UIViewController {
     }
     
     @IBAction func hoge15() {
-        
-        
         if j == 15 {
-            label.text = ("ハズレ")
             self.arato()
         }else {
             label.text = ("セーフ！！")
@@ -525,7 +482,6 @@ class GameViewController: UIViewController {
     
     @IBAction func hoge16() {
         if j == 16 {
-            label.text = ("ハズレ")
             self.arato()
         }else {
             label.text = ("セーフ！！")
@@ -548,7 +504,6 @@ class GameViewController: UIViewController {
     @IBAction func hoge17() {
         
         if j == 17 {
-            label.text = ("ハズレ")
             self.arato()
         }else {
             label.text = ("セーフ！！")
@@ -570,7 +525,6 @@ class GameViewController: UIViewController {
     
     @IBAction func hoge18() {
         if j == 18 {
-            label.text = ("ハズレ")
             self.arato()
         }else {
             label.text = ("セーフ！！")
@@ -591,7 +545,6 @@ class GameViewController: UIViewController {
     @IBAction func hoge19() {
         
         if j == 19 {
-            label.text = ("ハズレ")
             self.arato()
         }else {
             label.text = ("セーフ！！")
@@ -611,6 +564,9 @@ class GameViewController: UIViewController {
     }
     
     func arato() {
+        label.text = ("ハズレ")
+        //バイブレーション
+        AudioServicesPlaySystemSound(SystemSoundID(kSystemSoundID_Vibrate))
         // アラートを作成
         let alert = UIAlertController(
             title: "負けました",

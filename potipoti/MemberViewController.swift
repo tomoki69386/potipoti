@@ -11,6 +11,8 @@ import Firebase
 import FirebaseDatabase
 import FirebaseAuth
 import SVProgressHUD
+import AVFoundation
+import AudioToolbox  //バイブレーション
 
 class MemberViewController: UIViewController {
     
@@ -41,10 +43,32 @@ class MemberViewController: UIViewController {
     @IBOutlet var Label: UILabel!
     @IBOutlet var hantei: UILabel!
     
+    //音楽再生
+    var seikaiplayer:AVAudioPlayer!
+    var hazureplayer:AVAudioPlayer!
+    let seikaiurl = Bundle.main.bundleURL.appendingPathComponent("正解.mp3")
+    let hazureurl = Bundle.main.bundleURL.appendingPathComponent("ハズレ.mp3")
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         SVProgressHUD.showSuccess(withStatus: "対戦者入室")
+        
+        do {
+            try seikaiplayer = AVAudioPlayer(contentsOf:seikaiurl)
+            //音楽をバッファに読み込んでおく
+            seikaiplayer.prepareToPlay()
+        } catch {
+            print(error)
+        }
+        
+        do {
+            try hazureplayer = AVAudioPlayer(contentsOf:hazureurl)
+            //音楽をバッファに読み込んでおく
+            hazureplayer.prepareToPlay()
+        } catch {
+            print(error)
+        }
         
         //Firebase
         ref = Database.database().reference()
@@ -273,6 +297,7 @@ class MemberViewController: UIViewController {
     }
     
     func safe() {
+        seikaiplayer.play()
         hantei.text = "セーフ"
         DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
             self.hantei.text = ""
@@ -283,60 +308,59 @@ class MemberViewController: UIViewController {
         //Firebase
         ref = Database.database().reference()
         
-        //RoomIDの取得
-        self.ref.child("users").child((self.user?.uid)!).observe(.value, with: {(snapShots) in
+        //バイブレーション
+        AudioServicesPlaySystemSound(SystemSoundID(kSystemSoundID_Vibrate))
+        
+        hazureplayer.play()
+        
+        //RoomIDの宣言
+        let RoomID = userDefault.string(forKey: "RoomID")
+        
+        self.ref.child("rooms").child(RoomID!).child("messages").observe(.value, with: {(snapShots) in
             
-            //RoomIDの宣言
-            let RoomID = String(describing: snapShots.childSnapshot(forPath: "RoomID").value!)
+            let TP = String(describing: snapShots.childSnapshot(forPath: "TP").value!)
             
-            self.ref.child("rooms").child(RoomID).child("messages").observe(.value, with: {(snapShots) in
+            let memberName = String(describing: snapShots.childSnapshot(forPath: "MemberName").value!)
+            
+            var MS: String!
+            
+            if TP == "0" {
+                //hostが押せる時の処理
+                //memberの負け
+                MS = "\(memberName)の負け"
                 
-                let TP = String(describing: snapShots.childSnapshot(forPath: "TP").value!)
+            }else if TP == "1" {
+                //memberが押せる時の処理
+                //memberの勝ち
+                MS = "\(memberName)の勝ち"
+            }
+            
+            let hoge = ["button": "<null>"]
+            self.ref.child("rooms").child(RoomID!).child("battle").child("Tap_button").setValue(hoge)
+            self.button_Reading()
+            
+            // アラートを作成
+            let alert = UIAlertController(
+                title: "終了",
+                message: MS,
+                preferredStyle: .alert)
+            
+            // アラートにボタンをつける
+            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { action in
+                self.dismiss(animated: true, completion: nil)
                 
-                let hostName = String(describing: snapShots.childSnapshot(forPath: "HostName").value!)
+                let user = Auth.auth().currentUser
+                let name = user?.displayName
                 
-                let memberName = String(describing: snapShots.childSnapshot(forPath: "MemberName").value!)
+                self.ref.child("rooms").child(RoomID!).removeValue()
+                print("ルームを削除")
                 
-                var MS: String!
-                
-                if TP == "0" {
-                    //hostが押せる時の処理
-                    //memberの負け
-                    MS = "\(memberName)の負け"
-                    
-                }else if TP == "1" {
-                    //memberが押せる時の処理
-                    //memberの勝ち
-                    MS = "\(memberName)の勝ち"
-                }
-                
-                let hoge = ["button": "<null>"]
-                self.ref.child("rooms").child(RoomID).child("battle").child("Tap_button").setValue(hoge)
-                self.button_Reading()
-                
-                // アラートを作成
-                let alert = UIAlertController(
-                    title: "終了",
-                    message: MS,
-                    preferredStyle: .alert)
-                
-                // アラートにボタンをつける
-                alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { action in
-                    self.dismiss(animated: true, completion: nil)
-                    
-                    let user = Auth.auth().currentUser
-                    let name = user?.displayName
-                    
-                    self.ref.child("rooms").child(RoomID).removeValue()
-                    print("ルームを削除")
-                    
-                    //自分のデータを初期値に戻す
-                    self.ref.child("users").child((self.user?.uid)!).setValue(["username": name,"uid": user?.uid,"inRoom": "false", "inApp": "true"])
-                })
-                )
-                // アラート表示
-                self.present(alert, animated: true, completion: nil)
+                //自分のデータを初期値に戻す
+                self.ref.child("users").child((self.user?.uid)!).setValue(["username": name,"uid": user?.uid,"inRoom": "false", "inApp": "true"])
             })
+            )
+            // アラート表示
+            self.present(alert, animated: true, completion: nil)
         })
     }
     
@@ -348,7 +372,6 @@ class MemberViewController: UIViewController {
         if roomID != "<null>" {
             //hogeに押したボタンを入れる
             let hoge = ["button": sender.tag]
-            
             self.ref.child("rooms").child(roomID!).child("battle").child("Tap_button").updateChildValues(hoge)
             
             //次にボタンを押せる人をHostにする
