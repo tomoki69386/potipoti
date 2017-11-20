@@ -23,7 +23,6 @@ class GameViewController: UIViewController {
     
     var number: Int = 0
     var defaults: UserDefaults = UserDefaults.standard
-    var j: Int = 0
     @IBOutlet var label: UILabel!
     var count: Int = 19
     var ninzuu: Int = 0
@@ -119,7 +118,7 @@ class GameViewController: UIViewController {
                 index = 2
             }else if darenumber > 0 {
                 index = 1
-            
+                
             }else {
                 index = 0
             }
@@ -144,8 +143,9 @@ class GameViewController: UIViewController {
         
         //0~19までのランダムな数字を発生させる
         number = Int(arc4random_uniform(20))
-    
-        j = number
+        
+        defaults.set(number, forKey: "aaa")
+        print("ハズレのButtonは...\(number)")
     }
     
     override func didReceiveMemoryWarning() {
@@ -153,18 +153,59 @@ class GameViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    @IBAction func hoge0() {
-        if j == 0 {
+    @IBAction func Button(sender: UIButton){
+        let j = defaults.integer(forKey: "aaa")
+        if j == sender.tag {
             self.arato()
         }else {
-            label.text = ("セーフ！！")
-            DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
-                self.label.text = ("")
+            self.safe()
+            //Buttonの削除する処理を書く
+            switch sender.tag {
+            case 0:
+                button0.isHidden = true
+            case 1:
+                button1.isHidden = true
+            case 2:
+                button2.isHidden = true
+            case 3:
+                button3.isHidden = true
+            case 4:
+                button4.isHidden = true
+            case 5:
+                button5.isHidden = true
+            case 6:
+                button6.isHidden = true
+            case 7:
+                button7.isHidden = true
+            case 8:
+                button8.isHidden = true
+            case 9:
+                button9.isHidden = true
+            case 10:
+                button10.isHidden = true
+            case 11:
+                button11.isHidden = true
+            case 12:
+                button12.isHidden = true
+            case 13:
+                button13.isHidden = true
+            case 14:
+                button14.isHidden = true
+            case 15:
+                button15.isHidden = true
+            case 16:
+                button16.isHidden = true
+            case 17:
+                button17.isHidden = true
+            case 18:
+                button18.isHidden = true
+            case 19:
+                button19.isHidden = true
+            default:
+                print("error")
             }
-            button0.isHidden = true
-            count = count - 1
+            count -= 1
             print(count)
-            
             if count == 0 {
                 self.kati()
             }
@@ -172,400 +213,11 @@ class GameViewController: UIViewController {
         self.dare()
     }
     
-    @IBAction func hoge1() {
-        if j == 1 {
-            self.arato()
-        }else {
-            label.text = ("セーフ！！")
-            DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
-                self.label.text = ("")
-            }
-            button1.isHidden = true
-            count = count - 1
-            print(count)
-            
-            if count == 0 {
-                self.kati()
-            }
-            
-        }
-        self.dare()
-    }
-    
-    @IBAction func hoge2() {
-        if j == 2 {
-            self.arato()
-        }else {
-            label.text = ("セーフ！！")
-            DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
-                self.label.text = ("")
-            }
-            button2.isHidden = true
-            count = count - 1
-            print(count)
-            
-            if count == 0 {
-                self.kati()
-            }
-            
-        }
-        self.dare()
-        
-    }
-    
-    @IBAction func hoge3() {
-        if j == 3 {
-            self.arato()
-        }else {
-            label.text = ("セーフ！！")
-            DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
-                self.label.text = ("")
-            }
-            button3.isHidden = true
-            count = count - 1
-            print(count)
-            
-            if count == 0 {
-                self.kati()
-            }
-            
-        }
-        self.dare()
-        
-    }
-    
-    @IBAction func hoge4() {
-        if j == 4 {
-            self.arato()
-        }else {
-            label.text = ("セーフ！！")
-            DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
-                self.label.text = ("")
-            }
-            button4.isHidden = true
-            count = count - 1
-            print(count)
-            
-            if count == 0 {
-                self.kati()
-            }
-            
-        }
-        self.dare()
-        
-    }
-    
-    @IBAction func hoge5() {
-        if j == 5 {
-            self.arato()
-        }else {
-            label.text = ("セーフ！！")
-            DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
-                self.label.text = ("")
-            }
-            button5.isHidden = true
-            count = count - 1
-            print(count)
-            
-            if count == 0 {
-                self.kati()
-            }
-            
-        }
-        self.dare()
-        
-    }
-    
-    @IBAction func hoge6() {
-        if j == 6 {
-            self.arato()
-        }else {
-            label.text = ("セーフ！！")
-            DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
-                self.label.text = ("")
-            }
-            button6.isHidden = true
-            count = count - 1
-            print(count)
-            
-            if count == 0 {
-                self.kati()
-            }
-            
-        }
-        self.dare()
-        
-    }
-    
-    @IBAction func hoge7() {
-        if j == 7 {
-            self.arato()
-        }else {
-            label.text = ("セーフ！！")
-            DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
-                self.label.text = ("")
-            }
-            button7.isHidden = true
-            count = count - 1
-            print(count)
-            
-            if count == 0 {
-                self.kati()
-            }
-            
-        }
-        self.dare()
-        
-    }
-    
-    @IBAction func hoge8() {
-        if j == 8 {
-            self.arato()
-        }else {
-            label.text = ("セーフ！！")
-            DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
-                self.label.text = ("")
-            }
-            button8.isHidden = true
-            count = count - 1
-            print(count)
-            
-            if count == 0 {
-                self.kati()
-            }
-            
-        }
-        self.dare()
-        
-    }
-    
-    @IBAction func hoge9() {
-        if j == 9 {
-            self.arato()
-        }else {
-            label.text = ("セーフ！！")
-            DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
-                self.label.text = ("")
-            }
-            button9.isHidden = true
-            count = count - 1
-            print(count)
-            
-            if count == 0 {
-                self.kati()
-            }
-        }
-        self.dare()
-    }
-    
-    @IBAction func hoge10() {
-        if j == 10 {
-            self.arato()
-        }else {
-            label.text = ("セーフ！！")
-            DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
-                self.label.text = ("")
-            }
-            button10.isHidden = true
-            count = count - 1
-            print(count)
-            
-            if count == 0 {
-                self.kati()
-            }
-            
-        }
-        self.dare()
-        
-    }
-    
-    @IBAction func hoge11() {
-        if j == 11 {
-            self.arato()
-        }else {
-            label.text = ("セーフ！！")
-            DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
-                self.label.text = ("")
-            }
-            button11.isHidden = true
-            count = count - 1
-            print(count)
-            
-            if count == 0 {
-                self.kati()
-            }
-            
-        }
-        self.dare()
-        
-    }
-    
-    @IBAction func hoge12() {
-        if j == 12 {
-            self.arato()
-        }else {
-            label.text = ("セーフ！！")
-            DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
-                self.label.text = ("")
-            }
-            button12.isHidden = true
-            count = count - 1
-            print(count)
-            
-            if count == 0 {
-                self.kati()
-            }
-        }
-        self.dare()
-    }
-    
-    @IBAction func hoge13() {
-        if j == 13 {
-            self.arato()
-        }else {
-            label.text = ("セーフ！！")
-            DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
-                self.label.text = ("")
-            }
-            button13.isHidden = true
-            count = count - 1
-            print(count)
-            
-            if count == 0 {
-                self.kati()
-            }
-        }
-        self.dare()
-    }
-    
-    @IBAction func hoge14() {
-        if j == 14 {
-            self.arato()
-        }else {
-            label.text = ("セーフ！！")
-            DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
-                self.label.text = ("")
-            }
-            button14.isHidden = true
-            count = count - 1
-            print(count)
-            
-            if count == 0 {
-                self.kati()
-            }
-            
-        }
-        self.dare()
-        
-    }
-    
-    @IBAction func hoge15() {
-        if j == 15 {
-            self.arato()
-        }else {
-            label.text = ("セーフ！！")
-            DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
-                self.label.text = ("")
-            }
-            button15.isHidden = true
-            count = count - 1
-            print(count)
-            
-            if count == 0 {
-                self.kati()
-            }
-            
-        }
-        self.dare()
-        
-    }
-    
-    @IBAction func hoge16() {
-        if j == 16 {
-            self.arato()
-        }else {
-            label.text = ("セーフ！！")
-            DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
-                self.label.text = ("")
-            }
-            button16.isHidden = true
-            count = count - 1
-            print(count)
-            
-            if count == 0 {
-                self.kati()
-            }
-            
-        }
-        self.dare()
-        
-    }
-    
-    @IBAction func hoge17() {
-        
-        if j == 17 {
-            self.arato()
-        }else {
-            label.text = ("セーフ！！")
-            DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
-                self.label.text = ("")
-            }
-            button17.isHidden = true
-            count = count - 1
-            print(count)
-            
-            if count == 0 {
-                self.kati()
-            }
-            
-        }
-        self.dare()
-        
-    }
-    
-    @IBAction func hoge18() {
-        if j == 18 {
-            self.arato()
-        }else {
-            label.text = ("セーフ！！")
-            DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
-                self.label.text = ("")
-            }
-            button18.isHidden = true
-            count = count - 1
-            print(count)
-            
-            if count == 0 {
-                self.kati()
-            }
-        }
-        self.dare()
-    }
-    
-    @IBAction func hoge19() {
-        
-        if j == 19 {
-            self.arato()
-        }else {
-            label.text = ("セーフ！！")
-            DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
-                self.label.text = ("")
-            }
-            button19.isHidden = true
-            count = count - 1
-            print(count)
-            
-            if count == 0 {
-                self.kati()
-            }
-            
-        }
-        self.dare()
-    }
     
     //セーフの時に処理するメソッド
     func safe() {
         label.text = "セーフ!!"
+        seikaiplayer.play()
         DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
             self.label.text = ("")
         }
