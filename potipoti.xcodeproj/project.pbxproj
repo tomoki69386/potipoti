@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		0AD2B9A9640C4F31874E8CC2 /* Pods_potipotiUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8829AE6E13B0C5A21E43C3A3 /* Pods_potipotiUITests.framework */; };
 		5512A6F11F62ACC000004E99 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55CB56021F3F163800F6F9B2 /* ProfileViewController.swift */; };
+		552E77C71FBEFBBA000B9021 /* ハズレ.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5588366C1FB5B691008E25D6 /* ハズレ.mp3 */; };
+		552E77C81FBEFBC0000B9021 /* 正解.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5588366D1FB5B691008E25D6 /* 正解.mp3 */; };
 		5571630E1FB5B5110068FAE9 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5571630D1FB5B5100068FAE9 /* AVFoundation.framework */; };
 		55CB56411F43345700F6F9B2 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55CB56401F43345700F6F9B2 /* TabBarController.swift */; };
 		55CB56431F436EC200F6F9B2 /* Profile_EditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55CB56421F436EC200F6F9B2 /* Profile_EditViewController.swift */; };
@@ -331,6 +333,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				552E77C81FBEFBC0000B9021 /* 正解.mp3 in Resources */,
+				552E77C71FBEFBBA000B9021 /* ハズレ.mp3 in Resources */,
 				55FD6DE51F1CF95200322633 /* LaunchScreen.storyboard in Resources */,
 				55FD6E171F1CFEAB00322633 /* GoogleService-Info.plist in Resources */,
 				55FD6DE21F1CF95200322633 /* Assets.xcassets in Resources */,

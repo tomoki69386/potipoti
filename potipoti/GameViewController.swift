@@ -563,10 +563,21 @@ class GameViewController: UIViewController {
         self.dare()
     }
     
+    //セーフの時に処理するメソッド
+    func safe() {
+        label.text = "セーフ!!"
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
+            self.label.text = ("")
+        }
+        
+    }
+    
+    //ハズレの時に処理するメソッド
     func arato() {
         label.text = ("ハズレ")
         //バイブレーション
         AudioServicesPlaySystemSound(SystemSoundID(kSystemSoundID_Vibrate))
+        hazureplayer.play()
         // アラートを作成
         let alert = UIAlertController(
             title: "負けました",

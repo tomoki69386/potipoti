@@ -363,6 +363,7 @@ class ComViewController: UIViewController {
         label.text = ("ハズレ")
         //バイブレーション
         AudioServicesPlaySystemSound(SystemSoundID(kSystemSoundID_Vibrate))
+        hazureplayer.play()
         // アラートを作成
         let alert = UIAlertController(
             title: "負けました",
@@ -379,6 +380,7 @@ class ComViewController: UIViewController {
     
     func atari() {
         label.text = ("セーフ")
+        seikaiplayer.play()
         DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
             self.label.text = ("")
         }

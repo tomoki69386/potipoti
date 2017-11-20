@@ -297,6 +297,7 @@ class MemberViewController: UIViewController {
     }
     
     func safe() {
+        //SE再生
         seikaiplayer.play()
         hantei.text = "セーフ"
         DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
@@ -311,6 +312,7 @@ class MemberViewController: UIViewController {
         //バイブレーション
         AudioServicesPlaySystemSound(SystemSoundID(kSystemSoundID_Vibrate))
         
+        //SE再生
         hazureplayer.play()
         
         //RoomIDの宣言
@@ -336,7 +338,7 @@ class MemberViewController: UIViewController {
             }
             
             let hoge = ["button": "<null>"]
-            self.ref.child("rooms").child(RoomID!).child("battle").child("Tap_button").setValue(hoge)
+            self.ref.child("rooms").child(RoomID!).child("battle").child("Tap_button").updateChildValues(hoge)
             self.button_Reading()
             
             // アラートを作成
@@ -352,6 +354,7 @@ class MemberViewController: UIViewController {
                 let user = Auth.auth().currentUser
                 let name = user?.displayName
                 
+                //ルームを削除する
                 self.ref.child("rooms").child(RoomID!).removeValue()
                 print("ルームを削除")
                 

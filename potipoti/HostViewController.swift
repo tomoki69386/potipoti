@@ -12,7 +12,7 @@ import FirebaseDatabase
 import FirebaseAuth
 import SVProgressHUD
 import AVFoundation
-import AudioToolbox //バイブレーション
+import AudioToolbox
 
 class HostViewController: UIViewController {
     
@@ -57,6 +57,9 @@ class HostViewController: UIViewController {
         
         //ロード画面の表示
         SVProgressHUD.show()
+        
+        //カウントダウンのSTART
+        self.time()
         
         //SEの設定
         do {
@@ -118,7 +121,6 @@ class HostViewController: UIViewController {
                     if self.count == false {
                         //相手が入室した時の処理
                         SVProgressHUD.showSuccess(withStatus: "対戦者入室")
-                        
                         self.count = true
                     }
                     
@@ -155,12 +157,13 @@ class HostViewController: UIViewController {
     }
     
     func up() {
-        if number < 60 {
-            //60未満の時の処理
+        print("カウントダウン...\(number)")
+        if number < 20 {
+            //20未満の時の処理
             //numberに1を足す
             number += 1
         }else {
-            //60以上の時の処理
+            //20以上の時の処理
             //待機の制限時間が来た時の処理
             //バトルをしない時の処理を行う
             No_battle()
@@ -175,7 +178,6 @@ class HostViewController: UIViewController {
         ref.child("rooms").child(roomID!).child("battle").child("Tap_button").observe(.value, with: {(snapShots) in
             
             let button = String(describing: snapShots.childSnapshot(forPath: "button").value!)
-            
             
             if button != "<null>" {
                 //nullじゃなかったら処理する
@@ -346,6 +348,7 @@ class HostViewController: UIViewController {
     }
     
     func safe() {
+        //SE再生
         seikaiplayer.play()
         hantei.text = "セーフ"
         DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
@@ -360,7 +363,7 @@ class HostViewController: UIViewController {
         //バイブレーション
         AudioServicesPlaySystemSound(SystemSoundID(kSystemSoundID_Vibrate))
         
-        //サウンド再生
+        //SE再生
         hazureplayer.play()
         
         //RoomIDの宣言
@@ -371,8 +374,6 @@ class HostViewController: UIViewController {
             let TP = String(describing: snapShots.childSnapshot(forPath: "TP").value!)
             
             let hostName = String(describing: snapShots.childSnapshot(forPath: "HostName").value!)
-            
-            let memberName = String(describing: snapShots.childSnapshot(forPath: "MemberName").value!)
             
             var MS: String!
             
@@ -388,7 +389,7 @@ class HostViewController: UIViewController {
             }
             
             let hoge = ["button": "<null>"]
-            self.ref.child("rooms").child(RoomID!).child("battle").child("Tap_button").setValue(hoge)
+            self.ref.child("rooms").child(RoomID!).child("battle").child("Tap_button").updateChildValues(hoge)
             self.button_Reading()
             
             // アラートを作成
@@ -405,12 +406,9 @@ class HostViewController: UIViewController {
                 self.ref.child("rooms").child(RoomID!).child("bettle").child("Tap_button").removeValue()
                 
                 self.ref.child("rooms").child(RoomID!).child("battle").removeValue()
-                
                 self.ref.child("rooms").child(RoomID!).child("messages").removeValue()
-                
                 self.ref.child("rooms").child(RoomID!).removeValue()
-                print("ルームを削除")
-                
+            
                 let user = Auth.auth().currentUser
                 let name = user?.displayName
                 
