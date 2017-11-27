@@ -44,14 +44,13 @@ class ViewController: UIViewController, UITextFieldDelegate {
     }
     
     @IBAction func up() {
-        label.text = ninzuuArrey[index]
-        
-        index = index + 1
+        index += 1
         
         //indexが２より大きくしない
-        if index > 2 {
+        if index >= 2 {
             index = 2
         }
+        label.text = ninzuuArrey[index]
         
         if label.text == ("４人") { //４人
             PlayertextField4.isHidden = false
@@ -76,14 +75,13 @@ class ViewController: UIViewController, UITextFieldDelegate {
     }
     
     @IBAction func down() {
-        label.text = ninzuuArrey[index]
-        
-        index = index - 1
+        index -= 1
         
         //indexが０より小さくしない
-        if index < 0 {
+        if index <= 0 {
             index = 0
         }
+        label.text = ninzuuArrey[index]
         
         if label.text == ("４人") { //４人
             PlayertextField4.isHidden = false
@@ -171,34 +169,6 @@ class ViewController: UIViewController, UITextFieldDelegate {
         }else if textField == PlayertextField4 {
             PlayertextField4.resignFirstResponder()
         }
-        
-//        if label.text == "2人" {
-//            if textField == PlayertextField1 {
-//                PlayertextField2.becomeFirstResponder()
-//            }else {
-//                PlayertextField2.resignFirstResponder()
-//            }
-//
-//        }else if label.text == "3人" {
-//            if textField == PlayertextField1 {
-//                PlayertextField2.becomeFirstResponder()
-//            }else if textField == PlayertextField2 {
-//                PlayertextField3.becomeFirstResponder()
-//            }else {
-//                PlayertextField3.resignFirstResponder()
-//            }
-//
-//        }else if label.text == "4人" {
-//            if textField == PlayertextField1 {
-//                PlayertextField2.becomeFirstResponder()
-//            }else if textField == PlayertextField2 {
-//             PlayertextField3.becomeFirstResponder()
-//            }else if textField == PlayertextField3 {
-//                PlayertextField4.becomeFirstResponder()
-//            }else {
-//                PlayertextField4.resignFirstResponder()
-//            }
-//        }
         return true
     }
     

@@ -22,7 +22,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     let userDefault = UserDefaults.standard
     var ref: DatabaseReference!
-    let Array = ["質問","ルール","パスワードを忘れた","ログアウト"]
+    let Array = ["質問","ルール","パスワードを変更","ログアウト"]
     
     //trueならアラートを表示中、falseならアラートを表示していない
     var Existence: Bool = false
@@ -175,7 +175,8 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         }else if indexPath.row == 1 {
             print("ルール")
         }else if indexPath.row == 2 {
-            print("パスワードを忘れた")
+            print("パスワードを変更")
+            //パスワードの変更を行う画面に遷移する
         }else if indexPath.row == 3 {
             print("ログアウト")
             self.signOut()

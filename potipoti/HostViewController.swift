@@ -45,6 +45,7 @@ class HostViewController: UIViewController {
     var count = false
     var timer: Timer = Timer()
     var number: Int = 1
+    var viewcount: Bool = false
     
     //音楽再生
     var seikaiplayer:AVAudioPlayer!
@@ -86,9 +87,15 @@ class HostViewController: UIViewController {
             
             //RoomIDの宣言
             let RoomID = String(describing: snapShots.childSnapshot(forPath: "RoomID").value!)
-            
             self.userDefault.set(RoomID, forKey: "RoomID")
             
+            if self.viewcount == false {
+                self.ref.child("rooms").child(RoomID).child("battle").child("Tap_button").setValue(["button": "<null>"])
+                
+                self.viewcount = true
+                //データの読み込みメソッド
+                self.button_Reading()
+            }
             print("ルームIDは...\(RoomID)")
             
             //対戦者の選択待ち
@@ -141,6 +148,7 @@ class HostViewController: UIViewController {
                 }
             })
         })
+        
     }
     
     func time() {
@@ -167,6 +175,11 @@ class HostViewController: UIViewController {
             //待機の制限時間が来た時の処理
             //バトルをしない時の処理を行う
             No_battle()
+            
+            //タイマーが動作していたら停止する
+            if timer.isValid {
+                timer.invalidate()
+            }
         }
     }
     
@@ -182,166 +195,55 @@ class HostViewController: UIViewController {
             if button != "<null>" {
                 //nullじゃなかったら処理する
                 print("押したボタンは...\(button)")
-                
-                if button == "0" {
-                    if LosingButton == "0" {
-                        self.out()
-                    }else {
-                        self.safe()
-                    }
+                if LosingButton == button {
+                    self.out()
+                }else {
+                    self.safe()
+                }
+                //Buttonの削除する処理を書く
+                switch button {
+                case "0":
                     self.button0.isHidden = true
-                    
-                }else if button == "1" {
-                    if LosingButton == "1" {
-                        self.out()
-                    }else {
-                        self.safe()
-                    }
+                case "1":
                     self.button1.isHidden = true
-                    
-                }else if button == "2" {
-                    if LosingButton == "2" {
-                        self.out()
-                    }else {
-                        self.safe()
-                    }
+                case "2":
                     self.button2.isHidden = true
-                    
-                }else if button == "3" {
-                    if LosingButton == "3" {
-                        self.out()
-                    }else {
-                        self.safe()
-                    }
+                case "3":
                     self.button3.isHidden = true
-                    
-                }else if button == "4" {
-                    if LosingButton == "4" {
-                        self.out()
-                    }else {
-                        self.safe()
-                    }
+                case "4":
                     self.button4.isHidden = true
-                    
-                }else if button == "5" {
-                    if LosingButton == "5" {
-                        self.out()
-                    }else {
-                        self.safe()
-                    }
+                case "5":
                     self.button5.isHidden = true
-                    
-                }else if button == "6" {
-                    if LosingButton == "6" {
-                        self.out()
-                    }else {
-                        self.safe()
-                    }
+                case "6":
                     self.button6.isHidden = true
-                    
-                }else if button == "7" {
-                    if LosingButton == "7" {
-                        self.out()
-                    }else {
-                        self.safe()
-                    }
+                case "7":
                     self.button7.isHidden = true
-                    
-                }else if button == "8" {
-                    if LosingButton == "8" {
-                        self.out()
-                    }else {
-                        self.safe()
-                    }
+                case "8":
                     self.button8.isHidden = true
-                    
-                }else if button == "9" {
-                    if LosingButton == "9" {
-                        self.out()
-                    }else {
-                        self.safe()
-                    }
+                case "9":
                     self.button9.isHidden = true
-                    
-                }else if button == "10" {
-                    if LosingButton == "10" {
-                        self.out()
-                    }else {
-                        self.safe()
-                    }
+                case "10":
                     self.button10.isHidden = true
-                    
-                }else if button == "11" {
-                    if LosingButton == "11" {
-                        self.out()
-                    }else {
-                        self.safe()
-                    }
+                case "11":
                     self.button11.isHidden = true
-                    
-                }else if button == "12" {
-                    if LosingButton == "12" {
-                        self.out()
-                    }else {
-                        self.safe()
-                    }
+                case "12":
                     self.button12.isHidden = true
-                    
-                }else if button == "13" {
-                    if LosingButton == "13" {
-                        self.out()
-                    }else {
-                        self.safe()
-                    }
+                case "13":
                     self.button13.isHidden = true
-                    
-                }else if button == "14" {
-                    if LosingButton == "14" {
-                        self.out()
-                    }else {
-                        self.safe()
-                    }
+                case "14":
                     self.button14.isHidden = true
-                    
-                }else if button == "15" {
-                    if LosingButton == "15" {
-                        self.out()
-                    }else {
-                        self.safe()
-                    }
+                case "15":
                     self.button15.isHidden = true
-                    
-                }else if button == "16" {
-                    if LosingButton == "16" {
-                        self.out()
-                    }else {
-                        self.safe()
-                    }
+                case "16":
                     self.button16.isHidden = true
-                    
-                }else if button == "17" {
-                    if LosingButton == "17" {
-                        self.out()
-                    }else {
-                        self.safe()
-                    }
+                case "17":
                     self.button17.isHidden = true
-                    
-                }else if button == "18" {
-                    if LosingButton == "18" {
-                        self.out()
-                    }else {
-                        self.safe()
-                    }
+                case "18":
                     self.button18.isHidden = true
-                    
-                }else if button == "19" {
-                    if LosingButton == "19" {
-                        self.out()
-                    }else {
-                        self.safe()
-                    }
+                case "19":
                     self.button19.isHidden = true
+                default:
+                    print("error")
                 }
             }
         })
@@ -408,7 +310,7 @@ class HostViewController: UIViewController {
                 self.ref.child("rooms").child(RoomID!).child("battle").removeValue()
                 self.ref.child("rooms").child(RoomID!).child("messages").removeValue()
                 self.ref.child("rooms").child(RoomID!).removeValue()
-            
+                
                 let user = Auth.auth().currentUser
                 let name = user?.displayName
                 
