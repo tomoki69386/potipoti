@@ -39,13 +39,6 @@ class PlayerViewController: UIViewController, UITableViewDelegate, UITableViewDa
             let inRoom = String(describing: snapshot.childSnapshot(forPath: "inRoom").value!)
             
             let inApp = String(describing: snapshot.childSnapshot(forPath: "inRoom").value!)
-            
-//            if inRoom == "false" && inApp == "true" {
-                //アプリを起動していて、Roomに入っていないuserを取得
-                //表示
-                print(username)
-                print(userID)
-                print(inRoom)
                 
                 //memberのデータを配列に収納
                 self?.MemberNameArray.append(username) //取得したuserの名前を収納する
@@ -53,9 +46,6 @@ class PlayerViewController: UIViewController, UITableViewDelegate, UITableViewDa
                 
                 //リロード
                 self?.TableView.reloadData()
-//            }
-            
-            
         })
         //デリゲートをセット
         TableView.delegate = self
@@ -87,15 +77,16 @@ class PlayerViewController: UIViewController, UITableViewDelegate, UITableViewDa
     // セルが選択された時に呼ばれるデリゲートメソッド
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        //memberのIDと名前をprint
+        //memberのIDと名前を表示
         print("相手のIDは...\(MemberIDArray[indexPath.row])")
         print("相手の名前は...\(MemberNameArray[indexPath.row])")
         //memberIDを代入
         memberID = MemberIDArray[indexPath.row]
-        
+        //Firebaseの設定
         ref = Database.database().reference()
         //RoomIDを決める
         RoomID = Int(arc4random_uniform(100000))
+        let roomID = String(RoomID)
         //ハズレのボタンを決める
         hazure = Int(arc4random_uniform(19))
         
@@ -106,11 +97,12 @@ class PlayerViewController: UIViewController, UITableViewDelegate, UITableViewDa
         //最初にタップできるユーザーを決める
         Tap_Player = Int(arc4random_uniform(2))
         
-        //Roomの作成
-        //RoomIDは乱数(number)
         //Roomに必要なデータを保存
         self.ref.child("rooms").child(String(RoomID)).child("messages").updateChildValues(
             ["roomID": RoomID, "MamberID": MemberIDArray[indexPath.row], "MemberName": MemberNameArray[indexPath.row], "HostName": user?.displayName, "HostID": user?.uid, "ハズレボタン": hazure, "TP": Tap_Player])
+        
+        //nullにする
+        self.ref.child("rooms").child(roomID).child("battle").child("Tap_button").setValue(["button": "<null>"])
         
         //相手にRoomIDを教える
         ref.child("users").child(MemberIDArray[indexPath.row]).updateChildValues(["RoomID": RoomID,])

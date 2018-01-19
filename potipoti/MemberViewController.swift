@@ -75,19 +75,11 @@ class MemberViewController: UIViewController {
         ref = Database.database().reference()
         
         //RoomIDの取得
-        self.ref.child("users").child((user?.uid)!).observe(.value, with: {(snapShots) in
+        self.ref.child("users").child((user?.uid)!).observeSingleEvent(of: .value, with: { (snapshot) in
             
             //RoomIDの宣言
-            let RoomID = String(describing: snapShots.childSnapshot(forPath: "RoomID").value!)
+            let RoomID = String(describing: snapshot.childSnapshot(forPath: "RoomID").value!)
             self.userDefault.set(RoomID, forKey: "RoomID")
-            
-            if self.viewcount == false {
-                
-                self.ref.child("rooms").child(RoomID).child("battle").child("Tap_button").setValue(["button": "<null>"])
-                
-                self.viewcount = true
-                self.button_Reading()
-            }
             
             self.ref.child("rooms").child(RoomID).child("messages").observe(.value, with: {(snapShots) in
                 
@@ -129,10 +121,10 @@ class MemberViewController: UIViewController {
         //ルームIDとハズレボタンの設定
         let roomID = userDefault.string(forKey: "RoomID")
         let LosingButton = userDefault.string(forKey: "LosingButton")
-        ref.child("rooms").child(roomID!).child("battle").child("Tap_button").observe(.value, with: {(snapShots) in
+        ref.child("rooms").child(roomID!).child("battle").child("Tap_button").observeSingleEvent(of: .value, with: { (snapshot) in
             
-            let button = String(describing: snapShots.childSnapshot(forPath: "button").value!)
-            
+            let button = String(describing: snapshot.childSnapshot(forPath: "button").value!)
+            print("Buttonスナップショットデータ\(snapshot)")
             if button != "<null>" {
                 //nullじゃなかったら処理する
                 print("押したボタンは...\(button)")
@@ -187,10 +179,12 @@ class MemberViewController: UIViewController {
                 default:
                     print("error")
                 }
+                self.ref.child("rooms").child(roomID!).child("battle").child("Tap_button").removeAllObservers()
             }
         })
     }
     
+    //セーフの時の処理
     func safe() {
         //SE再生
         seikaiplayer.play()
@@ -200,6 +194,7 @@ class MemberViewController: UIViewController {
         }
     }
     
+    //ゲーム終了時の処理
     func out() {
         //Firebase
         ref = Database.database().reference()
@@ -213,12 +208,12 @@ class MemberViewController: UIViewController {
         //RoomIDの宣言
         let RoomID = userDefault.string(forKey: "RoomID")
         
-        self.ref.child("rooms").child(RoomID!).child("messages").observe(.value, with: {(snapShots) in
+        self.ref.child("rooms").child(RoomID!).child("messages").observeSingleEvent(of: .value, with: { (snapshot) in
             
-            let TP = String(describing: snapShots.childSnapshot(forPath: "TP").value!)
-            let userID = String(describing: snapShots.childSnapshot(forPath: "HostID").value!)
+            let TP = String(describing: snapshot.childSnapshot(forPath: "TP").value!)
+            let userID = String(describing: snapshot.childSnapshot(forPath: "HostID").value!)
             
-            let memberName = String(describing: snapShots.childSnapshot(forPath: "MemberName").value!)
+            let memberName = String(describing: snapshot.childSnapshot(forPath: "MemberName").value!)
             
             var MS: String!
             
@@ -250,12 +245,15 @@ class MemberViewController: UIViewController {
                 let user = Auth.auth().currentUser
                 let name = user?.displayName
                 
+                //自分のデータを初期値に戻す
+                self.ref.child("users").child((self.user?.uid)!).setValue(["username": name,"uid": user?.uid])
+                
+                //observerを削除する
+                self.ref.child("rooms").child(RoomID!).child("battle").child("Tap_button").removeAllObservers()
+                
                 //ルームを削除する
                 self.ref.child("rooms").child(RoomID!).removeValue()
                 print("ルームを削除")
-                
-                //自分のデータを初期値に戻す
-                self.ref.child("users").child((self.user?.uid)!).setValue(["username": name,"uid": user?.uid,"inRoom": "false", "inApp": "true"])
             })
             )
             // アラート表示
@@ -277,7 +275,7 @@ class MemberViewController: UIViewController {
             self.ref.child("rooms").child(roomID!).child("messages").updateChildValues(["TP": 0])
         }
     }
-    
+
     //ボタン有効化する処理
     func button_Effectiveness() {
         button0.isEnabled = true

@@ -116,10 +116,9 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         }else {
             print("データ無し")
             //ここに画像を入れる
-            ImageView.image = #imageLiteral(resourceName: "test.png")
+            ImageView.image = #imageLiteral(resourceName: "account.png")
             
-            var num: Int!
-            num = Int(arc4random_uniform(9))
+            let num = Int(arc4random_uniform(9))
             
             //画像データがない時10%の確率でアラートを表示する
             if num == 0 {

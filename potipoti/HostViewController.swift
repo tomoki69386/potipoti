@@ -36,16 +36,15 @@ class HostViewController: UIViewController {
     @IBOutlet var button17: UIButton!
     @IBOutlet var button18: UIButton!
     @IBOutlet var button19: UIButton!
-    
-    var ref: DatabaseReference! //Firebase
-    let user = Auth.auth().currentUser
-    let userDefault = UserDefaults.standard
     @IBOutlet var Label: UILabel!
     @IBOutlet var hantei: UILabel!
+    
+    var ref: DatabaseReference!
+    let user = Auth.auth().currentUser
+    let userDefault = UserDefaults.standard
     var count = false
     var timer: Timer = Timer()
     var number: Int = 1
-    var viewcount: Bool = false
     
     //音楽再生
     var seikaiplayer:AVAudioPlayer!
@@ -59,7 +58,7 @@ class HostViewController: UIViewController {
         //ロード画面の表示
         SVProgressHUD.show()
         
-        //カウントダウンのSTART
+        //カウントダウンのスタート
         self.time()
         
         //SEの設定
@@ -88,14 +87,7 @@ class HostViewController: UIViewController {
             //RoomIDの宣言
             let RoomID = String(describing: snapShots.childSnapshot(forPath: "RoomID").value!)
             self.userDefault.set(RoomID, forKey: "RoomID")
-            
-            if self.viewcount == false {
-                self.ref.child("rooms").child(RoomID).child("battle").child("Tap_button").setValue(["button": "<null>"])
-                
-                self.viewcount = true
-                //データの読み込みメソッド
-                self.button_Reading()
-            }
+        
             print("ルームIDは...\(RoomID)")
             
             //対戦者の選択待ち
@@ -105,6 +97,7 @@ class HostViewController: UIViewController {
                 
                 let LosingButton = String(describing: snapShots.childSnapshot(forPath: "ハズレボタン").value!)
                 
+                //ハズレボタンを保存する
                 self.userDefault.set(LosingButton, forKey: "LosingButton")
                 
                 let TP = String(describing: snapShots.childSnapshot(forPath: "TP").value!)
@@ -115,7 +108,6 @@ class HostViewController: UIViewController {
                 
                 print("ハズレのボタンは...\(LosingButton)")
                 print("最初にボタンを押せるのは...\(TP)")
-                print("対戦は...\(battle)")
                 
                 if battle == "しない" {
                     //対戦をしない時の処理
@@ -148,7 +140,6 @@ class HostViewController: UIViewController {
                 }
             })
         })
-        
     }
     
     func time() {
@@ -173,10 +164,10 @@ class HostViewController: UIViewController {
         }else {
             //20以上の時の処理
             //待機の制限時間が来た時の処理
-            //バトルをしない時の処理を行う
+            //バトルをしない時の処理
             No_battle()
             
-            //タイマーが動作していたら停止する
+            //タイマーを停止する
             if timer.isValid {
                 timer.invalidate()
             }
@@ -185,13 +176,14 @@ class HostViewController: UIViewController {
     
     //ボタン取得メソッド
     func button_Reading() {
-        print("ボタン取得メソッド")
         let roomID = userDefault.string(forKey: "RoomID")
         let LosingButton = userDefault.string(forKey: "LosingButton")
-        ref.child("rooms").child(roomID!).child("battle").child("Tap_button").observe(.value, with: {(snapShots) in
+
+        //一回ずつ取得
+        ref.child("rooms").child(roomID!).child("battle").child("Tap_button").observeSingleEvent(of: .value, with: { (snapshot) in
             
-            let button = String(describing: snapShots.childSnapshot(forPath: "button").value!)
-            
+            let button = String(describing: snapshot.childSnapshot(forPath: "button").value!)
+
             if button != "<null>" {
                 //nullじゃなかったら処理する
                 print("押したボタンは...\(button)")
@@ -246,9 +238,12 @@ class HostViewController: UIViewController {
                     print("error")
                 }
             }
-        })
+        }){ (error) in
+            print(error.localizedDescription)
+        }
     }
     
+    //セーフ時の処理
     func safe() {
         //SE再生
         seikaiplayer.play()
@@ -258,6 +253,7 @@ class HostViewController: UIViewController {
         }
     }
     
+    //ゲーム終了時の処理
     func out() {
         //Firebase
         ref = Database.database().reference()
@@ -271,11 +267,11 @@ class HostViewController: UIViewController {
         //RoomIDの宣言
         let RoomID = userDefault.string(forKey: "RoomID")
         
-        self.ref.child("rooms").child(RoomID!).child("messages").observe(.value, with: {(snapShots) in
+        self.ref.child("rooms").child(RoomID!).child("messages").observeSingleEvent(of: .value, with: { (snapshot) in
             
-            let TP = String(describing: snapShots.childSnapshot(forPath: "TP").value!)
+            let TP = String(describing: snapshot.childSnapshot(forPath: "TP").value!)
             
-            let hostName = String(describing: snapShots.childSnapshot(forPath: "HostName").value!)
+            let hostName = String(describing: snapshot.childSnapshot(forPath: "HostName").value!)
             
             var MS: String!
             
@@ -304,17 +300,16 @@ class HostViewController: UIViewController {
             alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { action in
                 self.dismiss(animated: true, completion: nil)
                 
-                //ルームの削除
-                self.ref.child("rooms").child(RoomID!).child("bettle").child("Tap_button").removeValue()
-                
-                self.ref.child("rooms").child(RoomID!).child("battle").removeValue()
-                self.ref.child("rooms").child(RoomID!).child("messages").removeValue()
-                self.ref.child("rooms").child(RoomID!).removeValue()
-                
                 let user = Auth.auth().currentUser
                 let name = user?.displayName
                 
                 self.ref.child("users").child((user?.uid)!).setValue(["username": name,"uid": user?.uid])
+                
+                //observerを削除する
+                self.ref.child("rooms").child(RoomID!).child("battle").child("Tap_button").removeAllObservers()
+                
+                //ルームの削除
+                self.ref.child("rooms").child(RoomID!).removeValue()
             })
             )
             // アラート表示
@@ -325,10 +320,10 @@ class HostViewController: UIViewController {
     //ボタンを押した時の処理
     @IBAction func tap(sender: UIButton) {
         //RoomIDの取得
-        self.ref.child("users").child((user?.uid)!).observe(.value, with: {(snapShots) in
+        self.ref.child("users").child((user?.uid)!).observeSingleEvent(of: .value, with: { (snapshot) in
             
             //RoomIDの宣言
-            let roomID = String(describing: snapShots.childSnapshot(forPath: "RoomID").value!)
+            let roomID = String(describing: snapshot.childSnapshot(forPath: "RoomID").value!)
             
             if roomID != "<null>" {
                 //hogeに押したボタンの番号を入れる
@@ -396,11 +391,11 @@ class HostViewController: UIViewController {
         //ルームの削除
         self.ref.child("rooms").child(RoomID!).removeValue()
         
-        //相手のIDを取得
-        self.ref.child("rooms").child(RoomID!).child("messages").observe(.value, with: {(snapShots) in
+        //相手のIDを一回ずつ取得
+        self.ref.child("rooms").child(RoomID!).child("messages").observeSingleEvent(of: .value, with: { (snapshot) in
             
             //メンバーIDを宣言
-            let MemberID = String(describing: snapShots.childSnapshot(forPath: "MamberID").value!)
+            let MemberID = String(describing: snapshot.childSnapshot(forPath: "MamberID").value!)
             
             //相手のデータベースにあるRoomIDを削除
             self.ref.child("users").child(MemberID).child("RoomID").removeValue()
