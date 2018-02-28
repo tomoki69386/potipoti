@@ -49,8 +49,6 @@
                 let name = user?.displayName //ユーザーの名前の定数
                 ref = Database.database().reference()
                 
-                self.ref.child("users").child(user!.uid).setValue(["username": name,"uid": user?.uid,"App": "1"])
-                
                 let storyboard:UIStoryboard =  UIStoryboard(name: "Main",bundle:nil)
                 window?.rootViewController
                     = storyboard.instantiateViewController(withIdentifier: "TabBarController")
@@ -63,39 +61,39 @@
     func applicationDidEnterBackground(_ application: UIApplication) {
         print("アプリを閉じた時に呼ばれる")
         
-        //ログインしてたらinRoomをfalseにする、inAppをfalseにする
+        //ログインしてたらAppを0にする(アプリを閉じていてる時)
         if let _ = Auth.auth().currentUser {
             //ログイン中
             let user = Auth.auth().currentUser
             ref = Database.database().reference()
             
-            self.ref.child("users").child(user!.uid).updateChildValues(["App":"0"])
+            self.ref.child("users").child(user!.uid).updateChildValues(["App":0])
         }
     }
     
     func applicationWillTerminate(_ application: UIApplication) {
         print("フリックしてアプリを終了させた時に呼ばれる")
         
-        //ログインしてたらinRoomをfalseにする、inAppをfalseにする
+        //ログインしてたらAppを0にする(アプリを閉じている時)
         if let _ = Auth.auth().currentUser {
             //ログイン中
             let user = Auth.auth().currentUser
             ref = Database.database().reference()
             
-            self.ref.child("users").child(user!.uid).updateChildValues(["App":"0"])
+            self.ref.child("users").child(user!.uid).updateChildValues(["App":0])
         }
     }
     
     func applicationDidBecomeActive(_ application: UIApplication) {
         print("アプリを開いた時に呼ばれる")
         
-        //ログインしてたらinRoomをfalseにする、inAppをtrueにする
+        //ログインしてたらアプリを開いていてゲームに参加していないとき
         if let _ = Auth.auth().currentUser {
             //ログイン中
             let user = Auth.auth().currentUser
             ref = Database.database().reference()
             
-            self.ref.child("users").child(user!.uid).updateChildValues(["App":"1"])
+            self.ref.child("users").child(user!.uid).updateChildValues(["App":1])
         }
     }
  }

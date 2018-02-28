@@ -71,13 +71,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                 } else {
                     //ログインしたデータを送る
                     let user = Auth.auth().currentUser
-                    let name = user?.displayName
                     self.ref = Database.database().reference()
-                    
-                    self.ref.child("users").child(user!.uid).setValue(["username": name,"uid": user?.uid,"inRoom": "false"])
-                    
-                    //inRoomをfalseに、inAppをtrue
-                    self.ref.child("users").child(user!.uid).updateChildValues(["inRoom": "false", "inApp": "true"])
                     
                     SVProgressHUD.showSuccess(withStatus: "ログイン出来ました！")
                     let when = DispatchTime.now() + 2

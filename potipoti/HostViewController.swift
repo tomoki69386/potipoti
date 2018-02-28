@@ -279,17 +279,40 @@ class HostViewController: UIViewController {
                 //hostが押せる時の処理
                 //hostの勝ち
                 MS = "\(hostName)の勝ち"
+                //Win_countを取得
+                //Win_countに+1
+                self.ref.child("users").child((self.user?.uid)!).observeSingleEvent(of: .value, with: { (snapshot) in
+                    
+                    let Win_count_String = String(describing: snapshot.childSnapshot(forPath: "Win_count").value!)
+                    //Int型に変更する
+                    var Win_count: Int = Int(Win_count_String)!
+                    Win_count += 1
+                    //+1にしたあと送信する
+                    self.ref.child("users").child((self.user?.uid)!).updateChildValues(["Win_count": Win_count])
+                })
                 
             }else if TP == "1" {
                 //memberが押せる時の処理
                 //hostの負け
                 MS = "\(hostName)の負け"
+                //Defeat_countを取得
+                //Defeat_countに+1
+                self.ref.child("users").child((self.user?.uid)!).observeSingleEvent(of: .value, with: { (snapshot) in
+                    
+                    let Defeat_count_String = String(describing: snapshot.childSnapshot(forPath: "Defeat_count").value!)
+                    
+                    //Int型に変更する
+                    var Defeat_count: Int = Int(Defeat_count_String)!
+                    Defeat_count += 1
+                    //+1にしたあと送信する
+                    self.ref.child("users").child((self.user?.uid)!).updateChildValues(["Defeat_count": Defeat_count])
+                })
             }
-            
-            let hoge = ["button": "<null>"]
-            self.ref.child("rooms").child(RoomID!).child("battle").child("Tap_button").updateChildValues(hoge)
-            self.button_Reading()
-            
+
+//            let hoge = ["button": "<null>"]
+//            self.ref.child("rooms").child(RoomID!).child("battle").child("Tap_button").updateChildValues(hoge)
+//            self.button_Reading()
+//
             // アラートを作成
             let alert = UIAlertController(
                 title: "終了",

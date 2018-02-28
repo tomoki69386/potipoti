@@ -221,11 +221,27 @@ class MemberViewController: UIViewController {
                 //hostが押せる時の処理
                 //memberの負け
                 MS = "\(memberName)の負け"
+                self.ref.child("users").child((self.user?.uid)!).observeSingleEvent(of: .value, with: { (snapshot) in
+                    
+                    let Defeat_count_String = String(describing: snapshot.childSnapshot(forPath: "Defeat_count").value!)
+                    
+                    var Defeat_count: Int = Int(Defeat_count_String)!
+                    Defeat_count += 1
+                    self.ref.child("users").child((self.user?.uid)!).updateChildValues(["Defeat_count": Defeat_count])
+                })
                 
             }else if TP == "1" {
                 //memberが押せる時の処理
                 //memberの勝ち
                 MS = "\(memberName)の勝ち"
+                self.ref.child("users").child((self.user?.uid)!).observeSingleEvent(of: .value, with: { (snapshot) in
+                    
+                    let Win_count_String = String(describing: snapshot.childSnapshot(forPath: "Win_count").value!)
+                    
+                    var Win_count: Int = Int(Win_count_String)!
+                    Win_count += 1
+                    self.ref.child("users").child((self.user?.uid)!).updateChildValues(["Win_count": Win_count])
+                })
             }
             
             let hoge = ["button": "<null>"]

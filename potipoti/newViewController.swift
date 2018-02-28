@@ -129,13 +129,13 @@ class newViewController: UIViewController, UITextFieldDelegate {
                         let name = user?.displayName
                         self.ref = Database.database().reference()
                         
-                        self.ref.child("users").child(user!.uid).setValue(["username": name,"uid": user?.uid,"App":"1"])
+                        //Win_countとDefeat_countの初期設定
+                        //Win_countが勝利回数
+                        //Defeat_countが敗北回数
+                        self.ref.child("users").child(user!.uid).setValue(["username": name,"uid": user?.uid,"App":"1", "Win_count": 0, "Defeat_count": 0])
                         
                         //初めてuserを作成したことを伝える
                         self.userDefault.set(false, forKey: "firstLaunch")
-                        
-                        //inRoomをfalseに、inAppをtrue
-                        self.ref.child("users").child(user!.uid).updateChildValues(["App":"1"])
                         
                         //2秒の間待つ
                         let when = DispatchTime.now() + 2

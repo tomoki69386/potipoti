@@ -22,7 +22,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     let userDefault = UserDefaults.standard
     var ref: DatabaseReference!
-    let Array = ["質問","ルール","パスワードを変更","ログアウト"]
+    let Array = ["質問","パスワードを変更","アカウントの削除","ログアウト"]
     
     //trueならアラートを表示中、falseならアラートを表示していない
     var Existence: Bool = false
@@ -169,16 +169,19 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     // セルが選択された時に呼ばれるデリゲートメソッド
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        if indexPath.row == 0 {
+        switch indexPath.row {
+        case 0:
             print("質問")
-        }else if indexPath.row == 1 {
+        case 1:
             print("ルール")
-        }else if indexPath.row == 2 {
             print("パスワードを変更")
-            //パスワードの変更を行う画面に遷移する
-        }else if indexPath.row == 3 {
+        case 2:
+            print("アカウントの削除")
+        case 3:
             print("ログアウト")
             self.signOut()
+        default:
+            print("当てはまらない")
         }
     }
     
@@ -211,6 +214,22 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         
         // アラートにボタンをつける
         alert.addAction(UIAlertAction(title: "設定する", style: .default, handler: { action in
+        }))
+        // アラート表示
+        self.present(alert, animated: true, completion: nil)
+    }
+    
+    func hoge() {
+        // アラートを作成
+        let alert = UIAlertController(
+            title: "注意！",
+            message: "本当にアカウントを削除しますか？",
+            preferredStyle: .alert)
+        
+        // アラートにボタンをつける
+        alert.addAction(UIAlertAction(title: "削除する", style: .default, handler: { action in
+        }))
+        alert.addAction(UIAlertAction(title: "キャンセル", style: .cancel, handler: { action in
         }))
         // アラート表示
         self.present(alert, animated: true, completion: nil)
