@@ -10,6 +10,7 @@ import UIKit
 import Firebase
 import FirebaseAuth
 import SVProgressHUD
+import TextFieldEffects
 
 class LoginViewController: UIViewController, UITextFieldDelegate {
     
@@ -26,6 +27,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         
         emailTextField.layer.borderWidth = 2
         passwordTextField.layer.borderWidth = 2
+        
         
         //キーボードのフォーカスをあわせる
         emailTextField.becomeFirstResponder()
@@ -72,8 +74,11 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                     //ログインしたデータを送る
                     let user = Auth.auth().currentUser
                     self.ref = Database.database().reference()
+                    //オンライン中であることを知らせる
+                    self.ref.child("users").child(user!.uid).updateChildValues(["App":1])
                     
                     SVProgressHUD.showSuccess(withStatus: "ログイン出来ました！")
+
                     let when = DispatchTime.now() + 2
                     DispatchQueue.main.asyncAfter(deadline: when) {
                         self.present((self.storyboard?.instantiateViewController(withIdentifier: "TabBarController"))!,

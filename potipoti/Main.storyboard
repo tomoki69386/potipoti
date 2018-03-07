@@ -127,7 +127,7 @@
                                 </constraints>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" returnKeyType="done"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no" returnKeyType="done"/>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="5Ad-Ig-Sj8">
                                 <rect key="frame" x="167" y="324" width="97" height="30"/>
@@ -138,7 +138,7 @@
                                 </constraints>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" returnKeyType="done"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no" returnKeyType="done"/>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="opL-Ve-5Ro">
                                 <rect key="frame" x="167" y="394" width="97" height="30"/>
@@ -149,7 +149,7 @@
                                 </constraints>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" returnKeyType="done"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no" returnKeyType="done"/>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="dVh-zb-FbZ">
                                 <rect key="frame" x="167" y="259" width="97" height="30"/>
@@ -160,7 +160,7 @@
                                 </constraints>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" returnKeyType="done"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no" returnKeyType="done"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9vU-il-QHM">
                                 <rect key="frame" x="89" y="443" width="142" height="60"/>
@@ -214,7 +214,7 @@
                             <constraint firstItem="opL-Ve-5Ro" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" constant="125" id="ufT-Ef-m6F"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="FGa-fe-b0T"/>
+                    <navigationItem key="navigationItem" title="友達とプレイ" id="FGa-fe-b0T"/>
                     <connections>
                         <outlet property="PlayerLabel1" destination="8hz-N9-Yjx" id="xl0-pN-PyJ"/>
                         <outlet property="PlayerLabel2" destination="u34-za-eck" id="W5m-ys-VrT"/>
@@ -1199,7 +1199,7 @@
                                 </constraints>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" keyboardType="emailAddress"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no" keyboardType="emailAddress"/>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bZQ-2T-m3q">
                                 <rect key="frame" x="77" y="119" width="166" height="30"/>
@@ -1210,7 +1210,7 @@
                                 </constraints>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" keyboardType="emailAddress"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no" keyboardType="emailAddress"/>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ログイン" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="36L-rJ-UzE">
                                 <rect key="frame" x="0.0" y="43" width="320" height="53"/>
@@ -1331,7 +1331,7 @@
                                 </constraints>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no"/>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="名前" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tKq-VY-0EK">
                                 <rect key="frame" x="73" y="136" width="23" height="10"/>
@@ -1353,7 +1353,7 @@
                                 </constraints>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" keyboardType="emailAddress"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no" keyboardType="emailAddress"/>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="uWS-aw-rgJ">
                                 <rect key="frame" x="73" y="234" width="170" height="30"/>
@@ -1364,7 +1364,7 @@
                                 </constraints>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" keyboardType="emailAddress"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no" keyboardType="emailAddress"/>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="メールアドレス" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="049-bz-MLN">
                                 <rect key="frame" x="73" y="198" width="72" height="10"/>
@@ -1397,7 +1397,7 @@
                                 </constraints>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" keyboardType="emailAddress"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no" keyboardType="emailAddress"/>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="パスワード" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QgD-hi-YOg">
                                 <rect key="frame" x="73" y="334" width="52" height="10"/>
@@ -1535,14 +1535,6 @@
                                     <segue destination="Dmz-fv-YTC" kind="presentation" id="ib3-qQ-9RU"/>
                                 </connections>
                             </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Vhv-uw-ARO">
-                                <rect key="frame" x="100" y="9" width="120" height="120"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="120" id="7SM-cw-e2v"/>
-                                    <constraint firstAttribute="width" secondItem="Vhv-uw-ARO" secondAttribute="height" multiplier="1:1" id="RRF-s4-4m2"/>
-                                    <constraint firstAttribute="height" constant="120" id="hDe-EC-FEa"/>
-                                </constraints>
-                            </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ユーザーネーム" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="byZ-Nu-v9h">
                                 <rect key="frame" x="0.0" y="148" width="320" height="41"/>
                                 <constraints>
@@ -1575,6 +1567,14 @@
                                     <outlet property="delegate" destination="PPJ-uX-HXD" id="uOT-0a-yxT"/>
                                 </connections>
                             </tableView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Vhv-uw-ARO">
+                                <rect key="frame" x="100" y="28" width="120" height="120"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="120" id="7SM-cw-e2v"/>
+                                    <constraint firstAttribute="width" secondItem="Vhv-uw-ARO" secondAttribute="height" multiplier="1:1" id="RRF-s4-4m2"/>
+                                    <constraint firstAttribute="height" constant="120" id="hDe-EC-FEa"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -1586,7 +1586,7 @@
                             <constraint firstItem="pVm-Ua-3Gc" firstAttribute="centerX" secondItem="kr9-S4-p7p" secondAttribute="centerX" id="bLg-Qe-dLx"/>
                             <constraint firstItem="byZ-Nu-v9h" firstAttribute="centerX" secondItem="kr9-S4-p7p" secondAttribute="centerX" id="cgI-3j-mDH"/>
                             <constraint firstItem="ye4-hF-MNi" firstAttribute="centerY" secondItem="kr9-S4-p7p" secondAttribute="centerY" constant="-72" id="hhH-TW-pxg"/>
-                            <constraint firstItem="Vhv-uw-ARO" firstAttribute="centerY" secondItem="kr9-S4-p7p" secondAttribute="centerY" constant="-215" id="jOq-fs-GjP"/>
+                            <constraint firstItem="Vhv-uw-ARO" firstAttribute="centerY" secondItem="kr9-S4-p7p" secondAttribute="centerY" constant="-196" id="jOq-fs-GjP"/>
                             <constraint firstItem="byZ-Nu-v9h" firstAttribute="centerY" secondItem="kr9-S4-p7p" secondAttribute="centerY" constant="-115.5" id="lgM-SU-42y"/>
                             <constraint firstItem="pVm-Ua-3Gc" firstAttribute="centerY" secondItem="kr9-S4-p7p" secondAttribute="centerY" constant="115" id="rOI-ey-2Va"/>
                         </constraints>
@@ -1645,7 +1645,13 @@
                             <constraint firstAttribute="trailing" secondItem="c97-1D-cBx" secondAttribute="trailing" id="zFF-eR-JGg"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="k7z-Ip-vJY"/>
+                    <navigationItem key="navigationItem" title="オンライン中ユーザー" id="k7z-Ip-vJY">
+                        <barButtonItem key="rightBarButtonItem" image="リロード.png" id="2OS-8s-JCX">
+                            <connections>
+                                <action selector="reload" destination="c4T-ak-8dX" id="krI-kx-qY2"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="TableView" destination="c97-1D-cBx" id="mhr-FI-yt8"/>
                         <segue destination="3Rg-D8-0cP" kind="presentation" identifier="toRoomViewController" id="i9G-Hh-Uuz"/>
@@ -1686,7 +1692,7 @@
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BTw-ER-DGD">
                                 <rect key="frame" x="89" y="191" width="142" height="60"/>
-                                <color key="backgroundColor" red="0.9971558452" green="0.97724920510000002" blue="0.47179394959999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" red="0.99215686274509807" green="0.97647058823529409" blue="0.54509803921568623" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="142" id="3L2-Yc-7jL"/>
                                     <constraint firstAttribute="width" secondItem="BTw-ER-DGD" secondAttribute="height" multiplier="71:30" id="MKI-ze-CgA"/>
@@ -1817,7 +1823,7 @@
                                 </constraints>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no"/>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LYH-E6-jV5">
                                 <rect key="frame" x="49" y="246" width="78" height="21"/>
@@ -2784,5 +2790,6 @@
     <resources>
         <image name="account.png" width="32" height="32"/>
         <image name="home.png" width="32" height="32"/>
+        <image name="リロード.png" width="16" height="16"/>
     </resources>
 </document>

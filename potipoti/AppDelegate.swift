@@ -7,6 +7,8 @@
  //
  //　Firebase　https://console.firebase.google.com/project/potipoti-e1d0e/database/data?hl=ja
  //
+ // Appが0ならオフライン中、１ならオンライン中
+ //
  
  import UIKit
  import Firebase
@@ -49,6 +51,8 @@
                 let name = user?.displayName //ユーザーの名前の定数
                 ref = Database.database().reference()
                 
+                self.ref.child("users").child(user!.uid).updateChildValues(["App":1])
+                
                 let storyboard:UIStoryboard =  UIStoryboard(name: "Main",bundle:nil)
                 window?.rootViewController
                     = storyboard.instantiateViewController(withIdentifier: "TabBarController")
@@ -87,7 +91,6 @@
     func applicationDidBecomeActive(_ application: UIApplication) {
         print("アプリを開いた時に呼ばれる")
         
-        //ログインしてたらアプリを開いていてゲームに参加していないとき
         if let _ = Auth.auth().currentUser {
             //ログイン中
             let user = Auth.auth().currentUser

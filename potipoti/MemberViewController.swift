@@ -96,7 +96,6 @@ class MemberViewController: UIViewController {
                 self.userDefault.set(LosingButton, forKey: "LosingButton")
                 
                 print("ハズレのボタンは...\(LosingButton)")
-                print("ボタンを押せるのは...\(TP)")
                 
                 if TP == "0" {
                     //hostが押せる時の処理
@@ -227,7 +226,7 @@ class MemberViewController: UIViewController {
                     
                     var Defeat_count: Int = Int(Defeat_count_String)!
                     Defeat_count += 1
-                    self.ref.child("users").child((self.user?.uid)!).updateChildValues(["Defeat_count": Defeat_count])
+                    self.ref.child("users").child((self.user?.uid)!).updateChildValues(["Defeat_count": Defeat_count, "App": 1, "RoomID": "<null>"])
                 })
                 
             }else if TP == "1" {
@@ -240,7 +239,7 @@ class MemberViewController: UIViewController {
                     
                     var Win_count: Int = Int(Win_count_String)!
                     Win_count += 1
-                    self.ref.child("users").child((self.user?.uid)!).updateChildValues(["Win_count": Win_count])
+                    self.ref.child("users").child((self.user?.uid)!).updateChildValues(["Win_count": Win_count, "App": 1, "RoomID": "<null>"])
                 })
             }
             
@@ -260,10 +259,7 @@ class MemberViewController: UIViewController {
                 
                 let user = Auth.auth().currentUser
                 let name = user?.displayName
-                
-                //自分のデータを初期値に戻す
-                self.ref.child("users").child((self.user?.uid)!).setValue(["username": name,"uid": user?.uid])
-                
+                                
                 //observerを削除する
                 self.ref.child("rooms").child(RoomID!).child("battle").child("Tap_button").removeAllObservers()
                 

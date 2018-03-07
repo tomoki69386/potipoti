@@ -8,8 +8,11 @@
 
 import UIKit
 import Firebase
-import FirebaseAuth
 import FirebaseDatabase
+import FirebaseAuth
+import SVProgressHUD
+import AVFoundation
+import AudioToolbox
 
 class Profile_EditViewController: UIViewController, UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     

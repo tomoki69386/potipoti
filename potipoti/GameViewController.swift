@@ -150,13 +150,14 @@ class GameViewController: UIViewController {
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+
     }
     
     @IBAction func Button(sender: UIButton){
         let j = defaults.integer(forKey: "aaa")
         if j == sender.tag {
             self.arato()
+            return
         }else {
             self.safe()
             //Buttonの削除する処理を書く
@@ -230,18 +231,22 @@ class GameViewController: UIViewController {
         //バイブレーション
         AudioServicesPlaySystemSound(SystemSoundID(kSystemSoundID_Vibrate))
         hazureplayer.play()
-        // アラートを作成
-        let alert = UIAlertController(
-            title: "負けました",
-            message: "終了",
-            preferredStyle: .alert)
         
-        // アラートにボタンをつける
-        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { action in self.dismiss(animated: true, completion: nil)
-        }))
-        
-        // アラート表示
-        self.present(alert, animated: true, completion: nil)
+        if let name = defaults.string(forKey: "name") {
+            // アラートを作成
+            let alert = UIAlertController(
+                //nameさんの負け
+                title: "\(name)さんの負けです",
+                message: "終了",
+                preferredStyle: .alert)
+            
+            // アラートにボタンをつける
+            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { action in self.dismiss(animated: true, completion: nil)
+            }))
+            
+            // アラート表示
+            self.present(alert, animated: true, completion: nil)
+        }
     }
     
     func kati() {
@@ -263,6 +268,7 @@ class GameViewController: UIViewController {
         
         if ninzuu == 4 {
             darelabel.text = ninzuu4Array[index]
+            defaults.set(ninzuu4Array[index], forKey: "name")
             ransu = Int(arc4random_uniform(4))
             if ransu > 2 {
                 index = 3
@@ -279,6 +285,7 @@ class GameViewController: UIViewController {
             
         }else if ninzuu == 3 {
             darelabel.text = ninzuu3Array[index]
+            defaults.set(ninzuu3Array[index], forKey: "name")
             ransu = Int(arc4random_uniform(3))
             if ransu > 1 {
                 index = 2
@@ -292,6 +299,7 @@ class GameViewController: UIViewController {
             
         }else if ninzuu == 2 {
             darelabel.text = ninzuu2Array[index]
+            defaults.set(ninzuu2Array[index], forKey: "name")
             ransu = Int(arc4random_uniform(2))
             if ransu > 0 {
                 index = 1

@@ -112,10 +112,14 @@ class HostViewController: UIViewController {
                 if battle == "しない" {
                     //対戦をしない時の処理
                     self.No_battle()
+                    //ルームの削除
+                    self.ref.child("rooms").child(RoomID).removeValue()
+                    return
                     
                 }else if battle == "する" {
                     //タイマーのカウントをストップさせる
                     self.timer.invalidate()
+                    self.ref.child("users").child((self.user?.uid)!).updateChildValues(["App": 0])
                     
                     if self.count == false {
                         //相手が入室した時の処理
@@ -157,12 +161,12 @@ class HostViewController: UIViewController {
     
     func up() {
         print("カウントダウン...\(number)")
-        if number < 20 {
-            //20未満の時の処理
+        if number < 13 {
+            //13未満の時の処理
             //numberに1を足す
             number += 1
         }else {
-            //20以上の時の処理
+            //13以上の時の処理
             //待機の制限時間が来た時の処理
             //バトルをしない時の処理
             No_battle()
@@ -288,7 +292,8 @@ class HostViewController: UIViewController {
                     var Win_count: Int = Int(Win_count_String)!
                     Win_count += 1
                     //+1にしたあと送信する
-                    self.ref.child("users").child((self.user?.uid)!).updateChildValues(["Win_count": Win_count])
+                    //Appを1にして対戦受け入れ可能にする
+                    self.ref.child("users").child((self.user?.uid)!).updateChildValues(["Win_count": Win_count, "App": "1", "RoomID": "<null>"])
                 })
                 
             }else if TP == "1" {
@@ -305,14 +310,11 @@ class HostViewController: UIViewController {
                     var Defeat_count: Int = Int(Defeat_count_String)!
                     Defeat_count += 1
                     //+1にしたあと送信する
-                    self.ref.child("users").child((self.user?.uid)!).updateChildValues(["Defeat_count": Defeat_count])
+                    //Appを1にして対戦受け入れ可能にする
+                    self.ref.child("users").child((self.user?.uid)!).updateChildValues(["Defeat_count": Defeat_count, "App": "1", "RoomID": "<null>"])
                 })
             }
 
-//            let hoge = ["button": "<null>"]
-//            self.ref.child("rooms").child(RoomID!).child("battle").child("Tap_button").updateChildValues(hoge)
-//            self.button_Reading()
-//
             // アラートを作成
             let alert = UIAlertController(
                 title: "終了",
@@ -326,15 +328,12 @@ class HostViewController: UIViewController {
                 let user = Auth.auth().currentUser
                 let name = user?.displayName
                 
-                self.ref.child("users").child((user?.uid)!).setValue(["username": name,"uid": user?.uid])
-                
                 //observerを削除する
                 self.ref.child("rooms").child(RoomID!).child("battle").child("Tap_button").removeAllObservers()
                 
                 //ルームの削除
                 self.ref.child("rooms").child(RoomID!).removeValue()
-            })
-            )
+            }))
             // アラート表示
             self.present(alert, animated: true, completion: nil)
         })
@@ -411,20 +410,20 @@ class HostViewController: UIViewController {
         //RoomIDの宣言
         let RoomID = userDefault.string(forKey: "RoomID")
         
-        //ルームの削除
-        self.ref.child("rooms").child(RoomID!).removeValue()
-        
-        //相手のIDを一回ずつ取得
+        //相手のIDを一回だけ取得
         self.ref.child("rooms").child(RoomID!).child("messages").observeSingleEvent(of: .value, with: { (snapshot) in
             
             //メンバーIDを宣言
             let MemberID = String(describing: snapshot.childSnapshot(forPath: "MamberID").value!)
             
-            //相手のデータベースにあるRoomIDを削除
-            self.ref.child("users").child(MemberID).child("RoomID").removeValue()
+            //ルームの削除
+            self.ref.child("rooms").child(RoomID!).removeValue()
             
-            //自分のデータベースにあるRoomIDも削除
-            self.ref.child("users").child((self.user?.uid)!).child("RoomID").removeValue()
+            //相手のデータベースにあるRoomIDをアップデート
+            self.ref.child("users").child(MemberID).updateChildValues(["RoomID": "<null>"])
+            
+            //自分のデータベースにあるRoomIDもアップデート
+            self.ref.child("users").child((self.user?.uid)!).updateChildValues(["RoomID": "<null>", "App": 1])
             
             SVProgressHUD.showSuccess(withStatus: "error")
             

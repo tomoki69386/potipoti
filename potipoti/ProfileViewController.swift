@@ -10,8 +10,11 @@
 
 import UIKit
 import Firebase
-import FirebaseAuth
 import FirebaseDatabase
+import FirebaseAuth
+import SVProgressHUD
+import AVFoundation
+import AudioToolbox
 
 class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
@@ -92,8 +95,8 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
                 //アラートを表示
                 self.present(Alert,animated: true, completion: nil)
                 
-                //アラートを表示してから60秒経てばアラートを閉じる
-                let when = DispatchTime.now() + 60
+                //アラートを表示してから13秒経てばアラートを閉じる
+                let when = DispatchTime.now() + 13
                 //アラートを閉じる
                 DispatchQueue.main.asyncAfter(deadline: when) {
                     Alert.dismiss(animated: true, completion: nil)
@@ -189,6 +192,12 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     func signOut() {
         let firebaseAuth = Auth.auth()
         do {
+            //ログイン中
+            let user = Auth.auth().currentUser
+            ref = Database.database().reference()
+            
+            self.ref.child("users").child(user!.uid).updateChildValues(["App":0])
+            
             try firebaseAuth.signOut()
             print("サインアウト出来ました")
             
