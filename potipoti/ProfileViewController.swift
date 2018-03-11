@@ -33,120 +33,136 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let user = Auth.auth().currentUser
+        let dict = ["firstLaunch": true]
+        userDefault.register(defaults: dict)
         
-        userNameLabel.text = user?.displayName
-        
-        button1.layer.borderWidth = 1
-        button1.layer.cornerRadius = 5
-        
-        ref = Database.database().reference()
-        //変更があれば処理する
-        ref.child("users").child((user?.uid)!).observe(.value, with: {(snapShots) in
+        if userDefault.bool(forKey: "firstLaunch") {
+            let targetViewController = self.storyboard!.instantiateViewController( withIdentifier: "newViewController" ) as! newViewController
+            self.present( targetViewController, animated: true, completion: nil)
+            return
+        }else {
+            let user = Auth.auth().currentUser
             
-            let RoomID = String(describing: snapShots.childSnapshot(forPath: "RoomID").value!)
+            userNameLabel.text = user?.displayName
             
-            if RoomID != "<null>" {
-                //nullじゃない時の処理
-                print("RoomIDは...\(RoomID)")
-                //対戦の挑戦状が届いたことを画面にアラートで表示
-                let Alert = UIAlertController(title: "対戦しますか？",message: "対戦の挑戦状が届きました、通信対戦をしますか？", preferredStyle: UIAlertControllerStyle.alert)
+            button1.layer.borderWidth = 1
+            button1.layer.cornerRadius = 5
+            
+            ref = Database.database().reference()
+            //変更があれば処理する
+            ref.child("users").child((user?.uid)!).observe(.value, with: {(snapShots) in
                 
-                //アラートを表示したのでExistenceをtrueに変える
-                self.Existence = true
+                let RoomID = String(describing: snapShots.childSnapshot(forPath: "RoomID").value!)
                 
-                let battle = UIAlertAction(title: "承諾", style:UIAlertActionStyle.default){
-                    (action: UIAlertAction) in
-                    // 以下はボタンがクリックされた時の処理
-                    //通信対戦画面に画面遷移
-                    print("承諾をタップした")
+                if RoomID != "<null>" {
+                    //nullじゃない時の処理
+                    print("RoomIDは...\(RoomID)")
+                    //対戦の挑戦状が届いたことを画面にアラートで表示
+                    let Alert = UIAlertController(title: "対戦しますか？",message: "対戦の挑戦状が届きました、通信対戦をしますか？", preferredStyle: UIAlertControllerStyle.alert)
                     
-                    //アラートのボタンを押したのでExistenceをfalseに変える
-                    self.Existence = false
+                    //アラートを表示したのでExistenceをtrueに変える
+                    self.Existence = true
                     
-                    //自分のデータのinRoomに対戦中であることを書く
-                    self.ref.child("users").child((user?.uid)!).updateChildValues(["inRoom": "true"])
+                    let battle = UIAlertAction(title: "承諾", style:UIAlertActionStyle.default){
+                        (action: UIAlertAction) in
+                        // 以下はボタンがクリックされた時の処理
+                        //通信対戦画面に画面遷移
+                        print("承諾をタップした")
+                        
+                        //アラートのボタンを押したのでExistenceをfalseに変える
+                        self.Existence = false
+                        
+                        //自分のデータのinRoomに対戦中であることを書く
+                        self.ref.child("users").child((user?.uid)!).updateChildValues(["inRoom": "true"])
+                        
+                        //EnemyRoomViewに画面遷移
+                        let targetViewController = self.storyboard!.instantiateViewController( withIdentifier: "MemberViewController" ) as! MemberViewController
+                        self.present( targetViewController, animated: true, completion: nil)
+                        
+                        //ルームに入ったことをのデータを追加
+                        self.ref.child("rooms").child(RoomID).child("messages").updateChildValues(["対戦": "する"])
+                    }
                     
-                    //EnemyRoomViewに画面遷移
-                    let targetViewController = self.storyboard!.instantiateViewController( withIdentifier: "MemberViewController" ) as! MemberViewController
-                    self.present( targetViewController, animated: true, completion: nil)
+                    let cancel = UIAlertAction(title: "拒否", style:UIAlertActionStyle.cancel){
+                        (action: UIAlertAction) in
+                        // 以下はボタンがクリックされた時の処理
+                        //拒否したことを伝える
+                        print("拒否をタップした")
+                        
+                        //アラートのボタンを押したのでExistenceをfalseに変える
+                        self.Existence = false
+                        
+                        //拒否したことを伝える
+                        self.ref.child("rooms").child(RoomID).child("messages").updateChildValues(["対戦": "しない"])
+                    }
                     
-                    //ルームに入ったことをのデータを追加
-                    self.ref.child("rooms").child(RoomID).child("messages").updateChildValues(["対戦": "する"])
+                    //部品をアラートコントローラーに追加していく
+                    Alert.addAction(battle)//battleを追加
+                    Alert.addAction(cancel)//cancelを追加
+                    
+                    //アラートを表示
+                    self.present(Alert,animated: true, completion: nil)
+                    
+                    //アラートを表示してから13秒経てばアラートを閉じる
+                    let when = DispatchTime.now() + 13
+                    //アラートを閉じる
+                    DispatchQueue.main.asyncAfter(deadline: when) {
+                        Alert.dismiss(animated: true, completion: nil)
+                    }
                 }
-                
-                let cancel = UIAlertAction(title: "拒否", style:UIAlertActionStyle.cancel){
-                    (action: UIAlertAction) in
-                    // 以下はボタンがクリックされた時の処理
-                    //拒否したことを伝える
-                    print("拒否をタップした")
-                    
-                    //アラートのボタンを押したのでExistenceをfalseに変える
-                    self.Existence = false
-                    
-                    //拒否したことを伝える
-                    self.ref.child("rooms").child(RoomID).child("messages").updateChildValues(["対戦": "しない"])
-                }
-                
-                //部品をアラートコントローラーに追加していく
-                Alert.addAction(battle)//battleを追加
-                Alert.addAction(cancel)//cancelを追加
-                
-                //アラートを表示
-                self.present(Alert,animated: true, completion: nil)
-                
-                //アラートを表示してから13秒経てばアラートを閉じる
-                let when = DispatchTime.now() + 13
-                //アラートを閉じる
-                DispatchQueue.main.asyncAfter(deadline: when) {
-                    Alert.dismiss(animated: true, completion: nil)
-                }
-            }
-        })
+            })
+        }
     }
     
     //画面を開いたとき
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        let user = Auth.auth().currentUser
-        let uid = user?.uid
-        
-        if (UserDefaults.standard.object(forKey: "MyPhoto") != nil) {
-            print("データ有り")
-            let imageDate:NSData = UserDefaults.standard.object(forKey: "MyPhoto") as! NSData
-            ImageView.image = UIImage(data:imageDate as Data)
+        let dict = ["firstLaunch": true]
+        userDefault.register(defaults: dict)
+        if userDefault.bool(forKey: "firstLaunch") {
+            return
         }else {
-            print("データ無し")
-            //ここに画像を入れる
-            ImageView.image = #imageLiteral(resourceName: "account.png")
             
-            let num = Int(arc4random_uniform(9))
+            let user = Auth.auth().currentUser
+            let uid = user?.uid
             
-            //画像データがない時10%の確率でアラートを表示する
-            if num == 0 {
-                self.Alert()
-            }
-        }
-        
-        let storage = Storage.storage()
-        let storageRef = storage.reference(forURL: "gs://potipoti-e1d0e.appspot.com/image")
-        
-        if ImageView.image == nil {
-            print("UIImageViewに画像がないとき")
-            // Create a reference to the file you want to download
-            let islandRef = storageRef.child("\(uid).jpg")
-            
-            // Download in memory with a maximum allowed size of 1MB (1 * 1024 * 1024 bytes)
-            islandRef.getData(maxSize: 50 * 1024 * 1024) { (data, error) -> Void in
-                if (error != nil) {
-                    // Uh-oh, an error occurred!
-                    print("エラーの内容は...\(error)")
+            if (UserDefaults.standard.object(forKey: "MyPhoto") != nil) {
+                print("データ有り")
+                let imageDate:NSData = UserDefaults.standard.object(forKey: "MyPhoto") as! NSData
+                ImageView.image = UIImage(data:imageDate as Data)
+            }else {
+                print("データ無し")
+                //ここに画像を入れる
+                ImageView.image = #imageLiteral(resourceName: "account.png")
+                
+                let num = Int(arc4random_uniform(9))
+                
+                //画像データがない時10%の確率でアラートを表示する
+                if num == 0 {
                     self.Alert()
-                } else {
-                    // Data for "images/island.jpg" is returned
-                    self.ImageView.image = UIImage(data: data!)
-                    self.self.userDefault.set(UIImagePNGRepresentation(self.ImageView.image!), forKey: "MyPhoto")
+                }
+            }
+            
+            let storage = Storage.storage()
+            let storageRef = storage.reference(forURL: "gs://potipoti-e1d0e.appspot.com/image")
+            
+            if ImageView.image == nil {
+                print("UIImageViewに画像がないとき")
+                // Create a reference to the file you want to download
+                let islandRef = storageRef.child("\(uid).jpg")
+                
+                // Download in memory with a maximum allowed size of 1MB (1 * 1024 * 1024 bytes)
+                islandRef.getData(maxSize: 50 * 1024 * 1024) { (data, error) -> Void in
+                    if (error != nil) {
+                        // Uh-oh, an error occurred!
+                        print("エラーの内容は...\(error)")
+                        self.Alert()
+                    } else {
+                        // Data for "images/island.jpg" is returned
+                        self.ImageView.image = UIImage(data: data!)
+                        self.self.userDefault.set(UIImagePNGRepresentation(self.ImageView.image!), forKey: "MyPhoto")
+                    }
                 }
             }
         }

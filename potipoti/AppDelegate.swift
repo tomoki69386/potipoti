@@ -17,7 +17,7 @@
  
  @UIApplicationMain
  class AppDelegate: UIResponder, UIApplicationDelegate {
-    
+ 
     var window: UIWindow?
     var ref:DatabaseReference!
     var isCreate = true //データの作成か更新かを判定、trueなら作成、falseなら更新
@@ -25,39 +25,6 @@
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         FirebaseApp.configure()
-        
-        // ここに初期化処理を書く
-        // UserDefaultsを使ってフラグを保持する
-        let userDefault = UserDefaults.standard
-        // "firstLaunch"をキーに、Bool型の値を保持する
-        let dict = ["firstLaunch": true]
-        // デフォルト値登録
-        // ※すでに値が更新されていた場合は、更新後の値のままになる
-        userDefault.register(defaults: dict)
-        
-        // "firstLaunch"に紐づく値がtrueなら(=初回起動)、値をfalseに更新して処理を行う
-        if userDefault.bool(forKey: "firstLaunch") {
-            //            userDefault.set(false, forKey: "firstLaunch")
-            print("初回起動時だけ処理")
-            let storyboard:UIStoryboard =  UIStoryboard(name: "Main",bundle:nil)
-            window?.rootViewController
-                = storyboard.instantiateViewController(withIdentifier: "newViewController")
-        }else {
-            print("2回目以降の処理")
-            //ログインしてたら、画面遷移
-            if let _ = Auth.auth().currentUser {
-                //ログイン中
-                let user = Auth.auth().currentUser
-                let name = user?.displayName //ユーザーの名前の定数
-                ref = Database.database().reference()
-                
-                self.ref.child("users").child(user!.uid).updateChildValues(["App":1])
-                
-                let storyboard:UIStoryboard =  UIStoryboard(name: "Main",bundle:nil)
-                window?.rootViewController
-                    = storyboard.instantiateViewController(withIdentifier: "TabBarController")
-            }
-        }
         return true
     }
     
