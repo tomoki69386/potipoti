@@ -1570,23 +1570,23 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Vhv-uw-ARO">
                                 <rect key="frame" x="100" y="28" width="120" height="120"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="120" id="7SM-cw-e2v"/>
-                                    <constraint firstAttribute="width" secondItem="Vhv-uw-ARO" secondAttribute="height" multiplier="1:1" id="RRF-s4-4m2"/>
-                                    <constraint firstAttribute="height" constant="120" id="hDe-EC-FEa"/>
+                                    <constraint firstAttribute="height" constant="120" id="Qjc-Ck-mBK"/>
+                                    <constraint firstAttribute="width" constant="120" id="zD9-po-AvV"/>
                                 </constraints>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="byZ-Nu-v9h" firstAttribute="top" secondItem="Vhv-uw-ARO" secondAttribute="bottom" id="0l2-Gh-vRk"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Vhv-uw-ARO" secondAttribute="trailing" constant="84" id="4nc-Gc-Sj1"/>
                             <constraint firstItem="pVm-Ua-3Gc" firstAttribute="leading" secondItem="kr9-S4-p7p" secondAttribute="leading" id="FuK-Iq-cuG"/>
                             <constraint firstAttribute="trailing" secondItem="pVm-Ua-3Gc" secondAttribute="trailing" id="GTI-X6-OCc"/>
                             <constraint firstItem="ye4-hF-MNi" firstAttribute="centerX" secondItem="kr9-S4-p7p" secondAttribute="centerX" id="MIZ-Lg-40j"/>
-                            <constraint firstItem="Vhv-uw-ARO" firstAttribute="centerX" secondItem="kr9-S4-p7p" secondAttribute="centerX" id="OJi-UD-rbg"/>
-                            <constraint firstItem="Vhv-uw-ARO" firstAttribute="leading" secondItem="kr9-S4-p7p" secondAttribute="leadingMargin" constant="84" id="Sgj-88-duY"/>
+                            <constraint firstItem="Vhv-uw-ARO" firstAttribute="top" secondItem="bgW-t8-wKb" secondAttribute="bottom" constant="8" id="MZW-rm-c7J"/>
+                            <constraint firstItem="Vhv-uw-ARO" firstAttribute="leading" secondItem="kr9-S4-p7p" secondAttribute="leadingMargin" constant="84" id="MyK-Zv-CzJ"/>
                             <constraint firstItem="pVm-Ua-3Gc" firstAttribute="centerX" secondItem="kr9-S4-p7p" secondAttribute="centerX" id="bLg-Qe-dLx"/>
                             <constraint firstItem="byZ-Nu-v9h" firstAttribute="centerX" secondItem="kr9-S4-p7p" secondAttribute="centerX" id="cgI-3j-mDH"/>
                             <constraint firstItem="ye4-hF-MNi" firstAttribute="centerY" secondItem="kr9-S4-p7p" secondAttribute="centerY" constant="-72" id="hhH-TW-pxg"/>
-                            <constraint firstItem="Vhv-uw-ARO" firstAttribute="centerY" secondItem="kr9-S4-p7p" secondAttribute="centerY" constant="-196" id="jOq-fs-GjP"/>
                             <constraint firstItem="byZ-Nu-v9h" firstAttribute="centerY" secondItem="kr9-S4-p7p" secondAttribute="centerY" constant="-115.5" id="lgM-SU-42y"/>
                             <constraint firstItem="pVm-Ua-3Gc" firstAttribute="centerY" secondItem="kr9-S4-p7p" secondAttribute="centerY" constant="115" id="rOI-ey-2Va"/>
                         </constraints>
