@@ -13,9 +13,6 @@ import FirebaseAuth
 import SVProgressHUD
 import AVFoundation
 import AudioToolbox
-import Firebase
-import FirebaseAuth
-import FirebaseDatabase
 
 class TopViewController: UIViewController {
     
@@ -69,7 +66,6 @@ class TopViewController: UIViewController {
                         //ルームに入ったことをのデータを追加
                         self.ref.child("rooms").child(RoomID).child("messages").updateChildValues(["対戦": "する"])
                     }
-                    
                     let cancel = UIAlertAction(title: "拒否", style:UIAlertActionStyle.cancel){
                         (action: UIAlertAction) in
                         // 以下はボタンがクリックされた時の処理
@@ -82,7 +78,6 @@ class TopViewController: UIViewController {
                         //拒否したことを伝える
                         self.ref.child("rooms").child(RoomID).child("messages").updateChildValues(["対戦": "しない"])
                     }
-                    
                     //部品をアラートコントローラーに追加していく
                     Alert.addAction(battle)//battleを追加
                     Alert.addAction(cancel)//cancelを追加
@@ -103,7 +98,6 @@ class TopViewController: UIViewController {
             //ログインしてない
             return
         }
-        
     }
     
     @IBAction func Online() {
@@ -113,6 +107,7 @@ class TopViewController: UIViewController {
          }else {
             //ログインしていない
             //アカウント作成画面に遷移
+            print("ログインしていない")
             let targetViewController = self.storyboard!.instantiateViewController( withIdentifier: "newViewController" ) as! newViewController
             self.present( targetViewController, animated: true, completion: nil)
         }

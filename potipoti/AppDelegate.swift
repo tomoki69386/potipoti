@@ -23,7 +23,6 @@
     var isCreate = true //データの作成か更新かを判定、trueなら作成、falseなら更新
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
         FirebaseApp.configure()
         return true
     }

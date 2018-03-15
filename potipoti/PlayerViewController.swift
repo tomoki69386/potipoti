@@ -71,9 +71,6 @@ class PlayerViewController: UIViewController, UITableViewDelegate, UITableViewDa
                     //アラートのボタンを押したのでExistenceをfalseに変える
                     self.Existence = false
                     
-                    //自分のデータのinRoomに対戦中であることを書く
-                    self.ref.child("users").child((self.user?.uid)!).updateChildValues(["inRoom": "true"])
-                    
                     //EnemyRoomViewに画面遷移
                     let targetViewController = self.storyboard!.instantiateViewController( withIdentifier: "MemberViewController" ) as! MemberViewController
                     self.present( targetViewController, animated: true, completion: nil)
@@ -139,6 +136,8 @@ class PlayerViewController: UIViewController, UITableViewDelegate, UITableViewDa
         //配列の中身を消してから更新する
         MemberIDArray.removeAll()
         MemberNameArray.removeAll()
+        Defeat_countArray.removeAll()
+        Win_countArray.removeAll()
         //データを取得
         ref = Database.database().reference()
         self.ref?.child("users").observe(.childAdded, with: { [weak self](snapshot) -> Void in
@@ -156,16 +155,16 @@ class PlayerViewController: UIViewController, UITableViewDelegate, UITableViewDa
                 self?.MemberIDArray.insert(userID, at: 0) //取得したuserのIDを収納する
                 self?.Defeat_countArray.insert(Defeat_count, at: 0)
                 self?.Win_countArray.insert(Win_count, at: 0)
+                //リロード
+                self?.TableView.reloadData()
             }
-            
-            //リロード
-            self?.TableView.reloadData()
         })
     }
     
     //画面を閉じた時に処理する
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
+        ref.removeAllObservers()
     }
     
     /// セルの個数を指定するデリゲートメソッド（必須）
@@ -186,7 +185,6 @@ class PlayerViewController: UIViewController, UITableViewDelegate, UITableViewDa
         let text = ("\(MemberNameArray[indexPath.row])さん:  \(hoge)勝\(fuga)敗")
         
         // セルに表示する値を設定する
-//        cell.textLabel!.text = MemberNameArray[indexPath.row]
         cell.textLabel!.text = text
         
         return cell
@@ -204,7 +202,6 @@ class PlayerViewController: UIViewController, UITableViewDelegate, UITableViewDa
         ref = Database.database().reference()
         //RoomIDを決める
         RoomID = Int(arc4random_uniform(100000))
-        let roomID = String(RoomID)
         //ハズレのボタンを決める
         hazure = Int(arc4random_uniform(19))
         
