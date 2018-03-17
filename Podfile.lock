@@ -60,6 +60,9 @@ PODS:
   - SDWebImage/Core (4.3.2)
   - SVProgressHUD (2.2.5)
   - TextFieldEffects (1.4.0)
+  - TwitterCore (3.1.0)
+  - TwitterKit (3.3.0):
+    - TwitterCore (>= 3.1.0)
 
 DEPENDENCIES:
   - Firebase
@@ -70,6 +73,7 @@ DEPENDENCIES:
   - LineSDK (~> 4.0.2)
   - SVProgressHUD
   - TextFieldEffects
+  - TwitterKit
 
 SPEC CHECKSUMS:
   Firebase: c98c8b1fbcbdccd82539a36c2b17a9b1bb0ee798
@@ -88,7 +92,9 @@ SPEC CHECKSUMS:
   SDWebImage: 29bd3c0bc1f01e5eb59720847c64ad4c4ca1af5d
   SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
   TextFieldEffects: 4ee41b5216e674d55fb6ac25107bf1af7629176f
+  TwitterCore: 644d59e75abccb26cf0a9050d2c4dea0e5412241
+  TwitterKit: a2e60ddcedbf54091eac6f27685ca7a87681e1d7
 
-PODFILE CHECKSUM: 0b81b6a5eb30bb9e7e9fa0fdebed9bd9f2d95d0d
+PODFILE CHECKSUM: 97a92a07846d32f1685f16e00dc9ca4f7e9bbe38
 
 COCOAPODS: 1.4.0

@@ -17,6 +17,7 @@
  import SVProgressHUD
  import AVFoundation
  import AudioToolbox
+ import TwitterKit
  
  @UIApplicationMain
  class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -27,6 +28,7 @@
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         FirebaseApp.configure()
+        TWTRTwitter.sharedInstance().start(withConsumerKey: "q6vp8wiCsmhFwQXy4CTA8XpyA", consumerSecret: " huwmLOp8BCORlX6ghsTHxcGcvkube1iTekL0tl0aa2JPUSWvuL")
         return true
     }
  

@@ -13,6 +13,7 @@ target 'potipoti' do
   pod 'FirebaseUI/Storage', '~> 0.6'
   pod 'LineSDK', '~> 4.0.2'
   pod 'TextFieldEffects'
+  pod 'TwitterKit'
 
   # Pods for potipoti
 

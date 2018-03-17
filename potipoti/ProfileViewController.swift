@@ -14,6 +14,7 @@ import FirebaseAuth
 import SVProgressHUD
 import AVFoundation
 import AudioToolbox
+import TwitterKit
 
 class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
@@ -207,6 +208,15 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     }
     
     func 対戦成績() {
+        //コンテキスト開始
+        UIGraphicsBeginImageContextWithOptions(UIScreen.main.bounds.size, false, 0.0)
+        //viewを書き出す
+        self.view.drawHierarchy(in: self.view.bounds, afterScreenUpdates: true)
+        // imageにコンテキストの内容を書き出す
+        let image: UIImage = UIGraphicsGetImageFromCurrentImageContext()!
+        //コンテキストを閉じる
+        UIGraphicsEndImageContext()
+        
         ref = Database.database().reference()
         let user = Auth.auth().currentUser
         
@@ -216,16 +226,37 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
             let Defeat_count = String(describing: snapshot.childSnapshot(forPath: "Defeat_count").value!)
             
             // アラートを作成
-            let alert = UIAlertController(
+            let Alert = UIAlertController(
                 title: "対戦成績",
                 message: Win_count + "勝" + Defeat_count + "敗",
                 preferredStyle: .alert)
             
-            // アラートにボタンをつける
-            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { action in
-            }))
-            // アラート表示
-            self.present(alert, animated: true, completion: nil)
+            let OK = UIAlertAction(title: "OK", style:UIAlertActionStyle.default){
+                (action: UIAlertAction) in
+                
+            }
+            
+            let Tweet = UIAlertAction(title: "ツイート", style:UIAlertActionStyle.default){
+                (action: UIAlertAction) in
+                //ツイート
+                let composer = TWTRComposer()
+                composer.setText(user?.displayName + "は現在\n" + Win_count + "勝" + Defeat_count + "敗" + "\n" + "#ButtonChecker ")
+                composer.setImage(image)
+                composer.show(from: self) { result in
+                    if (result == .done) {
+                        print("OK")
+                    } else {
+                        print("NG")
+                    }
+                }
+            }
+            
+            //部品をアラートコントローラーに追加していく
+            Alert.addAction(OK)//battleを追加
+            Alert.addAction(Tweet)//cancelを追加
+            
+            //アラートを表示
+            self.present(Alert,animated: true, completion: nil)
         })
     }
     
@@ -264,22 +295,6 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         
         // アラートにボタンをつける
         alert.addAction(UIAlertAction(title: "設定する", style: .default, handler: { action in
-        }))
-        // アラート表示
-        self.present(alert, animated: true, completion: nil)
-    }
-    
-    func hoge() {
-        // アラートを作成
-        let alert = UIAlertController(
-            title: "注意！",
-            message: "本当にアカウントを削除しますか？",
-            preferredStyle: .alert)
-        
-        // アラートにボタンをつける
-        alert.addAction(UIAlertAction(title: "削除する", style: .default, handler: { action in
-        }))
-        alert.addAction(UIAlertAction(title: "キャンセル", style: .cancel, handler: { action in
         }))
         // アラート表示
         self.present(alert, animated: true, completion: nil)
