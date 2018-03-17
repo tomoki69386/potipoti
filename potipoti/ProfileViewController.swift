@@ -2,11 +2,10 @@
 //  ProfileViewController.swift
 //  potipoti
 //
-//  Created by 築山朋紀 on 2017/08/12.
-//  Copyright © 2017年 築山朋紀. All rights reserved.
+//  Created by 築山朋紀 on 2018/03/17.
+//  Copyright © 2018年 築山朋紀. All rights reserved.
 //
 
-//名前とプロフィール画像の設定する画面
 
 import UIKit
 import Firebase
@@ -25,7 +24,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     let userDefault = UserDefaults.standard
     var ref: DatabaseReference!
-    let Array = ["質問","パスワードを変更","アカウントの削除","ログアウト"]
+    let Array = ["フィードバック","対戦成績","ログアウト"]
     
     //trueならアラートを表示中、falseならアラートを表示していない
     var Existence: Bool = false
@@ -190,18 +189,44 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         
         switch indexPath.row {
         case 0:
-            print("質問")
+            print("フィードバック")
+            self.Feedback()
         case 1:
-            print("ルール")
-            print("パスワードを変更")
+            print("対戦成績")
+            self.対戦成績()
         case 2:
-            print("アカウントの削除")
-        case 3:
             print("ログアウト")
             self.signOut()
         default:
             print("当てはまらない")
         }
+    }
+    
+    func Feedback() {
+        performSegue(withIdentifier: "toFeedbackViewController", sender: nil)
+    }
+    
+    func 対戦成績() {
+        ref = Database.database().reference()
+        let user = Auth.auth().currentUser
+        
+        self.ref.child("users").child((user?.uid)!).observeSingleEvent(of: .value, with: { (snapshot) in
+            
+            let Win_count = String(describing: snapshot.childSnapshot(forPath: "Win_count").value!)
+            let Defeat_count = String(describing: snapshot.childSnapshot(forPath: "Defeat_count").value!)
+            
+            // アラートを作成
+            let alert = UIAlertController(
+                title: "対戦成績",
+                message: Win_count + "勝" + Defeat_count + "敗",
+                preferredStyle: .alert)
+            
+            // アラートにボタンをつける
+            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { action in
+            }))
+            // アラート表示
+            self.present(alert, animated: true, completion: nil)
+        })
     }
     
     //サインアウトのメソッド

@@ -12,8 +12,11 @@
  
  import UIKit
  import Firebase
+ import FirebaseDatabase
  import FirebaseAuth
  import SVProgressHUD
+ import AVFoundation
+ import AudioToolbox
  
  @UIApplicationMain
  class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -25,6 +28,10 @@
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         FirebaseApp.configure()
         return true
+    }
+ 
+    func applicationDidFinishLaunching(_ application: UIApplication) {
+        FirebaseApp.configure()
     }
     
     //アプリを閉じた時に呼ばれるメソッド

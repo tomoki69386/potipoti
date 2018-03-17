@@ -30,7 +30,8 @@
 		B700A0E3205295CB00A55B79 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B700A0E2205295CB00A55B79 /* Main.storyboard */; };
 		B700A0E6205295D600A55B79 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B700A0E4205295D500A55B79 /* ViewController.swift */; };
 		B700A0E7205295D600A55B79 /* TopViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B700A0E5205295D500A55B79 /* TopViewController.swift */; };
-		B700A0E9205295E400A55B79 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B700A0E8205295E400A55B79 /* ProfileViewController.swift */; };
+		B7B8EAD3205BFC560001AD20 /* FeedbackViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7B8EAD2205BFC560001AD20 /* FeedbackViewController.swift */; };
+		B7B8EAD7205CF63F0001AD20 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7B8EAD6205CF63F0001AD20 /* ProfileViewController.swift */; };
 		BDE1F648D0F1E5CFBB49728C /* Pods_potipoti.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C25FFFDE6FFE5F8A0D87EC6 /* Pods_potipoti.framework */; };
 		DC24525FCC92CEF1C166A1F8 /* Pods_potipotiTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 785F1D1E84E050C20A54A9C2 /* Pods_potipotiTests.framework */; };
 /* End PBXBuildFile section */
@@ -88,7 +89,8 @@
 		B700A0E2205295CB00A55B79 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		B700A0E4205295D500A55B79 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		B700A0E5205295D500A55B79 /* TopViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TopViewController.swift; sourceTree = "<group>"; };
-		B700A0E8205295E400A55B79 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ProfileViewController.swift; path = ../../../../Documents/potipoti/potipoti/ProfileViewController.swift; sourceTree = "<group>"; };
+		B7B8EAD2205BFC560001AD20 /* FeedbackViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackViewController.swift; sourceTree = "<group>"; };
+		B7B8EAD6205CF63F0001AD20 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		B91589D51E9DE14D15429104 /* Pods-potipoti.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-potipoti.release.xcconfig"; path = "Pods/Target Support Files/Pods-potipoti/Pods-potipoti.release.xcconfig"; sourceTree = "<group>"; };
 		FF885A6FFCA6CC8EBE33D3C9 /* Pods-potipotiTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-potipotiTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-potipotiTests/Pods-potipotiTests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -160,9 +162,10 @@
 		55FD6DD91F1CF95200322633 /* potipoti */ = {
 			isa = PBXGroup;
 			children = (
+				B7B8EAD2205BFC560001AD20 /* FeedbackViewController.swift */,
 				55CB56441F442D5400F6F9B2 /* PlayerViewController.swift */,
 				55CB56421F436EC200F6F9B2 /* Profile_EditViewController.swift */,
-				B700A0E8205295E400A55B79 /* ProfileViewController.swift */,
+				B7B8EAD6205CF63F0001AD20 /* ProfileViewController.swift */,
 				55DA5F1C1F2B33F800EB689D /* newViewController.swift */,
 				55EF4FA51F2332B000233C2E /* LoginViewController.swift */,
 				B700A0E5205295D500A55B79 /* TopViewController.swift */,
@@ -529,7 +532,6 @@
 				55EF4FA61F2332B000233C2E /* LoginViewController.swift in Sources */,
 				55FD6E131F1CFA9600322633 /* GameViewController.swift in Sources */,
 				55DFCDB11F55914E000E54DC /* MemberViewController.swift in Sources */,
-				B700A0E9205295E400A55B79 /* ProfileViewController.swift in Sources */,
 				B700A0E1205295B300A55B79 /* AppDelegate.swift in Sources */,
 				B700A0E7205295D600A55B79 /* TopViewController.swift in Sources */,
 				55FD6E121F1CFA9600322633 /* ComViewController.swift in Sources */,
@@ -538,6 +540,8 @@
 				55CB56451F442D5400F6F9B2 /* PlayerViewController.swift in Sources */,
 				55CB56431F436EC200F6F9B2 /* Profile_EditViewController.swift in Sources */,
 				55FD6E151F1CFABC00322633 /* pvpViewController.swift in Sources */,
+				B7B8EAD7205CF63F0001AD20 /* ProfileViewController.swift in Sources */,
+				B7B8EAD3205BFC560001AD20 /* FeedbackViewController.swift in Sources */,
 				55CB56411F43345700F6F9B2 /* TabBarController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -688,7 +692,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = FJMPLD4D4X;
 				INFOPLIST_FILE = potipoti/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.tomoki.potipoti;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -709,7 +713,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = FJMPLD4D4X;
 				INFOPLIST_FILE = potipoti/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.tomoki.potipoti;
 				PRODUCT_NAME = "$(TARGET_NAME)";
