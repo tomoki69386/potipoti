@@ -9,6 +9,8 @@
 import UIKit
 import AVFoundation
 import AudioToolbox
+import TwitterKit
+import Social
 
 class ComViewController: UIViewController {
     
@@ -72,9 +74,9 @@ class ComViewController: UIViewController {
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-
+        
     }
-  
+    
     //Buttonを押した時の処理
     @IBAction func Button(sender: UIButton) {
         let j = defaults.integer(forKey: "hoge")
@@ -142,10 +144,11 @@ class ComViewController: UIViewController {
             message: "終了",
             preferredStyle: .alert)
         
-        // アラートにボタンをつける
-        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { action in self.dismiss(animated: true, completion: nil)
-        }))
-        
+        let OK = UIAlertAction(title: "OK", style:UIAlertActionStyle.default){
+            (action: UIAlertAction) in
+            self.dismiss(animated: true, completion: nil)
+        }
+        alert.addAction(OK)
         // アラート表示
         self.present(alert, animated: true, completion: nil)
     }
@@ -167,9 +170,47 @@ class ComViewController: UIViewController {
                 title: "勝ちました",
                 message: "終了",
                 preferredStyle: .alert)
-            // アラートにボタンをつける
-            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { action in self.dismiss(animated: true, completion: nil)
-            }))
+            
+            let OK = UIAlertAction(title: "OK", style:UIAlertActionStyle.default){
+                (action: UIAlertAction) in
+                self.dismiss(animated: true, completion: nil)
+            }
+            
+            let tweet = UIAlertAction(title: "ツイート", style: UIAlertActionStyle.default){
+                (action: UIAlertAction) in
+                
+                //コンテキスト開始
+                UIGraphicsBeginImageContextWithOptions(UIScreen.main.bounds.size, false, 0.0)
+                //viewを書き出す
+                self.view.drawHierarchy(in: self.view.bounds, afterScreenUpdates: true)
+                // imageにコンテキストの内容を書き出す
+                let image: UIImage = UIGraphicsGetImageFromCurrentImageContext()!
+                //コンテキストを閉じる
+                UIGraphicsEndImageContext()
+                
+                print("ios11")
+                let composer = TWTRComposer()
+                composer.setText("シングルプレイで勝ちました！\n#ButtonChecker ")
+                composer.setImage(image)
+                composer.show(from: self) { result in
+                }
+            }
+            
+            let login = UIAlertAction(title: "Twitterアカウント追加", style: UIAlertActionStyle.default){
+                (action: UIAlertAction) in
+                
+                TWTRTwitter.sharedInstance().logIn(completion: { (session, error) in
+                    if (session != nil) {
+                        print("ok")
+                    } else {
+                        print("error")
+                    }
+                })
+            }
+            
+            alert.addAction(OK)
+            alert.addAction(tweet)
+            alert.addAction(login)
             // アラート表示
             self.present(alert, animated: true, completion: nil)
         }

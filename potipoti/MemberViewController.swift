@@ -13,6 +13,8 @@ import FirebaseAuth
 import SVProgressHUD
 import AVFoundation //SE
 import AudioToolbox  //バイブレーション
+import TwitterKit
+import Social
 
 class MemberViewController: UIViewController {
     

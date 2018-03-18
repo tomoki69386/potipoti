@@ -13,6 +13,8 @@ import FirebaseAuth
 import SVProgressHUD
 import AVFoundation
 import AudioToolbox
+import TwitterKit
+import Social
 
 class HostViewController: UIViewController {
     
