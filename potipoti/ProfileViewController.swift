@@ -14,7 +14,8 @@ import FirebaseAuth
 import SVProgressHUD
 import AVFoundation
 import AudioToolbox
-import TwitterKit
+import TwitterKit //ios11用
+import Social //ios10以下用
 
 class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
@@ -22,6 +23,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     @IBOutlet var userNameLabel: UILabel!
     @IBOutlet var button1: UIButton!
     @IBOutlet var TableView: UITableView!
+    var userId: String?//Twitter
     
     let userDefault = UserDefaults.standard
     var ref: DatabaseReference!
@@ -208,17 +210,10 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     }
     
     func 対戦成績() {
-        //コンテキスト開始
-        UIGraphicsBeginImageContextWithOptions(UIScreen.main.bounds.size, false, 0.0)
-        //viewを書き出す
-        self.view.drawHierarchy(in: self.view.bounds, afterScreenUpdates: true)
-        // imageにコンテキストの内容を書き出す
-        let image: UIImage = UIGraphicsGetImageFromCurrentImageContext()!
-        //コンテキストを閉じる
-        UIGraphicsEndImageContext()
         
         ref = Database.database().reference()
         let user = Auth.auth().currentUser
+        let userName = user?.displayName
         
         self.ref.child("users").child((user?.uid)!).observeSingleEvent(of: .value, with: { (snapshot) in
             
@@ -233,27 +228,49 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
             
             let OK = UIAlertAction(title: "OK", style:UIAlertActionStyle.default){
                 (action: UIAlertAction) in
-                
             }
             
-            let Tweet = UIAlertAction(title: "ツイート", style:UIAlertActionStyle.default){
+            let tweet = UIAlertAction(title: "ツイート", style: UIAlertActionStyle.default){
                 (action: UIAlertAction) in
-                //ツイート
-                let composer = TWTRComposer()
-                composer.setText(user?.displayName + "は現在\n" + Win_count + "勝" + Defeat_count + "敗" + "\n" + "#ButtonChecker ")
-                composer.setImage(image)
-                composer.show(from: self) { result in
-                    if (result == .done) {
-                        print("OK")
-                    } else {
-                        print("NG")
+                
+                //iosバージョンを取得
+                let iosVersion = UIDevice.current.systemVersion
+                if (iosVersion >= "11.0") {
+                    //ios11の処理
+                    print("ios11")
+                    let composer = TWTRComposer()
+                    composer.setText("\(userName ?? "noName")は現在\n\(Win_count)勝\(Defeat_count)敗\n#ButtonChecker ")
+                    composer.show(from: self) { result in
                     }
+                    
+                }else{
+                    print("ios11未満")
+                    var myComposeView : SLComposeViewController!//Twitter
+                    //ios11以下の処理
+                    myComposeView = SLComposeViewController(forServiceType: SLServiceTypeTwitter)
+                    // 投稿するテキストを指定.
+                    myComposeView.setInitialText("\(userName ?? "noName")は現在\n\(Win_count)勝\(Defeat_count)敗\n#ButtonChecker ")
+                    // myComposeViewの画面遷移.
+                    self.present(myComposeView, animated: true, completion: nil)
                 }
             }
             
+            let login = UIAlertAction(title: "Twitterアカウント追加", style: UIAlertActionStyle.default){
+                (action: UIAlertAction) in
+                
+                TWTRTwitter.sharedInstance().logIn(completion: { (session, error) in
+                    if (session != nil) {
+                        print("ok")
+                    } else {
+                        print("error")
+                    }
+                })
+            }
+            
             //部品をアラートコントローラーに追加していく
-            Alert.addAction(OK)//battleを追加
-            Alert.addAction(Tweet)//cancelを追加
+            Alert.addAction(OK)
+            Alert.addAction(tweet)
+            Alert.addAction(login)
             
             //アラートを表示
             self.present(Alert,animated: true, completion: nil)

@@ -1630,6 +1630,11 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="0dB-KR-UNF">
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="6NS-T4-OB5">
+                            <connections>
+                                <action selector="Cancel" destination="2Wf-vm-9Ln" id="iiV-vR-Kaa"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="送信" id="qro-R8-hQK">
                             <connections>
                                 <action selector="post" destination="2Wf-vm-9Ln" id="ICC-OU-uGK"/>

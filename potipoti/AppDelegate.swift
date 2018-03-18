@@ -18,6 +18,7 @@
  import AVFoundation
  import AudioToolbox
  import TwitterKit
+ import TwitterCore
  
  @UIApplicationMain
  class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -28,8 +29,15 @@
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         FirebaseApp.configure()
-        TWTRTwitter.sharedInstance().start(withConsumerKey: "q6vp8wiCsmhFwQXy4CTA8XpyA", consumerSecret: " huwmLOp8BCORlX6ghsTHxcGcvkube1iTekL0tl0aa2JPUSWvuL")
+        TWTRTwitter.sharedInstance().start(withConsumerKey: "GpKnAYPhoFU8Y4WLZ4mZh62wd", consumerSecret: "a69vNIamfqKdzqW4I1GoCaYFMW5Htl7KDn58HklGPOZiuLykz9")
         return true
+    }
+    
+    func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {
+        if TWTRTwitter.sharedInstance().application(app, open: url, options: options) {
+            return true
+        }
+        return false
     }
  
     func applicationDidFinishLaunching(_ application: UIApplication) {

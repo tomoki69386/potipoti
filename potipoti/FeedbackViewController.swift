@@ -44,6 +44,10 @@ class FeedbackViewController: UIViewController {
         // アラート表示
         self.present(alert, animated: true, completion: nil)
     }
+    
+    @IBAction func Cancel() {
+        dismiss(animated: true, completion: nil)
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
