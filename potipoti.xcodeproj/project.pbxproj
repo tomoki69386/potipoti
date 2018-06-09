@@ -30,6 +30,8 @@
 		B700A0E3205295CB00A55B79 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B700A0E2205295CB00A55B79 /* Main.storyboard */; };
 		B700A0E6205295D600A55B79 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B700A0E4205295D500A55B79 /* ViewController.swift */; };
 		B700A0E7205295D600A55B79 /* TopViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B700A0E5205295D500A55B79 /* TopViewController.swift */; };
+		B77937A820CBBB8700D1258E /* SingleyViewController copy.swift in Sources */ = {isa = PBXBuildFile; fileRef = B77937A720CBBB8700D1258E /* SingleyViewController copy.swift */; };
+		B77937AA20CBCBDA00D1258E /* UIColorHex.swift in Sources */ = {isa = PBXBuildFile; fileRef = B77937A920CBCBDA00D1258E /* UIColorHex.swift */; };
 		B7B8EAD3205BFC560001AD20 /* FeedbackViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7B8EAD2205BFC560001AD20 /* FeedbackViewController.swift */; };
 		B7B8EAD7205CF63F0001AD20 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7B8EAD6205CF63F0001AD20 /* ProfileViewController.swift */; };
 		BDE1F648D0F1E5CFBB49728C /* Pods_potipoti.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C25FFFDE6FFE5F8A0D87EC6 /* Pods_potipoti.framework */; };
@@ -89,6 +91,8 @@
 		B700A0E2205295CB00A55B79 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		B700A0E4205295D500A55B79 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		B700A0E5205295D500A55B79 /* TopViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TopViewController.swift; sourceTree = "<group>"; };
+		B77937A720CBBB8700D1258E /* SingleyViewController copy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SingleyViewController copy.swift"; sourceTree = "<group>"; };
+		B77937A920CBCBDA00D1258E /* UIColorHex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorHex.swift; sourceTree = "<group>"; };
 		B7B8EAD2205BFC560001AD20 /* FeedbackViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackViewController.swift; sourceTree = "<group>"; };
 		B7B8EAD6205CF63F0001AD20 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		B91589D51E9DE14D15429104 /* Pods-potipoti.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-potipoti.release.xcconfig"; path = "Pods/Target Support Files/Pods-potipoti/Pods-potipoti.release.xcconfig"; sourceTree = "<group>"; };
@@ -140,6 +144,8 @@
 		55FD6DCE1F1CF95200322633 = {
 			isa = PBXGroup;
 			children = (
+				B77937A920CBCBDA00D1258E /* UIColorHex.swift */,
+				B77937A720CBBB8700D1258E /* SingleyViewController copy.swift */,
 				55FD6DD91F1CF95200322633 /* potipoti */,
 				55FD6DEE1F1CF95300322633 /* potipotiTests */,
 				55FD6DF91F1CF95300322633 /* potipotiUITests */,
@@ -537,12 +543,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B77937A820CBBB8700D1258E /* SingleyViewController copy.swift in Sources */,
 				55DFCDB31F55915C000E54DC /* HostViewController.swift in Sources */,
 				55EF4FA61F2332B000233C2E /* LoginViewController.swift in Sources */,
 				55FD6E131F1CFA9600322633 /* GameViewController.swift in Sources */,
 				55DFCDB11F55914E000E54DC /* MemberViewController.swift in Sources */,
 				B700A0E1205295B300A55B79 /* AppDelegate.swift in Sources */,
 				B700A0E7205295D600A55B79 /* TopViewController.swift in Sources */,
+				B77937AA20CBCBDA00D1258E /* UIColorHex.swift in Sources */,
 				55FD6E121F1CFA9600322633 /* ComViewController.swift in Sources */,
 				55DA5F1D1F2B33F800EB689D /* newViewController.swift in Sources */,
 				B700A0E6205295D600A55B79 /* ViewController.swift in Sources */,
@@ -708,7 +716,7 @@
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 3.0;
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -729,7 +737,7 @@
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 3.0;
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};
