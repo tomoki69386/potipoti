@@ -6,8 +6,44 @@
 //
 
 import UIKit
+import AVFoundation
+import AudioToolbox
+import TwitterKit
 
 class SingleyViewController: UIViewController {
+    
+    let Label = UILabel()
+    
+    let Button_0 = UIButton()
+    let Button_1 = UIButton()
+    let Button_2 = UIButton()
+    let Button_3 = UIButton()
+    let Button_4 = UIButton()
+    let Button_5 = UIButton()
+    let Button_6 = UIButton()
+    let Button_7 = UIButton()
+    let Button_8 = UIButton()
+    let Button_9 = UIButton()
+    let Button_10 = UIButton()
+    let Button_11 = UIButton()
+    let Button_12 = UIButton()
+    let Button_13 = UIButton()
+    let Button_14 = UIButton()
+    let Button_15 = UIButton()
+    let Button_16 = UIButton()
+    let Button_17 = UIButton()
+    let Button_18 = UIButton()
+    let Button_19 = UIButton()
+    
+    var defaults: UserDefaults = UserDefaults.standard
+    var number: Int = 0
+    var count: Int = 19
+    
+    //音楽再生
+    var seikaiplayer:AVAudioPlayer!
+    var hazureplayer:AVAudioPlayer!
+    let seikaiurl = Bundle.main.bundleURL.appendingPathComponent("正解.mp3")
+    let hazureurl = Bundle.main.bundleURL.appendingPathComponent("ハズレ.mp3")
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -15,29 +51,15 @@ class SingleyViewController: UIViewController {
         let screenWidth: CGFloat = self.view.frame.width
         let screenHeight: CGFloat = self.view.frame.height
         
-        let Button_0 = UIButton()
-        let Button_1 = UIButton()
-        let Button_2 = UIButton()
-        let Button_3 = UIButton()
-        let Button_4 = UIButton()
-        let Button_5 = UIButton()
-        let Button_6 = UIButton()
-        let Button_7 = UIButton()
-        let Button_8 = UIButton()
-        let Button_9 = UIButton()
-        let Button_10 = UIButton()
-        let Button_11 = UIButton()
-        let Button_12 = UIButton()
-        let Button_13 = UIButton()
-        let Button_14 = UIButton()
-        let Button_15 = UIButton()
-        let Button_16 = UIButton()
-        let Button_17 = UIButton()
-        let Button_18 = UIButton()
-        let Button_19 = UIButton()
-        
         //ボタンのサイズ
         let buttonSize = screenWidth / 4
+        
+        //ラベルの位置
+        Label.frame = CGRect(x: screenWidth / 4, y: screenHeight - buttonSize * 6, width: buttonSize * 2, height: buttonSize)
+        Label.text = "判定"
+        Label.textColor = UIColor.black
+        Label.font = UIFont.systemFont(ofSize:25)
+        Label.textAlignment = NSTextAlignment.center
         
         //ボタンの位置
         Button_0.frame = CGRect(x: 0, y: screenHeight - buttonSize * 5, width: buttonSize, height: buttonSize)
@@ -154,6 +176,7 @@ class SingleyViewController: UIViewController {
         Button_19.backgroundColor = UIColor(hex: "468401")
         
         //ボタンをタップしたときの処理
+        Button_0.addTarget(self, action: #selector(SingleyViewController.tap(sender:)), for: .touchUpInside)
         Button_1.addTarget(self, action: #selector(SingleyViewController.tap(sender:)), for: .touchUpInside)
         Button_2.addTarget(self, action: #selector(SingleyViewController.tap(sender:)), for: .touchUpInside)
         Button_3.addTarget(self, action: #selector(SingleyViewController.tap(sender:)), for: .touchUpInside)
@@ -260,10 +283,169 @@ class SingleyViewController: UIViewController {
         self.view.addSubview(Button_17)
         self.view.addSubview(Button_18)
         self.view.addSubview(Button_19)
+        
+        self.view.addSubview(Label)
+        
+        do {
+            try seikaiplayer = AVAudioPlayer(contentsOf:seikaiurl)
+            //音楽をバッファに読み込んでおく
+            seikaiplayer.prepareToPlay()
+        } catch {
+            print(error)
+        }
+        
+        do {
+            try hazureplayer = AVAudioPlayer(contentsOf:hazureurl)
+            //音楽をバッファに読み込んでおく
+            hazureplayer.prepareToPlay()
+        } catch {
+            print(error)
+        }
+        //0~19までのランダムな数字を発生させる
+        number = Int(arc4random_uniform(20))
+        
+        print("ハズレのButtonは..\(number)")
+        
+        defaults.set(number, forKey: "hoge")
     }
     
+    //タップしたときの処理
     @objc func tap(sender: UIButton) {
-        print(sender.tag)
+        let j = defaults.integer(forKey: "hoge")
+        if j == sender.tag {
+            self.hazure()
+        }else {
+            self.atari()
+        }
+        //Buttonの削除する処理を書く
+        switch sender.tag {
+        case 0:
+            Button_0.isHidden = true
+        case 1:
+            Button_1.isHidden = true
+        case 2:
+            Button_2.isHidden = true
+        case 3:
+            Button_3.isHidden = true
+        case 4:
+            Button_4.isHidden = true
+        case 5:
+            Button_5.isHidden = true
+        case 6:
+            Button_6.isHidden = true
+        case 7:
+            Button_7.isHidden = true
+        case 8:
+            Button_8.isHidden = true
+        case 9:
+            Button_9.isHidden = true
+        case 10:
+            Button_10.isHidden = true
+        case 11:
+            Button_11.isHidden = true
+        case 12:
+            Button_12.isHidden = true
+        case 13:
+            Button_13.isHidden = true
+        case 14:
+            Button_14.isHidden = true
+        case 15:
+            Button_15.isHidden = true
+        case 16:
+            Button_16.isHidden = true
+        case 17:
+            Button_17.isHidden = true
+        case 18:
+            Button_18.isHidden = true
+        case 19:
+            Button_19.isHidden = true
+        default:
+            print("error")
+        }
+        self.owari()
+    }
+    
+    func hazure() {
+        Label.text = ("ハズレ")
+        //バイブレーション
+        AudioServicesPlaySystemSound(SystemSoundID(kSystemSoundID_Vibrate))
+        hazureplayer.play()
+        // アラートを作成
+        let alert = UIAlertController(
+            title: "負けました",
+            message: "終了",
+            preferredStyle: .alert)
+        
+        let OK = UIAlertAction(title: "OK", style:UIAlertActionStyle.default){
+            (action: UIAlertAction) in
+            self.dismiss(animated: true, completion: nil)
+        }
+        alert.addAction(OK)
+        // アラート表示
+        self.present(alert, animated: true, completion: nil)
+    }
+    
+    func atari() {
+        Label.text = ("セーフ")
+        seikaiplayer.play()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
+            self.Label.text = ("")
+        }
+    }
+    
+    func owari() {
+        count -= 1
+        print("残りのボタンは...\(count)個")
+        if count == 0 {
+            // アラートを作成
+            let alert = UIAlertController(
+                title: "勝ちました",
+                message: "終了",
+                preferredStyle: .alert)
+            
+            let OK = UIAlertAction(title: "OK", style:UIAlertActionStyle.default){
+                (action: UIAlertAction) in
+                self.dismiss(animated: true, completion: nil)
+            }
+            
+            let tweet = UIAlertAction(title: "ツイート", style: UIAlertActionStyle.default){
+                (action: UIAlertAction) in
+                
+                //コンテキスト開始
+                UIGraphicsBeginImageContextWithOptions(UIScreen.main.bounds.size, false, 0.0)
+                //viewを書き出す
+                self.view.drawHierarchy(in: self.view.bounds, afterScreenUpdates: true)
+                // imageにコンテキストの内容を書き出す
+                let image: UIImage = UIGraphicsGetImageFromCurrentImageContext()!
+                //コンテキストを閉じる
+                UIGraphicsEndImageContext()
+                
+                print("ios11")
+                let composer = TWTRComposer()
+                composer.setText("シングルプレイで勝ちました！\n#ButtonChecker ")
+                composer.setImage(image)
+                composer.show(from: self) { result in
+                }
+            }
+            
+            let login = UIAlertAction(title: "Twitterアカウント追加", style: UIAlertActionStyle.default){
+                (action: UIAlertAction) in
+                
+                TWTRTwitter.sharedInstance().logIn(completion: { (session, error) in
+                    if (session != nil) {
+                        print("ok")
+                    } else {
+                        print("error")
+                    }
+                })
+            }
+            
+            alert.addAction(OK)
+            alert.addAction(tweet)
+            alert.addAction(login)
+            // アラート表示
+            self.present(alert, animated: true, completion: nil)
+        }
     }
 
     override func didReceiveMemoryWarning() {
