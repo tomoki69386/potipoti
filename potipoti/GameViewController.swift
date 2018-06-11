@@ -12,18 +12,11 @@ import AudioToolbox
 
 class GameViewController: UIViewController {
     
-    var ninzuu4Array : [String] = ["", "", "",""]
-    var ninzuu3Array : [String] = ["", "", ""]
-    var ninzuu2Array : [String] = ["",""]
-    var ransu: Int = 0
-    var darenumber: Int = 0
+    var menberNameArrey: [String] = []
+    let userDefaults = UserDefaults.standard
     
-    var index: Int = 0
-    
-    var number: Int = 0
-    var defaults: UserDefaults = UserDefaults.standard
-    var count: Int = 19
-    var ninzuu: Int = 0
+    //デフォルトで0に設定しておく
+    var outButtonNumber: Int = 0
     
     let Button_0 = UIButton()
     let Button_1 = UIButton()
@@ -58,11 +51,144 @@ class GameViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        //参加者の名前を配列に追加する
+        menberNameArrey = userDefaults.array(forKey: "memberName") as! [String]
+        
+        //UIの設定
+        setUpUI()
+        nextMember()
+        
+        //outButtonNumberの設定
+        outButtonNumber = setUpRandom(number: 20)
+        print("ハズレのButtonは...\(outButtonNumber)")
+        
+        do {
+            try seikaiplayer = AVAudioPlayer(contentsOf:seikaiurl)
+            //音楽をバッファに読み込んでおく
+            seikaiplayer.prepareToPlay()
+        } catch {
+            print(error)
+        }
+        
+        do {
+            try hazureplayer = AVAudioPlayer(contentsOf:hazureurl)
+            //音楽をバッファに読み込んでおく
+            hazureplayer.prepareToPlay()
+        } catch {
+            print(error)
+        }
+    }
+    
+    @objc func tap(sender: UIButton){
+        
+        //Buttonの削除する処理を書く
+        removeButton(buttonNumber: sender.tag)
+        
+        if outButtonNumber == sender.tag {
+            //outButtonを押してしまったときの処理
+            label.text = "ハズレ"
+            //バイブレーション
+            AudioServicesPlaySystemSound(SystemSoundID(kSystemSoundID_Vibrate))
+            hazureplayer.play()
+            
+            let name = userDefaults.string(forKey: "name")
+            
+            //アラートの設定
+            let alert = UIAlertController (title: "\(name ?? "")さんの負け", message: "終了", preferredStyle: .alert)
+            
+            //アラートにButtonを付ける
+            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { action in
+                //Buttonを押したときの処理
+                self.dismiss(animated: true, completion: nil)
+                self.userDefaults.removeObject(forKey: "memberName")
+            }))
+            
+            //アラートに表示
+            self.present(alert, animated: true, completion: nil)
+            
+        }else {
+            //セーフだった場合の処理
+            //次にButtonを押せる人を設定する
+            nextMember()
+            label.text = "セーフ！！"
+            
+            //SE再生
+            seikaiplayer.play()
+            
+            //1.5秒後にLabelのテキストを削除する
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
+                self.label.text = ""
+            }
+        }
+    }
+    
+    func nextMember() {
+        let index = setUpRandom(number: menberNameArrey.count)
+        darelabel.text = "次は\(menberNameArrey[index])さんの番"
+        userDefaults.set(menberNameArrey[index], forKey: "name")
+    }
+    
+    //ランダムな数字を吐く
+    func setUpRandom(number: Int) -> Int {
+        let random = Int(arc4random_uniform(UInt32(number)))
+        
+        return random
+    }
+    
+    func removeButton(buttonNumber: Int) {
+        switch buttonNumber {
+        case 0:
+            Button_0.isHidden = true
+        case 1:
+            Button_1.isHidden = true
+        case 2:
+            Button_2.isHidden = true
+        case 3:
+            Button_3.isHidden = true
+        case 4:
+            Button_4.isHidden = true
+        case 5:
+            Button_5.isHidden = true
+        case 6:
+            Button_6.isHidden = true
+        case 7:
+            Button_7.isHidden = true
+        case 8:
+            Button_8.isHidden = true
+        case 9:
+            Button_9.isHidden = true
+        case 10:
+            Button_10.isHidden = true
+        case 11:
+            Button_11.isHidden = true
+        case 12:
+            Button_12.isHidden = true
+        case 13:
+            Button_13.isHidden = true
+        case 14:
+            Button_14.isHidden = true
+        case 15:
+            Button_15.isHidden = true
+        case 16:
+            Button_16.isHidden = true
+        case 17:
+            Button_17.isHidden = true
+        case 18:
+            Button_18.isHidden = true
+        case 19:
+            Button_19.isHidden = true
+        default:
+            print("error")
+        }
+    }
+    
+    func setUpUI() {
         let screenWidth: CGFloat = self.view.frame.width
         let screenHeight: CGFloat = self.view.frame.height
         
         //ボタンのサイズ
         let buttonSize = screenWidth / 4
+        
         label.frame = CGRect(x: 0, y: screenHeight - buttonSize * 6.5, width: screenWidth, height: buttonSize)
         label.text = "判定"
         label.textColor = UIColor.black
@@ -299,257 +425,10 @@ class GameViewController: UIViewController {
         self.view.addSubview(Button_17)
         self.view.addSubview(Button_18)
         self.view.addSubview(Button_19)
-        
-        do {
-            try seikaiplayer = AVAudioPlayer(contentsOf:seikaiurl)
-            //音楽をバッファに読み込んでおく
-            seikaiplayer.prepareToPlay()
-        } catch {
-            print(error)
-        }
-        
-        do {
-            try hazureplayer = AVAudioPlayer(contentsOf:hazureurl)
-            //音楽をバッファに読み込んでおく
-            hazureplayer.prepareToPlay()
-        } catch {
-            print(error)
-        }
-        
-        ninzuu = defaults.integer(forKey: "ninzuu")
-        print("プレイヤーの人数は...\(ninzuu)人")
-        
-        if ninzuu == 4 {
-            
-            let Player4 = String(defaults.string(forKey: "Player4")!)
-            let Player3 = String(defaults.string(forKey: "Player3")!)
-            let Player2 = String(defaults.string(forKey: "Player2")!)
-            let Player1 = String(defaults.string(forKey: "Player1")!)
-            
-            ninzuu4Array[3] = Player4!
-            ninzuu4Array[2] = Player3!
-            ninzuu4Array[1] = Player2!
-            ninzuu4Array[0] = Player1!
-            
-            darenumber = Int(arc4random_uniform(4))
-            
-            if darenumber > 2 {
-                index = 3
-            }else if darenumber > 1 {
-                index = 2
-            }else if darenumber > 0 {
-                index = 1
-            }else {
-                index = 0
-            }
-            
-            darelabel.text = "次は\(ninzuu4Array[index])さんの番"
-            
-        }else if ninzuu == 3 {
-            
-            let Player3 = String(defaults.string(forKey: "Player3")!)
-            let Player2 = String(defaults.string(forKey: "Player2")!)
-            let Player1 = String(defaults.string(forKey: "Player1")!)
-            
-            ninzuu3Array[2] = Player3!
-            ninzuu3Array[1] = Player2!
-            ninzuu3Array[0] = Player1!
-            
-            darenumber = Int(arc4random_uniform(3))
-            
-            if darenumber > 1 {
-                index = 2
-            }else if darenumber > 0 {
-                index = 1
-                
-            }else {
-                index = 0
-            }
-            darelabel.text = "次は\(ninzuu3Array[index])さんの番"
-            
-        }else if ninzuu == 2 {
-            
-            let Player2 = String(defaults.string(forKey: "Player2")!)
-            let Player1 = String(defaults.string(forKey: "Player1")!)
-            
-            ninzuu2Array[1] = Player2!
-            ninzuu2Array[0] = Player1!
-            
-            darenumber = Int(arc4random_uniform(2))
-            if darenumber > 0 {
-                index = 1
-            }else {
-                index = 0
-            }
-            darelabel.text = "次は\(ninzuu2Array[index])さんの番"
-        }
-        
-        //0~19までのランダムな数字を発生させる
-        number = Int(arc4random_uniform(20))
-        
-        defaults.set(number, forKey: "aaa")
-        print("ハズレのButtonは...\(number)")
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-
-    }
-    
-    @objc func tap(sender: UIButton){
-        let j = defaults.integer(forKey: "aaa")
-        if j == sender.tag {
-            self.arato()
-            return
-        }else {
-            self.safe()
-            //Buttonの削除する処理を書く
-            switch sender.tag {
-            case 0:
-                Button_0.isHidden = true
-            case 1:
-                Button_1.isHidden = true
-            case 2:
-                Button_2.isHidden = true
-            case 3:
-                Button_3.isHidden = true
-            case 4:
-                Button_4.isHidden = true
-            case 5:
-                Button_5.isHidden = true
-            case 6:
-                Button_6.isHidden = true
-            case 7:
-                Button_7.isHidden = true
-            case 8:
-                Button_8.isHidden = true
-            case 9:
-                Button_9.isHidden = true
-            case 10:
-                Button_10.isHidden = true
-            case 11:
-                Button_11.isHidden = true
-            case 12:
-                Button_12.isHidden = true
-            case 13:
-                Button_13.isHidden = true
-            case 14:
-                Button_14.isHidden = true
-            case 15:
-                Button_15.isHidden = true
-            case 16:
-                Button_16.isHidden = true
-            case 17:
-                Button_17.isHidden = true
-            case 18:
-                Button_18.isHidden = true
-            case 19:
-                Button_19.isHidden = true
-            default:
-                print("error")
-            }
-            count -= 1
-            print(count)
-            if count == 0 {
-                self.kati()
-            }
-        }
-        self.dare()
-    }
-    
-    
-    //セーフの時に処理するメソッド
-    func safe() {
-        label.text = "セーフ!!"
-        seikaiplayer.play()
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
-            self.label.text = ("")
-        }
         
-    }
-    
-    //ハズレの時に処理するメソッド
-    func arato() {
-        label.text = ("ハズレ")
-        //バイブレーション
-        AudioServicesPlaySystemSound(SystemSoundID(kSystemSoundID_Vibrate))
-        hazureplayer.play()
-        
-        if let name = defaults.string(forKey: "name") {
-            // アラートを作成
-            let alert = UIAlertController(
-                //nameさんの負け
-                title: "\(name)さんの負けです",
-                message: "終了",
-                preferredStyle: .alert)
-            
-            // アラートにボタンをつける
-            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { action in self.dismiss(animated: true, completion: nil)
-            }))
-            
-            // アラート表示
-            self.present(alert, animated: true, completion: nil)
-        }
-    }
-    
-    func kati() {
-        // アラートを作成
-        let alert = UIAlertController(
-            title: "勝ちました",
-            message: "終了",
-            preferredStyle: .alert)
-        
-        // アラートにボタンをつける
-        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { action in self.dismiss(animated: true, completion: nil)
-        }))
-        
-        // アラート表示
-        self.present(alert, animated: true, completion: nil)
-    }
-    
-    func dare() {
-        
-        if ninzuu == 4 {
-            darelabel.text = "次は\(ninzuu4Array[index])さんの番"
-            defaults.set(ninzuu4Array[index], forKey: "name")
-            ransu = Int(arc4random_uniform(4))
-            if ransu > 2 {
-                index = 3
-                
-            }else if ransu > 1 {
-                index = 2
-                
-            }else if ransu > 0 {
-                index = 1
-                
-            }else {
-                index = 0
-            }
-            
-        }else if ninzuu == 3 {
-            darelabel.text = "次は\(ninzuu3Array[index])さんの番"
-            defaults.set(ninzuu3Array[index], forKey: "name")
-            ransu = Int(arc4random_uniform(3))
-            if ransu > 1 {
-                index = 2
-                
-            }else if ransu > 0 {
-                index = 1
-                
-            }else {
-                index = 0
-            }
-            
-        }else if ninzuu == 2 {
-            darelabel.text = "次は\(ninzuu2Array[index])さんの番"
-            defaults.set(ninzuu2Array[index], forKey: "name")
-            ransu = Int(arc4random_uniform(2))
-            if ransu > 0 {
-                index = 1
-                
-            }else {
-                index = 0
-            }
-        }
     }
 }

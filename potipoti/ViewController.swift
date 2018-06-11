@@ -14,42 +14,351 @@ import SVProgressHUD
 import AVFoundation
 import AudioToolbox
 
-class ViewController: UIViewController, UITextFieldDelegate {
+class ViewController: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, UIPickerViewDataSource {
     
-    @IBOutlet var button1: UIButton!
-    @IBOutlet var PlayerLabel1: UILabel!
-    @IBOutlet var PlayerLabel2: UILabel!
-    @IBOutlet var PlayerLabel3: UILabel!
-    @IBOutlet var PlayerLabel4: UILabel!
-    @IBOutlet var PlayertextField1: UITextField!
-    @IBOutlet var PlayertextField2: UITextField!
-    @IBOutlet var PlayertextField3: UITextField!
-    @IBOutlet var PlayertextField4: UITextField!
-    @IBOutlet var label: UILabel!
     //trueならアラートを表示中、falseならアラートを表示していない
     var Existence: Bool = false
     var ref: DatabaseReference!
+    let pickerVeiew = UIPickerView()
     
     var index: Int = 0
-    var defaults: UserDefaults = UserDefaults.standard
+    let userDefaults = UserDefaults.standard
     let ninzuuArrey: [String] = ["２人","３人","４人"]
+    var memberNameArrey: [String] = []
+    
+    let toBattleButton = UIButton()
+    let textField = UITextField()
+    let ninzuLabel = UILabel()
+    let nameLabel = UILabel()
+    let Player1TextField = UITextField()
+    let Player2TextField = UITextField()
+    let Player3TextField = UITextField()
+    let Player4TextField = UITextField()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        PlayertextField1.delegate = self
-        PlayertextField2.delegate = self
-        PlayertextField3.delegate = self
-        PlayertextField4.delegate = self
         
-        //画面を開いたときは2人だから、3と4を非表示にしておく
-        PlayertextField4.isHidden = true
-        PlayertextField3.isHidden = true
-        PlayerLabel4.isHidden = true
-        PlayerLabel3.isHidden = true
+        textField.delegate = self
+        pickerVeiew.delegate = self
+        Player1TextField.delegate = self
+        Player2TextField.delegate = self
+        Player3TextField.delegate = self
+        Player4TextField.delegate = self
         
-        //ボタンを丸める
-        button1.layer.cornerRadius = 30
+        pickerVeiew.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.size.width, height: pickerVeiew.bounds.size.height)
         
+        let vi = UIView(frame: pickerVeiew.bounds)
+        vi.backgroundColor = UIColor.white
+        vi.addSubview(pickerVeiew)
+        
+        textField.inputView = vi
+        
+        //PickerViewの上に表示する
+        let toolBar = UIToolbar()
+        toolBar.barStyle = UIBarStyle.default
+        toolBar.isTranslucent = true
+        toolBar.tintColor = UIColor.black
+        let doneButton   = UIBarButtonItem(title: "決定", style: UIBarButtonItemStyle.done, target: self, action: #selector(ViewController.donePressed))
+        let spaceButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.flexibleSpace, target: nil, action: nil)
+        toolBar.setItems([spaceButton, doneButton], animated: false)
+        toolBar.isUserInteractionEnabled = true
+        toolBar.sizeToFit()
+        textField.inputAccessoryView = toolBar
+        
+        //キーボードの上に表示する
+        let keyboardBar = UIToolbar()
+        keyboardBar.barStyle = UIBarStyle.default
+        keyboardBar.isTranslucent = true
+        keyboardBar.tintColor = UIColor.black
+        
+        let done = UIBarButtonItem(title: "完了", style: UIBarButtonItemStyle.done, target: self, action: #selector(ViewController.done))
+        
+        keyboardBar.setItems([spaceButton, done], animated: false)
+        keyboardBar.isUserInteractionEnabled = true
+        keyboardBar.sizeToFit()
+        Player1TextField.inputAccessoryView = keyboardBar
+        Player2TextField.inputAccessoryView = keyboardBar
+        Player3TextField.inputAccessoryView = keyboardBar
+        Player4TextField.inputAccessoryView = keyboardBar
+        
+        //スクリーンサイズ
+        let screenWidth: CGFloat = self.view.frame.width
+        let screenHeight: CGFloat = self.view.frame.height
+        
+        //ボタンのサイズ
+        let buttonSize = screenWidth / 4
+        
+        //位置
+        toBattleButton.frame = CGRect(x: 0, y: screenHeight - buttonSize, width: screenWidth, height: buttonSize)
+        textField.frame = CGRect(x: 15, y: buttonSize + 20, width: screenWidth - 30, height: 30)
+        ninzuLabel.frame = CGRect(x: 15, y: buttonSize, width: screenWidth - 30, height: 15)
+        nameLabel.frame = CGRect(x: 15, y: buttonSize + 65, width: screenWidth - 30, height: 15)
+        Player1TextField.frame = CGRect(x: 15, y: buttonSize + 90, width: screenWidth - 30, height: 30)
+        Player2TextField.frame = CGRect(x: 15, y: buttonSize + 130, width: screenWidth - 30, height: 30)
+        Player3TextField.frame = CGRect(x: 15, y: buttonSize + 170, width: screenWidth - 30, height: 30)
+        Player4TextField.frame = CGRect(x: 15, y: buttonSize + 210, width: screenWidth - 30, height: 30)
+        
+        //テキスト
+        toBattleButton.setTitle("プレイ", for: UIControlState.normal)
+        ninzuLabel.text = "人数選択"
+        nameLabel.text = "プレイヤーの名前"
+        textField.text = "２人"
+        
+        //最初は非表示にしておく
+        Player3TextField.isHidden = true
+        Player4TextField.isHidden = true
+        
+        //文字入力前に表示設定
+        Player1TextField.placeholder = "名前を入力してください"
+        Player2TextField.placeholder = "名前を入力してください"
+        Player3TextField.placeholder = "名前を入力してください"
+        Player4TextField.placeholder = "名前を入力してください"
+        
+        //自動校正
+        Player1TextField.autocorrectionType = .no
+        Player2TextField.autocorrectionType = .no
+        Player3TextField.autocorrectionType = .no
+        Player4TextField.autocorrectionType = .no
+        
+        //テキストを右寄せにする
+        textField.textAlignment = NSTextAlignment.right
+        Player1TextField.textAlignment = NSTextAlignment.right
+        Player2TextField.textAlignment = NSTextAlignment.right
+        Player3TextField.textAlignment = NSTextAlignment.right
+        Player4TextField.textAlignment = NSTextAlignment.right
+        
+        //カラー
+        toBattleButton.setTitleColor(UIColor.black, for: .normal)
+        ninzuLabel.textColor = UIColor.black
+        nameLabel.textColor = UIColor.black
+        Player1TextField.textColor = UIColor.black
+        Player2TextField.textColor = UIColor.black
+        Player3TextField.textColor = UIColor.black
+        Player4TextField.textColor = UIColor.black
+        
+        //フォントサイズ
+        toBattleButton.titleLabel?.font = UIFont.systemFont(ofSize: 20)
+        ninzuLabel.font = UIFont.systemFont(ofSize: 14)
+        textField.font = UIFont.systemFont(ofSize: 14)
+        Player1TextField.font = UIFont.systemFont(ofSize: 14)
+        Player2TextField.font = UIFont.systemFont(ofSize: 14)
+        Player3TextField.font = UIFont.systemFont(ofSize: 14)
+        Player4TextField.font = UIFont.systemFont(ofSize: 14)
+        nameLabel.font = UIFont.systemFont(ofSize: 14)
+        
+        //バックグラウンドカラー
+        toBattleButton.backgroundColor = UIColor(hex: "FEF978")
+        
+        //枠丸にする
+        textField.layer.cornerRadius = 10
+        Player1TextField.layer.cornerRadius = 10
+        Player2TextField.layer.cornerRadius = 10
+        Player3TextField.layer.cornerRadius = 10
+        Player4TextField.layer.cornerRadius = 10
+        
+        //枠のカラー
+        textField.layer.borderColor = UIColor.black.cgColor
+        Player1TextField.layer.borderColor = UIColor.black.cgColor
+        Player2TextField.layer.borderColor = UIColor.black.cgColor
+        Player3TextField.layer.borderColor = UIColor.black.cgColor
+        Player4TextField.layer.borderColor = UIColor.black.cgColor
+        
+        //枠の幅
+        textField.layer.borderWidth = 1.0
+        Player1TextField.layer.borderWidth = 1.0
+        Player2TextField.layer.borderWidth = 1.0
+        Player3TextField.layer.borderWidth = 1.0
+        Player4TextField.layer.borderWidth = 1.0
+        
+        //アクション
+        toBattleButton.addTarget(self, action: #selector(ViewController.tap(sender:)), for: .touchUpInside)
+        
+        self.view.addSubview(toBattleButton)
+        self.view.addSubview(textField)
+        self.view.addSubview(ninzuLabel)
+        self.view.addSubview(nameLabel)
+        self.view.addSubview(Player1TextField)
+        self.view.addSubview(Player2TextField)
+        self.view.addSubview(Player3TextField)
+        self.view.addSubview(Player4TextField)
+        
+        self.onlineBattle()
+        
+    }
+    
+    // 列の数
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    // 行数
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return ninzuuArrey.count
+    }
+    
+    //表示する内容
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return ninzuuArrey[row]
+    }
+    
+    //選択されたときの挙動
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        textField.text = ninzuuArrey[row]
+        
+        switch ninzuuArrey[row] {
+        case "２人":
+            Player3TextField.isHidden = true
+            Player4TextField.isHidden = true
+        case "３人":
+            Player3TextField.isHidden = false
+            Player4TextField.isHidden = true
+        case "４人":
+            Player3TextField.isHidden = false
+            Player4TextField.isHidden = false
+        default:
+            print("error")
+        }
+    }
+    
+    @objc func donePressed() {
+        view.endEditing(true)
+    }
+    
+    @objc func done() {
+        view.endEditing(true)
+    }
+    
+    @objc func tap(sender: UIButton) {
+    
+        switch textField.text {
+        case "２人":
+            if Player1TextField.text == "" || Player2TextField.text == "" {
+                
+                //エラーと表示する
+                SVProgressHUD.showError(withStatus: "Error")
+                
+                if Player1TextField.text == "" {
+                    Player1TextField.layer.borderColor = UIColor.red.cgColor
+                }
+                
+                if Player2TextField.text == "" {
+                    Player2TextField.layer.borderColor = UIColor.red.cgColor
+                }
+                
+            }else {
+                memberNameArrey.append(Player1TextField.text ?? "")
+                memberNameArrey.append(Player2TextField.text ?? "")
+                
+                userDefaults.set(memberNameArrey, forKey: "memberName")
+                //対戦画面に飛ぶ
+                let targetViewController = self.storyboard!.instantiateViewController( withIdentifier: "GameViewController" ) as! GameViewController
+                self.present( targetViewController, animated: true, completion: nil)
+            }
+        case "３人":
+            if Player1TextField.text == "" || Player2TextField.text == "" || Player3TextField.text == "" {
+                
+                //エラーと表示する
+                SVProgressHUD.showError(withStatus: "Error")
+                
+                if Player1TextField.text == "" {
+                    Player1TextField.layer.borderColor = UIColor.red.cgColor
+                }
+                
+                if Player2TextField.text == "" {
+                    Player2TextField.layer.borderColor = UIColor.red.cgColor
+                }
+                
+                if Player3TextField.text == "" {
+                    Player3TextField.layer.borderColor = UIColor.red.cgColor
+                }
+                
+            }else {
+                memberNameArrey.append(Player1TextField.text ?? "")
+                memberNameArrey.append(Player2TextField.text ?? "")
+                memberNameArrey.append(Player3TextField.text ?? "")
+                
+                userDefaults.set(memberNameArrey, forKey: "memberName")
+                //対戦画面に飛ぶ
+                let targetViewController = self.storyboard!.instantiateViewController( withIdentifier: "GameViewController" ) as! GameViewController
+                self.present( targetViewController, animated: true, completion: nil)
+            }
+        case "４人":
+            if Player1TextField.text == "" || Player2TextField.text == "" || Player3TextField.text == "" || Player4TextField.text == ""{
+                
+                //エラーと表示する
+                SVProgressHUD.showError(withStatus: "Error")
+                
+                if Player1TextField.text == "" {
+                    Player1TextField.layer.borderColor = UIColor.red.cgColor
+                }
+                
+                if Player2TextField.text == "" {
+                    Player2TextField.layer.borderColor = UIColor.red.cgColor
+                }
+                
+                if Player3TextField.text == "" {
+                    Player3TextField.layer.borderColor = UIColor.red.cgColor
+                }
+                
+                if Player4TextField.text == "" {
+                    Player4TextField.layer.borderColor = UIColor.red.cgColor
+                }
+                
+            }else {
+                memberNameArrey.append(Player1TextField.text ?? "")
+                memberNameArrey.append(Player2TextField.text ?? "")
+                memberNameArrey.append(Player3TextField.text ?? "")
+                memberNameArrey.append(Player4TextField.text ?? "")
+                
+                userDefaults.set(memberNameArrey, forKey: "memberName")
+                //対戦画面に飛ぶ
+                let targetViewController = self.storyboard!.instantiateViewController( withIdentifier: "GameViewController" ) as! GameViewController
+                self.present( targetViewController, animated: true, completion: nil)
+            }
+        default:
+            print("error")
+        }
+    }
+    
+    //textFieldの編集中に呼び出す
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        
+        if textField.text == "２人" {
+            if Player1TextField.text != "" {
+                Player1TextField.layer.borderColor = UIColor.black.cgColor
+            }
+            if Player2TextField.text != "" {
+                Player2TextField.layer.borderColor = UIColor.black.cgColor
+            }
+        }else if textField.text == "３人" {
+            if Player1TextField.text != "" {
+                Player1TextField.layer.borderColor = UIColor.black.cgColor
+            }
+            if Player2TextField.text != "" {
+                Player2TextField.layer.borderColor = UIColor.black.cgColor
+            }
+            if Player3TextField.text != "" {
+                Player3TextField.layer.borderColor = UIColor.black.cgColor
+            }
+        }else {
+            if Player1TextField.text != "" {
+                Player1TextField.layer.borderColor = UIColor.black.cgColor
+            }
+            if Player2TextField.text != "" {
+                Player2TextField.layer.borderColor = UIColor.black.cgColor
+            }
+            if Player3TextField.text != "" {
+                Player3TextField.layer.borderColor = UIColor.black.cgColor
+            }
+            if Player4TextField.text != "" {
+                Player4TextField.layer.borderColor = UIColor.black.cgColor
+            }
+        }
+        
+        return true
+    }
+    
+    func onlineBattle() {
         ref = Database.database().reference()
         
         if let _ = Auth.auth().currentUser {
@@ -121,146 +430,6 @@ class ViewController: UIViewController, UITextFieldDelegate {
             //ログインしてない
             return
         }
-    }
-    
-    @IBAction func up() {
-        index += 1
-        
-        //indexが２より大きくしない
-        if index >= 2 {
-            index = 2
-        }
-        label.text = ninzuuArrey[index]
-        
-        if label.text == ("４人") { //４人
-            PlayertextField4.isHidden = false
-            PlayertextField3.isHidden = false
-            PlayerLabel4.isHidden = false
-            PlayerLabel3.isHidden = false
-            
-        }else if label.text == ("３人") { //３人
-            PlayertextField4.isHidden = true
-            PlayertextField3.isHidden = false
-            PlayerLabel4.isHidden = true
-            PlayerLabel3.isHidden = false
-            
-        }else if label.text == ("２人") { //２人
-            PlayertextField4.isHidden = true
-            PlayertextField3.isHidden = true
-            PlayerLabel4.isHidden = true
-            PlayerLabel3.isHidden = true
-            
-        }
-        
-    }
-    
-    @IBAction func down() {
-        index -= 1
-        
-        //indexが０より小さくしない
-        if index <= 0 {
-            index = 0
-        }
-        label.text = ninzuuArrey[index]
-        
-        if label.text == ("４人") { //４人
-            PlayertextField4.isHidden = false
-            PlayertextField3.isHidden = false
-            PlayerLabel4.isHidden = false
-            PlayerLabel3.isHidden = false
-            
-        }else if label.text == ("３人") { //３人
-            PlayertextField4.isHidden = true
-            PlayertextField3.isHidden = false
-            PlayerLabel4.isHidden = true
-            PlayerLabel3.isHidden = false
-            
-        }else if label.text == ("２人") { //２人
-            PlayertextField4.isHidden = true
-            PlayertextField3.isHidden = true
-            PlayerLabel4.isHidden = true
-            PlayerLabel3.isHidden = true
-        }
-    }
-    
-    //ゲームスタートButton
-    @IBAction func Play() {
-        if label.text == ("４人") {
-            //TextFieldに文字が入ってないと以下の処理をしない
-            guard (PlayerLabel1.text != nil) else { return }
-            guard (PlayerLabel2.text != nil) else { return }
-            guard (PlayerLabel3.text != nil) else { return }
-            guard (PlayerLabel4.text != nil) else { return }
-            
-            defaults.set(PlayertextField1.text, forKey: "Player1")
-            defaults.set(PlayertextField2.text, forKey: "Player2")
-            defaults.set(PlayertextField3.text, forKey: "Player3")
-            defaults.set(PlayertextField4.text, forKey: "Player4")
-            
-            //人数を記録
-            defaults.set(4, forKey: "ninzuu")
-            
-            //画面遷移
-            let targetViewController = self.storyboard!.instantiateViewController( withIdentifier: "Game" ) as! GameViewController
-            self.present( targetViewController, animated: true, completion: nil)
-            
-        }else if label.text == ("３人") {
-            //TextFieldに文字が入ってないと以下の処理をしない
-            guard (PlayerLabel1.text != nil) else { return }
-            guard (PlayerLabel2.text != nil) else { return }
-            guard (PlayerLabel3.text != nil) else { return }
-            
-            defaults.set(PlayertextField1.text, forKey: "Player1")
-            defaults.set(PlayertextField2.text, forKey: "Player2")
-            defaults.set(PlayertextField3.text, forKey: "Player3")
-            
-            //人数を記録
-            defaults.set(3, forKey: "ninzuu")
-            
-            //画面遷移
-            let targetViewController = self.storyboard!.instantiateViewController( withIdentifier: "Game" ) as! GameViewController
-            self.present( targetViewController, animated: true, completion: nil)
-            
-        }else if label.text == ("２人") {
-            //TextFieldに文字が入ってないと以下の処理をしない
-            guard (PlayerLabel1.text != nil) else { return }
-            guard (PlayerLabel2.text != nil) else { return }
-            
-            defaults.set(PlayertextField1.text, forKey: "Player1")
-            defaults.set(PlayertextField2.text, forKey: "Player2")
-            
-            //人数を記録
-            defaults.set(2, forKey: "ninzuu")
-            
-            //画面遷移
-            let targetViewController = self.storyboard!.instantiateViewController( withIdentifier: "Game" ) as! GameViewController
-            self.present( targetViewController, animated: true, completion: nil)
-        }
-    }
-    
-    //Enterでフォーカスを変えるかキーボードを閉じる
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        if textField == PlayertextField1 {
-            PlayertextField2.becomeFirstResponder()
-        }else if textField == PlayertextField2 {
-            PlayertextField3.becomeFirstResponder()
-        }else if textField == PlayertextField3 {
-            PlayertextField4.becomeFirstResponder()
-        }else if textField == PlayertextField4 {
-            PlayertextField4.resignFirstResponder()
-        }
-        return true
-    }
-    
-    //Topに戻る
-    @IBAction func tophe() {
-        dismiss(animated: true, completion: nil)
-    }
-    
-    //Viewをタップした時に起こる処理を描く関数
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        //キーボードを閉じる処理
-        view.endEditing(true)
     }
     
 }
