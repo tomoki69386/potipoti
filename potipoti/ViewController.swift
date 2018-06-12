@@ -229,6 +229,8 @@ class ViewController: UIViewController, UITextFieldDelegate, UIPickerViewDelegat
     }
     
     @objc func tap(sender: UIButton) {
+        
+        userDefaults.removeObject(forKey: "memberName")
     
         switch textField.text {
         case "２人":
