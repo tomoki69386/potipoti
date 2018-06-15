@@ -106,7 +106,8 @@ class TopViewController: UIViewController {
     @objc func toViewCountroller(sender: UIButton) {
         //画面遷移
         let target = ViewController()
-        self.navigationController?.pushViewController(target, animated: true)
+//        self.navigationController?.pushViewController(target, animated: true)
+        self.present(target, animated: true, completion: nil)
     }
     
     //シングルプレイ画面に遷移する

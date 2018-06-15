@@ -14,9 +14,13 @@ import TextFieldEffects
 
 class LoginViewController: UIViewController, UITextFieldDelegate {
     
-    @IBOutlet var passwordTextField: UITextField!
-    @IBOutlet var emailTextField: UITextField!
+//    @IBOutlet var passwordTextField: UITextField!
+//    @IBOutlet var emailTextField: UITextField!
     var ref: DatabaseReference!
+    
+    let passwordTextField = UITextField()
+    let emailTextField = UITextField()
+    let loginButton = UIButton()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,6 +35,39 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         
         //キーボードのフォーカスをあわせる
         emailTextField.becomeFirstResponder()
+    }
+    
+    func setUI() {
+        //スクリーンサイズ
+        let screenWidth: CGFloat = self.view.frame.width
+        let screenHeight: CGFloat = self.view.frame.height
+        let buttonSize = screenWidth / 4
+        
+        //位置を設定する
+        loginButton.frame = CGRect(x: 0, y: screenHeight - buttonSize, width: screenWidth, height: buttonSize)
+        
+        //表示するテキストを設定する
+        loginButton.setTitle("ログイン", for: .normal)
+        
+        //テキストのカラーを設定
+        loginButton.setTitleColor(UIColor(hex: "000000"), for: .normal)
+        
+        //背景のカラーを設定
+        loginButton.backgroundColor = UIColor(hex: "FEF978")
+        
+        //フォントのサイズを設定する
+        loginButton.titleLabel?.font = UIFont.systemFont(ofSize: 20)
+        
+        //Buttonにアクションを与える
+        loginButton.addTarget(self, action: #selector(LoginViewController.signinButton(sender:)), for: .touchUpInside)
+        
+        //Viewに追加
+        self.view.addSubview(loginButton)
+    
+    }
+    
+    @objc func signinButton(sender: UIButton) {
+        
     }
     
     //Returmキーで閉じる
