@@ -48,10 +48,13 @@ class TopViewController: UIViewController {
         let screenWidth: CGFloat = self.view.frame.width
         let screenHeight: CGFloat = self.view.frame.height - tabBarHeight
         
-        
+        //ボタンのサイズ
         let buttonSize = screenWidth / 5
+        
+        //ボタンの間の間隔
         let spaceSize = screenWidth / 6
         
+        //位置の設定
         Label.frame = CGRect(x: 0, y: navigationBarHeight + statusbarHeight, width: screenWidth, height: (screenHeight - spaceSize * 3 - buttonSize * 3) - (navigationBarHeight + statusbarHeight))
         button1.frame = CGRect(x: buttonSize, y: screenHeight - spaceSize * 3 - buttonSize * 3, width: buttonSize * 3, height: buttonSize)
         button2.frame = CGRect(x: buttonSize, y: screenHeight - spaceSize * 2 - buttonSize * 2, width: buttonSize * 3, height: buttonSize)
@@ -92,24 +95,28 @@ class TopViewController: UIViewController {
         button2.addTarget(self, action: #selector(TopViewController.toSingleyViewCountroller(sender:)), for: .touchUpInside)
         button3.addTarget(self, action: #selector(TopViewController.toPlayerViewCountroller(sender:)), for: .touchUpInside)
         
+        //Viewに追加する
         self.view.addSubview(Label)
         self.view.addSubview(button1)
         self.view.addSubview(button2)
         self.view.addSubview(button3)
     }
     
+    //友達でプレイ画面に遷移する
     @objc func toViewCountroller(sender: UIButton) {
         //画面遷移
         let target = ViewController()
         self.navigationController?.pushViewController(target, animated: true)
     }
     
+    //シングルプレイ画面に遷移する
     @objc func toSingleyViewCountroller(sender: UIButton) {
         //画面遷移
         let targetViewController = self.storyboard!.instantiateViewController( withIdentifier: "SingleyViewController" ) as! SingleyViewController
         self.present( targetViewController, animated: true, completion: nil)
     }
     
+    //オンライン対戦画面に遷移する
     @objc func toPlayerViewCountroller(sender: UIButton) {
         
         if let _ = Auth.auth().currentUser {
@@ -122,19 +129,6 @@ class TopViewController: UIViewController {
             //アカウント作成画面に移動する
             let targetViewController = self.storyboard!.instantiateViewController(withIdentifier: "newViewController") as! newViewController
             self.present(targetViewController, animated: true, completion: nil)
-        }
-    }
-    
-    @IBAction func Online() {
-         if let _ = Auth.auth().currentUser {
-            //ログインしている
-            performSegue(withIdentifier: "toPlayerViewController", sender: nil)
-         }else {
-            //ログインしていない
-            //アカウント作成画面に遷移
-            print("ログインしていない")
-            let targetViewController = self.storyboard!.instantiateViewController( withIdentifier: "newViewController" ) as! newViewController
-            self.present( targetViewController, animated: true, completion: nil)
         }
     }
     
