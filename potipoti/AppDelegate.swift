@@ -26,10 +26,43 @@
     var window: UIWindow?
     var ref:DatabaseReference!
     var isCreate = true //データの作成か更新かを判定、trueなら作成、falseなら更新
+    var myNavigationController: UINavigationController?
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         FirebaseApp.configure()
         TWTRTwitter.sharedInstance().start(withConsumerKey: "GpKnAYPhoFU8Y4WLZ4mZh62wd", consumerSecret: "a69vNIamfqKdzqW4I1GoCaYFMW5Htl7KDn58HklGPOZiuLykz9")
+        
+        //ナビゲーションコントローラーの設定
+        let firstNavigation: ViewController = ViewController()
+        myNavigationController = UINavigationController(rootViewController: firstNavigation)
+        self.window = UIWindow(frame: UIScreen.main.bounds)
+        self.window?.rootViewController = myNavigationController
+        self.window?.makeKeyAndVisible()
+        
+        
+        // ページを格納する配列
+        var viewControllers: [UIViewController] = []
+        
+        // 1ページ目になるViewController
+        let firstVC = TopViewController()
+        firstVC.tabBarItem = UITabBarItem(title: "HOME", image: #imageLiteral(resourceName: "home.png"), tag: 1)
+        viewControllers.append(firstVC)
+        
+        // 2ページ目になるViewController
+        let secondVC = ProfileViewController()
+        secondVC.tabBarItem = UITabBarItem(title: "account", image: #imageLiteral(resourceName: "account.png"), tag: 2)
+        viewControllers.append(secondVC)
+        
+        // ページをセット
+        let tabBarController = UITabBarController()
+        tabBarController.setViewControllers(viewControllers, animated: false)
+        
+        // ルートを UITabBarController にする
+        window = UIWindow(frame: UIScreen.main.bounds)
+        window?.backgroundColor = UIColor.white
+        window?.rootViewController = tabBarController
+        window?.makeKeyAndVisible()
+        
         return true
     }
     

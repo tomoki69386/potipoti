@@ -16,19 +16,129 @@ import AudioToolbox
 
 class TopViewController: UIViewController {
     
-    @IBOutlet var button1: UIButton!
-    @IBOutlet var button2: UIButton!
-    @IBOutlet var button3: UIButton!
+    let Label = UILabel()
+    let button1 = UIButton()
+    let button2 = UIButton()
+    let button3 = UIButton()
+    
     var ref: DatabaseReference!
     //trueならアラートを表示中、falseならアラートを表示していない
     var Existence: Bool = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        button1.layer.cornerRadius = 30 //ボタンを丸める
-        button2.layer.cornerRadius = 30
-        button3.layer.cornerRadius = 30
         
+        self.setUpUI()
+        
+        self.title = "Home"
+    
+    }
+    
+    //UIの設定
+    func setUpUI() {
+        
+        hidesBottomBarWhenPushed = true
+        
+        let tabBarController: UITabBarController = UITabBarController()
+        let tabBarHeight = tabBarController.tabBar.frame.size.height
+        let navigationController: UINavigationController = UINavigationController()
+        let navigationBarHeight = navigationController.navigationBar.frame.size.height
+        let statusbarHeight = UIApplication.shared.statusBarFrame.size.height
+        //スクリーンサイズ
+        let screenWidth: CGFloat = self.view.frame.width
+        let screenHeight: CGFloat = self.view.frame.height - tabBarHeight
+        
+        
+        let buttonSize = screenWidth / 5
+        let spaceSize = screenWidth / 6
+        
+        Label.frame = CGRect(x: 0, y: navigationBarHeight + statusbarHeight, width: screenWidth, height: (screenHeight - spaceSize * 3 - buttonSize * 3) - (navigationBarHeight + statusbarHeight))
+        button1.frame = CGRect(x: buttonSize, y: screenHeight - spaceSize * 3 - buttonSize * 3, width: buttonSize * 3, height: buttonSize)
+        button2.frame = CGRect(x: buttonSize, y: screenHeight - spaceSize * 2 - buttonSize * 2, width: buttonSize * 3, height: buttonSize)
+        button3.frame = CGRect(x: buttonSize, y: screenHeight - spaceSize - buttonSize, width: buttonSize * 3, height: buttonSize)
+        
+        //テキスト設定
+        Label.text = "Button Checker"
+        button1.setTitle("友達とプレイ", for: UIControlState.normal)
+        button2.setTitle("1人でプレイ", for: UIControlState.normal)
+        button3.setTitle("オンライン対戦", for: UIControlState.normal)
+        
+        //文字のカラー
+        Label.textColor = UIColor.black
+        button1.setTitleColor(UIColor.black, for: .normal)
+        button2.setTitleColor(UIColor.black, for: .normal)
+        button3.setTitleColor(UIColor.black, for: .normal)
+        
+        //背景カラー
+        button1.backgroundColor = UIColor(hex: "FEF978")
+        button2.backgroundColor = UIColor(hex: "FEF978")
+        button3.backgroundColor = UIColor(hex: "FEF978")
+        
+        //フォントサイズ
+        Label.font = UIFont.systemFont(ofSize: 20)
+        button1.titleLabel?.font = UIFont.systemFont(ofSize: 20)
+        button2.titleLabel?.font = UIFont.systemFont(ofSize: 20)
+        button3.titleLabel?.font = UIFont.systemFont(ofSize: 20)
+        
+        //枠丸にする
+        button1.layer.cornerRadius = buttonSize / 2
+        button2.layer.cornerRadius = buttonSize / 2
+        button3.layer.cornerRadius = buttonSize / 2
+        
+        Label.textAlignment = NSTextAlignment.center
+        
+        //ボタンをタップしたときの処理を与える
+        button1.addTarget(self, action: #selector(TopViewController.toViewCountroller(sender:)), for: .touchUpInside)
+        button2.addTarget(self, action: #selector(TopViewController.toSingleyViewCountroller(sender:)), for: .touchUpInside)
+        button3.addTarget(self, action: #selector(TopViewController.toPlayerViewCountroller(sender:)), for: .touchUpInside)
+        
+        self.view.addSubview(Label)
+        self.view.addSubview(button1)
+        self.view.addSubview(button2)
+        self.view.addSubview(button3)
+    }
+    
+    @objc func toViewCountroller(sender: UIButton) {
+        //画面遷移
+        let target = ViewController()
+        self.navigationController?.pushViewController(target, animated: true)
+    }
+    
+    @objc func toSingleyViewCountroller(sender: UIButton) {
+        //画面遷移
+        let targetViewController = self.storyboard!.instantiateViewController( withIdentifier: "SingleyViewController" ) as! SingleyViewController
+        self.present( targetViewController, animated: true, completion: nil)
+    }
+    
+    @objc func toPlayerViewCountroller(sender: UIButton) {
+        
+        if let _ = Auth.auth().currentUser {
+            //ログインしている
+            //オンラインプレイヤー画面に遷移する
+            let target = PlayerViewController()
+            self.navigationController?.pushViewController(target, animated: true)
+        }else {
+            //ログインしていない
+            //アカウント作成画面に移動する
+            let targetViewController = self.storyboard!.instantiateViewController(withIdentifier: "newViewController") as! newViewController
+            self.present(targetViewController, animated: true, completion: nil)
+        }
+    }
+    
+    @IBAction func Online() {
+         if let _ = Auth.auth().currentUser {
+            //ログインしている
+            performSegue(withIdentifier: "toPlayerViewController", sender: nil)
+         }else {
+            //ログインしていない
+            //アカウント作成画面に遷移
+            print("ログインしていない")
+            let targetViewController = self.storyboard!.instantiateViewController( withIdentifier: "newViewController" ) as! newViewController
+            self.present( targetViewController, animated: true, completion: nil)
+        }
+    }
+    
+    func onlineBattle() {
         ref = Database.database().reference()
         
         if let _ = Auth.auth().currentUser {
@@ -97,19 +207,6 @@ class TopViewController: UIViewController {
         }else {
             //ログインしてない
             return
-        }
-    }
-    
-    @IBAction func Online() {
-         if let _ = Auth.auth().currentUser {
-            //ログインしている
-            performSegue(withIdentifier: "toPlayerViewController", sender: nil)
-         }else {
-            //ログインしていない
-            //アカウント作成画面に遷移
-            print("ログインしていない")
-            let targetViewController = self.storyboard!.instantiateViewController( withIdentifier: "newViewController" ) as! newViewController
-            self.present( targetViewController, animated: true, completion: nil)
         }
     }
     

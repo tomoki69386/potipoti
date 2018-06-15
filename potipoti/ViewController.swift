@@ -38,6 +38,10 @@ class ViewController: UIViewController, UITextFieldDelegate, UIPickerViewDelegat
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.title = "友達とプレイ"
+        
+        tabBarController?.tabBar.isHidden = true
+        
         textField.delegate = self
         pickerVeiew.delegate = self
         Player1TextField.delegate = self
