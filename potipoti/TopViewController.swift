@@ -28,10 +28,76 @@ class TopViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.setUpUI()
+        let heght: CGFloat = self.view.frame.height
         
-        self.title = "Home"
+        print(heght)
+        if heght == 812.0 {
+            self.iPhoneXsetUP()
+        }else {
+            self.setUpUI()
+        }
+    }
     
+    //iPhoneX用UIの設定
+    func iPhoneXsetUP() {
+        let tabBarController: UITabBarController = UITabBarController()
+        let tabBarHeight = tabBarController.tabBar.frame.size.height
+        let navigationController: UINavigationController = UINavigationController()
+        let navigationBarHeight = navigationController.navigationBar.frame.size.height
+        let statusbarHeight = UIApplication.shared.statusBarFrame.size.height
+        //スクリーンサイズ
+        let screenWidth: CGFloat = self.view.frame.width
+        let screenHeight: CGFloat = self.view.frame.height - tabBarHeight
+        
+        //ボタンのサイズ
+        let buttonSize = screenWidth / 5
+        
+        //位置の設定
+        Label.frame = CGRect(x: 0, y: navigationBarHeight + statusbarHeight, width: screenWidth, height: (screenHeight - screenHeight / 8 * 6) - (navigationBarHeight + statusbarHeight))
+        button1.frame = CGRect(x: buttonSize, y: screenHeight - screenHeight / 8 * 6, width: buttonSize * 3, height: buttonSize * 1.2)
+        button2.frame = CGRect(x: buttonSize, y: screenHeight - screenHeight / 8 * 4 , width: buttonSize * 3, height: buttonSize * 1.2)
+        button3.frame = CGRect(x: buttonSize, y: screenHeight - screenHeight / 8 * 2, width: buttonSize * 3, height: buttonSize * 1.2)
+
+        //テキスト設定
+        Label.text = "Button Checker"
+        button1.setTitle("友達とプレイ", for: UIControlState.normal)
+        button2.setTitle("1人でプレイ", for: UIControlState.normal)
+        button3.setTitle("オンライン対戦", for: UIControlState.normal)
+        
+        //文字のカラー
+        Label.textColor = UIColor.black
+        button1.setTitleColor(UIColor.black, for: .normal)
+        button2.setTitleColor(UIColor.black, for: .normal)
+        button3.setTitleColor(UIColor.black, for: .normal)
+        
+        //背景カラー
+        button1.backgroundColor = UIColor(hex: "FEF978")
+        button2.backgroundColor = UIColor(hex: "FEF978")
+        button3.backgroundColor = UIColor(hex: "FEF978")
+        
+        //フォントサイズ
+        Label.font = UIFont.systemFont(ofSize: 20)
+        button1.titleLabel?.font = UIFont.systemFont(ofSize: 20)
+        button2.titleLabel?.font = UIFont.systemFont(ofSize: 20)
+        button3.titleLabel?.font = UIFont.systemFont(ofSize: 20)
+        
+        //枠丸にする
+        button1.layer.cornerRadius = button1.frame.size.height * 0.5
+        button2.layer.cornerRadius = button2.frame.size.height * 0.5
+        button3.layer.cornerRadius = button3.frame.size.height * 0.5
+        
+        Label.textAlignment = NSTextAlignment.center
+        
+        //ボタンをタップしたときの処理を与える
+        button1.addTarget(self, action: #selector(TopViewController.toViewCountroller(sender:)), for: .touchUpInside)
+        button2.addTarget(self, action: #selector(TopViewController.toSingleyViewCountroller(sender:)), for: .touchUpInside)
+        button3.addTarget(self, action: #selector(TopViewController.toPlayerViewCountroller(sender:)), for: .touchUpInside)
+        
+        //Viewに追加する
+        self.view.addSubview(Label)
+        self.view.addSubview(button1)
+        self.view.addSubview(button2)
+        self.view.addSubview(button3)
     }
     
     //UIの設定
