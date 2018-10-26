@@ -16,14 +16,14 @@ PODS:
   - FirebaseAnalytics (4.1.0):
     - FirebaseCore (~> 4.0)
     - FirebaseInstanceID (~> 2.0)
-    - GoogleToolboxForMac/NSData+zlib (~> 2.1)
+    - "GoogleToolboxForMac/NSData+zlib (~> 2.1)"
     - nanopb (~> 0.3)
   - FirebaseAuth (4.4.4):
     - FirebaseAnalytics (~> 4.1)
-    - GoogleToolboxForMac/NSDictionary+URLArguments (~> 2.1)
+    - "GoogleToolboxForMac/NSDictionary+URLArguments (~> 2.1)"
     - GTMSessionFetcher/Core (~> 1.1)
   - FirebaseCore (4.0.17):
-    - GoogleToolboxForMac/NSData+zlib (~> 2.1)
+    - "GoogleToolboxForMac/NSData+zlib (~> 2.1)"
   - FirebaseDatabase (4.1.5):
     - FirebaseAnalytics (~> 4.1)
     - FirebaseCore (~> 4.0)
@@ -34,30 +34,30 @@ PODS:
     - FirebaseAnalytics (~> 4.1)
     - FirebaseCore (~> 4.0)
     - GTMSessionFetcher/Core (~> 1.1)
-  - FirebaseUI/Storage (0.7.0):
-    - Firebase/Storage
-    - SDWebImage
   - GoogleToolboxForMac/DebugUtils (2.1.3):
     - GoogleToolboxForMac/Defines (= 2.1.3)
   - GoogleToolboxForMac/Defines (2.1.3)
-  - GoogleToolboxForMac/NSData+zlib (2.1.3):
+  - "GoogleToolboxForMac/NSData+zlib (2.1.3)":
     - GoogleToolboxForMac/Defines (= 2.1.3)
-  - GoogleToolboxForMac/NSDictionary+URLArguments (2.1.3):
+  - "GoogleToolboxForMac/NSDictionary+URLArguments (2.1.3)":
     - GoogleToolboxForMac/DebugUtils (= 2.1.3)
     - GoogleToolboxForMac/Defines (= 2.1.3)
-    - GoogleToolboxForMac/NSString+URLArguments (= 2.1.3)
-  - GoogleToolboxForMac/NSString+URLArguments (2.1.3)
+    - "GoogleToolboxForMac/NSString+URLArguments (= 2.1.3)"
+  - "GoogleToolboxForMac/NSString+URLArguments (2.1.3)"
   - GTMSessionFetcher/Core (1.1.14)
   - leveldb-library (1.20)
-  - LineSDK (4.0.3)
   - nanopb (0.3.8):
     - nanopb/decode (= 0.3.8)
     - nanopb/encode (= 0.3.8)
   - nanopb/decode (0.3.8)
   - nanopb/encode (0.3.8)
-  - SDWebImage (4.3.3):
-    - SDWebImage/Core (= 4.3.3)
-  - SDWebImage/Core (4.3.3)
+  - RxCocoa (4.3.1):
+    - RxSwift (~> 4.0)
+  - RxSwift (4.3.1)
+  - SDWebImage (4.4.2):
+    - SDWebImage/Core (= 4.4.2)
+  - SDWebImage/Core (4.4.2)
+  - SnapKit (4.2.0)
   - SVProgressHUD (2.2.5)
   - TextFieldEffects (1.4.0)
   - TwitterCore (3.1.0)
@@ -69,11 +69,35 @@ DEPENDENCIES:
   - Firebase/Auth
   - Firebase/Database
   - Firebase/Storage
-  - FirebaseUI/Storage (~> 0.6)
-  - LineSDK (~> 4.0.2)
+  - RxCocoa
+  - RxSwift
+  - SDWebImage
+  - SnapKit
   - SVProgressHUD
   - TextFieldEffects
   - TwitterKit
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - Firebase
+    - FirebaseAnalytics
+    - FirebaseAuth
+    - FirebaseCore
+    - FirebaseDatabase
+    - FirebaseInstanceID
+    - FirebaseStorage
+    - GoogleToolboxForMac
+    - GTMSessionFetcher
+    - leveldb-library
+    - nanopb
+    - RxCocoa
+    - RxSwift
+    - SDWebImage
+    - SnapKit
+    - SVProgressHUD
+    - TextFieldEffects
+    - TwitterCore
+    - TwitterKit
 
 SPEC CHECKSUMS:
   Firebase: 92c6ba593e32db0defde464a9adc981d5cb49f97
@@ -83,18 +107,19 @@ SPEC CHECKSUMS:
   FirebaseDatabase: 5f0bc6134c5c237cf55f9e1249d406770a75eafd
   FirebaseInstanceID: d2058a35e9bebda1b6dd42486b84917bde552a9d
   FirebaseStorage: 9a863a2bb96c406958eeff7c2f1dfa9f44c44a13
-  FirebaseUI: 6b22f02b8992fd921116b59e8dcda688c4072517
   GoogleToolboxForMac: 2501e2ad72a52eb3dfe7bd9aee7dad11b858bd20
   GTMSessionFetcher: 390ea358e5a0d0133153806f744662dad933d06b
   leveldb-library: 08cba283675b7ed2d99629a4bc5fd052cd2bb6a5
-  LineSDK: 01a0e7206b2c459f20a2bee888553ae5dc74a709
   nanopb: 5601e6bca2dbf1ed831b519092ec110f66982ca3
-  SDWebImage: de4d90b5bff3571eae7bd16202b1f43135409fa5
+  RxCocoa: 78763c7b07d02455598d9fc3c1ad091a28b73635
+  RxSwift: fe0fd770a43acdb7d0a53da411c9b892e69bb6e4
+  SDWebImage: 624d6e296c69b244bcede364c72ae0430ac14681
+  SnapKit: fe8a619752f3f27075cc9a90244d75c6c3f27e2a
   SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
   TextFieldEffects: 4ee41b5216e674d55fb6ac25107bf1af7629176f
   TwitterCore: 644d59e75abccb26cf0a9050d2c4dea0e5412241
   TwitterKit: a2e60ddcedbf54091eac6f27685ca7a87681e1d7
 
-PODFILE CHECKSUM: 97a92a07846d32f1685f16e00dc9ca4f7e9bbe38
+PODFILE CHECKSUM: 265055f6f10ed079b2717926af456a7d1f16a747
 
-COCOAPODS: 1.4.0
+COCOAPODS: 1.5.3

@@ -10,10 +10,12 @@ target 'potipoti' do
   pod 'Firebase/Auth'
   pod 'Firebase/Storage'
   pod 'SVProgressHUD'
-  pod 'FirebaseUI/Storage', '~> 0.6'
-  pod 'LineSDK', '~> 4.0.2'
   pod 'TextFieldEffects'
   pod 'TwitterKit'
+  pod 'SnapKit'
+  pod 'RxSwift'
+  pod 'RxCocoa'
+  pod 'SDWebImage'
 
   # Pods for potipoti
 
