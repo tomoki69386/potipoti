@@ -28,9 +28,10 @@ class TopViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.navigationController?.navigationItem.title = "Home"
+        
         let heght: CGFloat = self.view.frame.height
         
-        print(heght)
         if heght == 812.0 {
             self.iPhoneXsetUP()
         }else {
@@ -40,6 +41,7 @@ class TopViewController: UIViewController {
     
     //iPhoneX用UIの設定
     func iPhoneXsetUP() {
+        //タブバーの高さ取得とナビゲーションバーの高さ取得
         let tabBarController: UITabBarController = UITabBarController()
         let tabBarHeight = tabBarController.tabBar.frame.size.height
         let navigationController: UINavigationController = UINavigationController()
@@ -172,8 +174,7 @@ class TopViewController: UIViewController {
     @objc func toViewCountroller(sender: UIButton) {
         //画面遷移
         let target = ViewController()
-//        self.navigationController?.pushViewController(target, animated: true)
-        self.present(target, animated: true, completion: nil)
+        self.navigationController?.pushViewController(target, animated: true)
     }
     
     //シングルプレイ画面に遷移する
@@ -199,6 +200,7 @@ class TopViewController: UIViewController {
         }
     }
     
+    //オンラインの対戦待ち
     func onlineBattle() {
         ref = Database.database().reference()
         
