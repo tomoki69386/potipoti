@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "A1F3AC0E9213B402AA7433C061670320"
+               BlueprintIdentifier = "5909F0CF5252E2C85E979BFE3907976A"
                BuildableName = "Pods_potipotiUITests.framework"
                BlueprintName = "Pods-potipotiUITests"
                ReferencedContainer = "container:Pods.xcodeproj">
@@ -26,7 +26,6 @@
       buildConfiguration = "Debug"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
-      language = ""
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
       </Testables>
@@ -37,7 +36,6 @@
       buildConfiguration = "Debug"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
-      language = ""
       launchStyle = "0"
       useCustomWorkingDirectory = "NO"
       ignoresPersistentStateOnLaunch = "NO"
@@ -47,7 +45,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "A1F3AC0E9213B402AA7433C061670320"
+            BlueprintIdentifier = "5909F0CF5252E2C85E979BFE3907976A"
             BuildableName = "Pods_potipotiUITests.framework"
             BlueprintName = "Pods-potipotiUITests"
             ReferencedContainer = "container:Pods.xcodeproj">

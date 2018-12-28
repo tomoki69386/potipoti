@@ -44,6 +44,13 @@
 		B799C65121D658C7008A214A /* Setting.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B799C65021D658C7008A214A /* Setting.storyboard */; };
 		B799C65321D65ACA008A214A /* Register.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B799C65221D65ACA008A214A /* Register.storyboard */; };
 		B799C65521D65ADC008A214A /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B799C65421D65ADC008A214A /* RegisterViewController.swift */; };
+		B799C65D21D65E56008A214A /* SnapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B799C65621D65E56008A214A /* SnapKit.framework */; };
+		B799C65E21D65E56008A214A /* SwiftyUserDefaults.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B799C65721D65E56008A214A /* SwiftyUserDefaults.framework */; };
+		B799C65F21D65E56008A214A /* SVProgressHUD.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B799C65821D65E56008A214A /* SVProgressHUD.framework */; };
+		B799C66021D65E56008A214A /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B799C65921D65E56008A214A /* Alamofire.framework */; };
+		B799C66121D65E56008A214A /* RxCocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B799C65A21D65E56008A214A /* RxCocoa.framework */; };
+		B799C66221D65E56008A214A /* SDWebImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B799C65B21D65E56008A214A /* SDWebImage.framework */; };
+		B799C66321D65E56008A214A /* RxSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B799C65C21D65E56008A214A /* RxSwift.framework */; };
 		B7B8EAD3205BFC560001AD20 /* FeedbackViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7B8EAD2205BFC560001AD20 /* FeedbackViewController.swift */; };
 		B7B8EAD7205CF63F0001AD20 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7B8EAD6205CF63F0001AD20 /* ProfileViewController.swift */; };
 		BDE1F648D0F1E5CFBB49728C /* Pods_potipoti.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C25FFFDE6FFE5F8A0D87EC6 /* Pods_potipoti.framework */; };
@@ -117,6 +124,13 @@
 		B799C65021D658C7008A214A /* Setting.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Setting.storyboard; sourceTree = "<group>"; };
 		B799C65221D65ACA008A214A /* Register.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Register.storyboard; sourceTree = "<group>"; };
 		B799C65421D65ADC008A214A /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
+		B799C65621D65E56008A214A /* SnapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SnapKit.framework; path = Carthage/Build/iOS/SnapKit.framework; sourceTree = "<group>"; };
+		B799C65721D65E56008A214A /* SwiftyUserDefaults.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftyUserDefaults.framework; path = Carthage/Build/iOS/SwiftyUserDefaults.framework; sourceTree = "<group>"; };
+		B799C65821D65E56008A214A /* SVProgressHUD.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SVProgressHUD.framework; path = Carthage/Build/iOS/SVProgressHUD.framework; sourceTree = "<group>"; };
+		B799C65921D65E56008A214A /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = Carthage/Build/iOS/Alamofire.framework; sourceTree = "<group>"; };
+		B799C65A21D65E56008A214A /* RxCocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxCocoa.framework; path = Carthage/Build/iOS/RxCocoa.framework; sourceTree = "<group>"; };
+		B799C65B21D65E56008A214A /* SDWebImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDWebImage.framework; path = Carthage/Build/iOS/SDWebImage.framework; sourceTree = "<group>"; };
+		B799C65C21D65E56008A214A /* RxSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxSwift.framework; path = Carthage/Build/iOS/RxSwift.framework; sourceTree = "<group>"; };
 		B7B8EAD2205BFC560001AD20 /* FeedbackViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackViewController.swift; sourceTree = "<group>"; };
 		B7B8EAD6205CF63F0001AD20 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		B91589D51E9DE14D15429104 /* Pods-potipoti.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-potipoti.release.xcconfig"; path = "Pods/Target Support Files/Pods-potipoti/Pods-potipoti.release.xcconfig"; sourceTree = "<group>"; };
@@ -128,6 +142,13 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B799C65D21D65E56008A214A /* SnapKit.framework in Frameworks */,
+				B799C65E21D65E56008A214A /* SwiftyUserDefaults.framework in Frameworks */,
+				B799C65F21D65E56008A214A /* SVProgressHUD.framework in Frameworks */,
+				B799C66021D65E56008A214A /* Alamofire.framework in Frameworks */,
+				B799C66121D65E56008A214A /* RxCocoa.framework in Frameworks */,
+				B799C66221D65E56008A214A /* SDWebImage.framework in Frameworks */,
+				B799C66321D65E56008A214A /* RxSwift.framework in Frameworks */,
 				5571630E1FB5B5110068FAE9 /* AVFoundation.framework in Frameworks */,
 				BDE1F648D0F1E5CFBB49728C /* Pods_potipoti.framework in Frameworks */,
 			);
@@ -382,6 +403,13 @@
 		BF38A0A36364975A986B9C88 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				B799C65921D65E56008A214A /* Alamofire.framework */,
+				B799C65A21D65E56008A214A /* RxCocoa.framework */,
+				B799C65C21D65E56008A214A /* RxSwift.framework */,
+				B799C65B21D65E56008A214A /* SDWebImage.framework */,
+				B799C65621D65E56008A214A /* SnapKit.framework */,
+				B799C65821D65E56008A214A /* SVProgressHUD.framework */,
+				B799C65721D65E56008A214A /* SwiftyUserDefaults.framework */,
 				5571630D1FB5B5100068FAE9 /* AVFoundation.framework */,
 				4C25FFFDE6FFE5F8A0D87EC6 /* Pods_potipoti.framework */,
 				785F1D1E84E050C20A54A9C2 /* Pods_potipotiTests.framework */,
@@ -403,6 +431,7 @@
 				55FD6DD51F1CF95200322633 /* Resources */,
 				44CB731FC8D2B54D7E2207A6 /* [CP] Embed Pods Frameworks */,
 				90B59B910AA20587FBDFD0B4 /* [CP] Copy Pods Resources */,
+				B799C66421D65E5C008A214A /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -421,8 +450,6 @@
 				55FD6DE71F1CF95300322633 /* Sources */,
 				55FD6DE81F1CF95300322633 /* Frameworks */,
 				55FD6DE91F1CF95300322633 /* Resources */,
-				D1D5D28E616FAC9DBED42D7A /* [CP] Embed Pods Frameworks */,
-				55BCEFFC76156D0EF1BCA6FE /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -442,8 +469,6 @@
 				55FD6DF21F1CF95300322633 /* Sources */,
 				55FD6DF31F1CF95300322633 /* Frameworks */,
 				55FD6DF41F1CF95300322633 /* Resources */,
-				F19F586660BAE3EFED72B8E7 /* [CP] Embed Pods Frameworks */,
-				E8E9588FA7EB759EC52F04C4 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -576,8 +601,6 @@
 				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
 				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
-				"${BUILT_PRODUCTS_DIR}/SVProgressHUD/SVProgressHUD.framework",
-				"${BUILT_PRODUCTS_DIR}/TextFieldEffects/TextFieldEffects.framework",
 				"${PODS_ROOT}/TwitterCore/iOS/TwitterCore.framework",
 				"${PODS_ROOT}/TwitterKit/iOS/TwitterKit.framework",
 				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
@@ -588,8 +611,6 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SVProgressHUD.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TextFieldEffects.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TwitterCore.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TwitterKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
@@ -598,21 +619,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-potipoti/Pods-potipoti-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		55BCEFFC76156D0EF1BCA6FE /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-potipotiTests/Pods-potipotiTests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		895DEFFCF858953E5E11F93D /* [CP] Check Pods Manifest.lock */ = {
@@ -671,50 +677,29 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		D1D5D28E616FAC9DBED42D7A /* [CP] Embed Pods Frameworks */ = {
+		B799C66421D65E5C008A214A /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
-			inputPaths = (
+			inputFileListPaths = (
 			);
-			name = "[CP] Embed Pods Frameworks";
+			inputPaths = (
+				"$(SRCROOT)/Carthage/Build/iOS/Alamofire.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/RxCocoa.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/RxSwift.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/SDWebImage.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/SnapKit.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/SVProgressHUD.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/SwiftyUserDefaults.framework",
+			);
+			outputFileListPaths = (
+			);
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-potipotiTests/Pods-potipotiTests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		E8E9588FA7EB759EC52F04C4 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-potipotiUITests/Pods-potipotiUITests-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		F19F586660BAE3EFED72B8E7 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-potipotiUITests/Pods-potipotiUITests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
+			shellScript = "/usr/local/bin/carthage copy-frameworks\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -887,6 +872,10 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = FJMPLD4D4X;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = potipoti/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -908,6 +897,10 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = FJMPLD4D4X;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = potipoti/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

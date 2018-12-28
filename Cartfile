@@ -1,0 +1,7 @@
+github "SDWebImage/SDWebImage"
+github "ReactiveX/RxSwift" ~> 4.0
+github "SnapKit/SnapKit" ~> 4.0.0
+github "Alamofire/Alamofire"
+github "radex/SwiftyUserDefaults" "4.0.0-alpha.1"
+github "SVProgressHUD/SVProgressHUD"
+
