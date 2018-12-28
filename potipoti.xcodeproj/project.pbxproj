@@ -23,7 +23,6 @@
 		55FD6DF01F1CF95300322633 /* potipotiTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55FD6DEF1F1CF95300322633 /* potipotiTests.swift */; };
 		55FD6DFB1F1CF95300322633 /* potipotiUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55FD6DFA1F1CF95300322633 /* potipotiUITests.swift */; };
 		55FD6E131F1CFA9600322633 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55FD6E0F1F1CFA9600322633 /* GameViewController.swift */; };
-		55FD6E151F1CFABC00322633 /* pvpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55FD6E141F1CFABC00322633 /* pvpViewController.swift */; };
 		55FD6E171F1CFEAB00322633 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 55FD6E161F1CFEAB00322633 /* GoogleService-Info.plist */; };
 		B700A0E1205295B300A55B79 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B700A0E0205295B300A55B79 /* AppDelegate.swift */; };
 		B700A0E3205295CB00A55B79 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B700A0E2205295CB00A55B79 /* Main.storyboard */; };
@@ -31,6 +30,20 @@
 		B700A0E7205295D600A55B79 /* TopViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B700A0E5205295D500A55B79 /* TopViewController.swift */; };
 		B77937A820CBBB8700D1258E /* SingleyViewController copy.swift in Sources */ = {isa = PBXBuildFile; fileRef = B77937A720CBBB8700D1258E /* SingleyViewController copy.swift */; };
 		B77937AA20CBCBDA00D1258E /* UIColorHex.swift in Sources */ = {isa = PBXBuildFile; fileRef = B77937A920CBCBDA00D1258E /* UIColorHex.swift */; };
+		B799C63B21D65861008A214A /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B799C63A21D65861008A214A /* Login.storyboard */; };
+		B799C63D21D65867008A214A /* New.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B799C63C21D65867008A214A /* New.storyboard */; };
+		B799C63F21D6586D008A214A /* Home.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B799C63E21D6586D008A214A /* Home.storyboard */; };
+		B799C64121D65874008A214A /* Profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B799C64021D65874008A214A /* Profile.storyboard */; };
+		B799C64321D6587B008A214A /* Edit.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B799C64221D6587B008A214A /* Edit.storyboard */; };
+		B799C64521D65882008A214A /* Single.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B799C64421D65882008A214A /* Single.storyboard */; };
+		B799C64721D6588B008A214A /* Player.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B799C64621D6588B008A214A /* Player.storyboard */; };
+		B799C64921D65896008A214A /* Member.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B799C64821D65896008A214A /* Member.storyboard */; };
+		B799C64B21D6589C008A214A /* Host.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B799C64A21D6589C008A214A /* Host.storyboard */; };
+		B799C64D21D658A6008A214A /* Game.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B799C64C21D658A6008A214A /* Game.storyboard */; };
+		B799C64F21D658C0008A214A /* Choices.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B799C64E21D658C0008A214A /* Choices.storyboard */; };
+		B799C65121D658C7008A214A /* Setting.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B799C65021D658C7008A214A /* Setting.storyboard */; };
+		B799C65321D65ACA008A214A /* Register.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B799C65221D65ACA008A214A /* Register.storyboard */; };
+		B799C65521D65ADC008A214A /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B799C65421D65ADC008A214A /* RegisterViewController.swift */; };
 		B7B8EAD3205BFC560001AD20 /* FeedbackViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7B8EAD2205BFC560001AD20 /* FeedbackViewController.swift */; };
 		B7B8EAD7205CF63F0001AD20 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7B8EAD6205CF63F0001AD20 /* ProfileViewController.swift */; };
 		BDE1F648D0F1E5CFBB49728C /* Pods_potipoti.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C25FFFDE6FFE5F8A0D87EC6 /* Pods_potipoti.framework */; };
@@ -78,7 +91,6 @@
 		55FD6DFA1F1CF95300322633 /* potipotiUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = potipotiUITests.swift; sourceTree = "<group>"; };
 		55FD6DFC1F1CF95300322633 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		55FD6E0F1F1CFA9600322633 /* GameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
-		55FD6E141F1CFABC00322633 /* pvpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = pvpViewController.swift; sourceTree = "<group>"; };
 		55FD6E161F1CFEAB00322633 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		785F1D1E84E050C20A54A9C2 /* Pods_potipotiTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_potipotiTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7B5A15674D90DBCC3EAE5EAB /* Pods-potipotiUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-potipotiUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-potipotiUITests/Pods-potipotiUITests.release.xcconfig"; sourceTree = "<group>"; };
@@ -91,6 +103,20 @@
 		B700A0E5205295D500A55B79 /* TopViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TopViewController.swift; sourceTree = "<group>"; };
 		B77937A720CBBB8700D1258E /* SingleyViewController copy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SingleyViewController copy.swift"; sourceTree = "<group>"; };
 		B77937A920CBCBDA00D1258E /* UIColorHex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorHex.swift; sourceTree = "<group>"; };
+		B799C63A21D65861008A214A /* Login.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
+		B799C63C21D65867008A214A /* New.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = New.storyboard; sourceTree = "<group>"; };
+		B799C63E21D6586D008A214A /* Home.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Home.storyboard; sourceTree = "<group>"; };
+		B799C64021D65874008A214A /* Profile.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Profile.storyboard; sourceTree = "<group>"; };
+		B799C64221D6587B008A214A /* Edit.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Edit.storyboard; sourceTree = "<group>"; };
+		B799C64421D65882008A214A /* Single.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Single.storyboard; sourceTree = "<group>"; };
+		B799C64621D6588B008A214A /* Player.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Player.storyboard; sourceTree = "<group>"; };
+		B799C64821D65896008A214A /* Member.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Member.storyboard; sourceTree = "<group>"; };
+		B799C64A21D6589C008A214A /* Host.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Host.storyboard; sourceTree = "<group>"; };
+		B799C64C21D658A6008A214A /* Game.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Game.storyboard; sourceTree = "<group>"; };
+		B799C64E21D658C0008A214A /* Choices.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Choices.storyboard; sourceTree = "<group>"; };
+		B799C65021D658C7008A214A /* Setting.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Setting.storyboard; sourceTree = "<group>"; };
+		B799C65221D65ACA008A214A /* Register.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Register.storyboard; sourceTree = "<group>"; };
+		B799C65421D65ADC008A214A /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		B7B8EAD2205BFC560001AD20 /* FeedbackViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackViewController.swift; sourceTree = "<group>"; };
 		B7B8EAD6205CF63F0001AD20 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		B91589D51E9DE14D15429104 /* Pods-potipoti.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-potipoti.release.xcconfig"; path = "Pods/Target Support Files/Pods-potipoti/Pods-potipoti.release.xcconfig"; sourceTree = "<group>"; };
@@ -166,25 +192,15 @@
 		55FD6DD91F1CF95200322633 /* potipoti */ = {
 			isa = PBXGroup;
 			children = (
-				B7B8EAD2205BFC560001AD20 /* FeedbackViewController.swift */,
-				55CB56441F442D5400F6F9B2 /* PlayerViewController.swift */,
-				55CB56421F436EC200F6F9B2 /* Profile_EditViewController.swift */,
-				B7B8EAD6205CF63F0001AD20 /* ProfileViewController.swift */,
-				55DA5F1C1F2B33F800EB689D /* newViewController.swift */,
-				55EF4FA51F2332B000233C2E /* LoginViewController.swift */,
-				B700A0E5205295D500A55B79 /* TopViewController.swift */,
-				B700A0E4205295D500A55B79 /* ViewController.swift */,
-				55FD6E0F1F1CFA9600322633 /* GameViewController.swift */,
+				B799C62A21D6568D008A214A /* Storyboard */,
+				B799C62D21D656A1008A214A /* Model */,
+				B799C62C21D6569D008A214A /* View */,
+				B799C62B21D65699008A214A /* API */,
 				B700A0E2205295CB00A55B79 /* Main.storyboard */,
-				55DFCDB01F55914E000E54DC /* MemberViewController.swift */,
-				55DFCDB21F55915C000E54DC /* HostViewController.swift */,
 				55FD6DE11F1CF95200322633 /* Assets.xcassets */,
-				B700A0E0205295B300A55B79 /* AppDelegate.swift */,
 				55FD6DE31F1CF95200322633 /* LaunchScreen.storyboard */,
 				55FD6DE61F1CF95200322633 /* Info.plist */,
 				55FD6E161F1CFEAB00322633 /* GoogleService-Info.plist */,
-				55CB56401F43345700F6F9B2 /* TabBarController.swift */,
-				55FD6E141F1CFABC00322633 /* pvpViewController.swift */,
 				5588366C1FB5B691008E25D6 /* ハズレ.mp3 */,
 				5588366D1FB5B691008E25D6 /* 正解.mp3 */,
 			);
@@ -207,6 +223,160 @@
 				55FD6DFC1F1CF95300322633 /* Info.plist */,
 			);
 			path = potipotiUITests;
+			sourceTree = "<group>";
+		};
+		B799C62A21D6568D008A214A /* Storyboard */ = {
+			isa = PBXGroup;
+			children = (
+				B799C63221D656C6008A214A /* Setting */,
+				B799C63821D65788008A214A /* Offline */,
+				B799C63121D656C0008A214A /* Online */,
+				B799C63021D656BB008A214A /* User */,
+				B799C62F21D656B6008A214A /* Home */,
+				B799C62E21D656AD008A214A /* Register */,
+			);
+			name = Storyboard;
+			sourceTree = "<group>";
+		};
+		B799C62B21D65699008A214A /* API */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = API;
+			sourceTree = "<group>";
+		};
+		B799C62C21D6569D008A214A /* View */ = {
+			isa = PBXGroup;
+			children = (
+				B700A0E0205295B300A55B79 /* AppDelegate.swift */,
+				55CB56401F43345700F6F9B2 /* TabBarController.swift */,
+				B799C63721D656ED008A214A /* Setting */,
+				B799C63921D6578E008A214A /* Offline */,
+				B799C63621D656E3008A214A /* Online */,
+				B799C63521D656DC008A214A /* User */,
+				B799C63421D656D7008A214A /* Home */,
+				B799C63321D656CF008A214A /* Register */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		B799C62D21D656A1008A214A /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		B799C62E21D656AD008A214A /* Register */ = {
+			isa = PBXGroup;
+			children = (
+				B799C63A21D65861008A214A /* Login.storyboard */,
+				B799C63C21D65867008A214A /* New.storyboard */,
+				B799C65221D65ACA008A214A /* Register.storyboard */,
+			);
+			path = Register;
+			sourceTree = "<group>";
+		};
+		B799C62F21D656B6008A214A /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				B799C63E21D6586D008A214A /* Home.storyboard */,
+			);
+			name = Home;
+			sourceTree = "<group>";
+		};
+		B799C63021D656BB008A214A /* User */ = {
+			isa = PBXGroup;
+			children = (
+				B799C64021D65874008A214A /* Profile.storyboard */,
+				B799C64221D6587B008A214A /* Edit.storyboard */,
+				B799C64421D65882008A214A /* Single.storyboard */,
+			);
+			name = User;
+			sourceTree = "<group>";
+		};
+		B799C63121D656C0008A214A /* Online */ = {
+			isa = PBXGroup;
+			children = (
+				B799C64621D6588B008A214A /* Player.storyboard */,
+				B799C64821D65896008A214A /* Member.storyboard */,
+				B799C64A21D6589C008A214A /* Host.storyboard */,
+			);
+			path = Online;
+			sourceTree = "<group>";
+		};
+		B799C63221D656C6008A214A /* Setting */ = {
+			isa = PBXGroup;
+			children = (
+				B799C65021D658C7008A214A /* Setting.storyboard */,
+			);
+			name = Setting;
+			sourceTree = "<group>";
+		};
+		B799C63321D656CF008A214A /* Register */ = {
+			isa = PBXGroup;
+			children = (
+				55EF4FA51F2332B000233C2E /* LoginViewController.swift */,
+				B799C65421D65ADC008A214A /* RegisterViewController.swift */,
+				55DA5F1C1F2B33F800EB689D /* newViewController.swift */,
+			);
+			name = Register;
+			path = "New Group";
+			sourceTree = "<group>";
+		};
+		B799C63421D656D7008A214A /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				B700A0E5205295D500A55B79 /* TopViewController.swift */,
+			);
+			name = Home;
+			sourceTree = "<group>";
+		};
+		B799C63521D656DC008A214A /* User */ = {
+			isa = PBXGroup;
+			children = (
+				B7B8EAD6205CF63F0001AD20 /* ProfileViewController.swift */,
+				55CB56421F436EC200F6F9B2 /* Profile_EditViewController.swift */,
+			);
+			name = User;
+			sourceTree = "<group>";
+		};
+		B799C63621D656E3008A214A /* Online */ = {
+			isa = PBXGroup;
+			children = (
+				55DFCDB01F55914E000E54DC /* MemberViewController.swift */,
+				55DFCDB21F55915C000E54DC /* HostViewController.swift */,
+				55CB56441F442D5400F6F9B2 /* PlayerViewController.swift */,
+			);
+			name = Online;
+			path = "New Group1";
+			sourceTree = "<group>";
+		};
+		B799C63721D656ED008A214A /* Setting */ = {
+			isa = PBXGroup;
+			children = (
+				B7B8EAD2205BFC560001AD20 /* FeedbackViewController.swift */,
+			);
+			name = Setting;
+			sourceTree = "<group>";
+		};
+		B799C63821D65788008A214A /* Offline */ = {
+			isa = PBXGroup;
+			children = (
+				B799C64C21D658A6008A214A /* Game.storyboard */,
+				B799C64E21D658C0008A214A /* Choices.storyboard */,
+			);
+			path = Offline;
+			sourceTree = "<group>";
+		};
+		B799C63921D6578E008A214A /* Offline */ = {
+			isa = PBXGroup;
+			children = (
+				B700A0E4205295D500A55B79 /* ViewController.swift */,
+				55FD6E0F1F1CFA9600322633 /* GameViewController.swift */,
+			);
+			name = Offline;
+			path = "New Group2";
 			sourceTree = "<group>";
 		};
 		BF38A0A36364975A986B9C88 /* Frameworks */ = {
@@ -335,12 +505,25 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B799C64D21D658A6008A214A /* Game.storyboard in Resources */,
 				552E77C81FBEFBC0000B9021 /* 正解.mp3 in Resources */,
 				552E77C71FBEFBBA000B9021 /* ハズレ.mp3 in Resources */,
+				B799C64F21D658C0008A214A /* Choices.storyboard in Resources */,
+				B799C64121D65874008A214A /* Profile.storyboard in Resources */,
+				B799C65121D658C7008A214A /* Setting.storyboard in Resources */,
+				B799C63B21D65861008A214A /* Login.storyboard in Resources */,
+				B799C63F21D6586D008A214A /* Home.storyboard in Resources */,
+				B799C64721D6588B008A214A /* Player.storyboard in Resources */,
+				B799C64921D65896008A214A /* Member.storyboard in Resources */,
 				55FD6DE51F1CF95200322633 /* LaunchScreen.storyboard in Resources */,
 				B700A0E3205295CB00A55B79 /* Main.storyboard in Resources */,
 				55FD6E171F1CFEAB00322633 /* GoogleService-Info.plist in Resources */,
 				55FD6DE21F1CF95200322633 /* Assets.xcassets in Resources */,
+				B799C65321D65ACA008A214A /* Register.storyboard in Resources */,
+				B799C64321D6587B008A214A /* Edit.storyboard in Resources */,
+				B799C64521D65882008A214A /* Single.storyboard in Resources */,
+				B799C64B21D6589C008A214A /* Host.storyboard in Resources */,
+				B799C63D21D65867008A214A /* New.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -493,8 +676,8 @@
 				55DA5F1D1F2B33F800EB689D /* newViewController.swift in Sources */,
 				B700A0E6205295D600A55B79 /* ViewController.swift in Sources */,
 				55CB56451F442D5400F6F9B2 /* PlayerViewController.swift in Sources */,
+				B799C65521D65ADC008A214A /* RegisterViewController.swift in Sources */,
 				55CB56431F436EC200F6F9B2 /* Profile_EditViewController.swift in Sources */,
-				55FD6E151F1CFABC00322633 /* pvpViewController.swift in Sources */,
 				B7B8EAD7205CF63F0001AD20 /* ProfileViewController.swift in Sources */,
 				B7B8EAD3205BFC560001AD20 /* FeedbackViewController.swift in Sources */,
 				55CB56411F43345700F6F9B2 /* TabBarController.swift in Sources */,

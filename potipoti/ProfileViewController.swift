@@ -19,10 +19,11 @@ import Social //ios10以下用
 
 class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
-    @IBOutlet var ImageView: UIImageView!
-    @IBOutlet var userNameLabel: UILabel!
-    @IBOutlet var button1: UIButton!
-    @IBOutlet var TableView: UITableView!
+    let ImageView = UIImageView()
+    let userNameLabel = UILabel()
+    let button1 = UIButton()
+    let TableView = UITableView()
+    
     var userId: String?//Twitter
     
     let userDefault = UserDefaults.standard
@@ -35,12 +36,74 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        let heght = self.view.frame.height
+        
+        if heght == 812.0 {
+            self.iPhoneXsetUI()
+        }else {
+            self.setUI()
+        }
+        
+        //オンライン対戦の挑戦が来たの処理
+        self.onlineBattle()
+        
+    }
+    
+    func setUI() {
+        //スクリーンサイズ
+        let screenWidth = self.view.frame.width
+        let screenHeight = self.view.frame.height
+        
+        //tabBarのサイズ取得
+        let tabBarController: UITabBarController = UITabBarController()
+        let tabBarHeight = tabBarController.tabBar.frame.size.height
+        let statusbarHeight = UIApplication.shared.statusBarFrame.size.height
+        
+        let buttonSize = screenWidth / 4
+        let user = Auth.auth().currentUser
+        
+        ImageView.frame = CGRect(x: buttonSize, y: statusbarHeight, width: buttonSize * 2, height: buttonSize * 2)
+        userNameLabel.frame = CGRect(x: 0, y: statusbarHeight + buttonSize * 2, width: screenWidth, height: buttonSize / 2)
+        button1.frame = CGRect(x: buttonSize, y: statusbarHeight + buttonSize * 2 + buttonSize / 2, width: buttonSize * 2, height: buttonSize / 2)
+        TableView.frame = CGRect(x: 0, y: statusbarHeight + buttonSize * 2 + buttonSize, width: screenWidth, height: screenWidth - (statusbarHeight + buttonSize * 2 + buttonSize))
+        
+        //テキストを設定する
+        button1.setTitle("プロフィールを変更する", for: .normal)
+        userNameLabel.text = user?.displayName
+        userNameLabel.textAlignment = NSTextAlignment.center
+        
+        //テキストのカラーを設定する
+        button1.setTitleColor(UIColor.black, for: .normal)
+        userNameLabel.textColor = UIColor.black
+        
+        //ボタンを枠丸にする
+        button1.layer.cornerRadius = 5
+        ImageView.layer.cornerRadius = self.ImageView.frame.width / 2
+        
+        //ボタンに幅を付ける
+        button1.layer.borderWidth = 1
+        
+        //ボタンの幅のカラーを設定する
+        button1.layer.borderColor = UIColor.black.cgColor
+        
+        //viewに追加する
+        self.view.addSubview(button1)
+        self.view.addSubview(ImageView)
+        self.view.addSubview(userNameLabel)
+        self.view.addSubview(TableView)
+    }
+    
+    func iPhoneXsetUI() {
+        
+    }
+    
+    func onlineBattle() {
         let dict = ["firstLaunch": true]
         userDefault.register(defaults: dict)
         
         if userDefault.bool(forKey: "firstLaunch") {
-            let targetViewController = self.storyboard!.instantiateViewController( withIdentifier: "newViewController" ) as! newViewController
-            self.present( targetViewController, animated: true, completion: nil)
+            let target = newViewController()
+            self.present( target, animated: true, completion: nil)
             return
         }else {
             let user = Auth.auth().currentUser
@@ -113,60 +176,6 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
                     }
                 }
             })
-        }
-    }
-    
-    //画面を開いたとき
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        let dict = ["firstLaunch": true]
-        userDefault.register(defaults: dict)
-        if userDefault.bool(forKey: "firstLaunch") {
-            return
-        }else {
-            
-            let user = Auth.auth().currentUser
-            let uid = user?.uid
-            
-            if (UserDefaults.standard.object(forKey: "MyPhoto") != nil) {
-                print("データ有り")
-                let imageDate:NSData = UserDefaults.standard.object(forKey: "MyPhoto") as! NSData
-                ImageView.image = UIImage(data:imageDate as Data)
-            }else {
-                print("データ無し")
-                //ここに画像を入れる
-                ImageView.image = #imageLiteral(resourceName: "account.png")
-                
-                let num = Int(arc4random_uniform(9))
-                
-                //画像データがない時10%の確率でアラートを表示する
-                if num == 0 {
-                    self.Alert()
-                }
-            }
-            
-            let storage = Storage.storage()
-            let storageRef = storage.reference(forURL: "gs://potipoti-e1d0e.appspot.com/image")
-            
-            if ImageView.image == nil {
-                print("UIImageViewに画像がないとき")
-                // Create a reference to the file you want to download
-                let islandRef = storageRef.child("\(uid).jpg")
-                
-                // Download in memory with a maximum allowed size of 1MB (1 * 1024 * 1024 bytes)
-                islandRef.getData(maxSize: 50 * 1024 * 1024) { (data, error) -> Void in
-                    if (error != nil) {
-                        // Uh-oh, an error occurred!
-                        print("エラーの内容は...\(error)")
-                        self.Alert()
-                    } else {
-                        // Data for "images/island.jpg" is returned
-                        self.ImageView.image = UIImage(data: data!)
-                        self.self.userDefault.set(UIImagePNGRepresentation(self.ImageView.image!), forKey: "MyPhoto")
-                    }
-                }
-            }
         }
     }
     
@@ -315,6 +324,60 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         }))
         // アラート表示
         self.present(alert, animated: true, completion: nil)
+    }
+    
+    //画面を開いたとき
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        let dict = ["firstLaunch": true]
+        userDefault.register(defaults: dict)
+        if userDefault.bool(forKey: "firstLaunch") {
+            return
+        }else {
+            
+            let user = Auth.auth().currentUser
+            let uid = user?.uid
+            
+            if (UserDefaults.standard.object(forKey: "MyPhoto") != nil) {
+                print("データ有り")
+                let imageDate:NSData = UserDefaults.standard.object(forKey: "MyPhoto") as! NSData
+                ImageView.image = UIImage(data:imageDate as Data)
+            }else {
+                print("データ無し")
+                //ここに画像を入れる
+                ImageView.image = #imageLiteral(resourceName: "account.png")
+                
+                let num = Int(arc4random_uniform(9))
+                
+                //画像データがない時10%の確率でアラートを表示する
+                if num == 0 {
+                    self.Alert()
+                }
+            }
+            
+            let storage = Storage.storage()
+            let storageRef = storage.reference(forURL: "gs://potipoti-e1d0e.appspot.com/image")
+            
+            if ImageView.image == nil {
+                print("UIImageViewに画像がないとき")
+                // Create a reference to the file you want to download
+                let islandRef = storageRef.child("\(uid).jpg")
+                
+                // Download in memory with a maximum allowed size of 1MB (1 * 1024 * 1024 bytes)
+                islandRef.getData(maxSize: 50 * 1024 * 1024) { (data, error) -> Void in
+                    if (error != nil) {
+                        // Uh-oh, an error occurred!
+                        print("エラーの内容は...\(error)")
+                        self.Alert()
+                    } else {
+                        // Data for "images/island.jpg" is returned
+                        self.ImageView.image = UIImage(data: data!)
+                        self.self.userDefault.set(UIImagePNGRepresentation(self.ImageView.image!), forKey: "MyPhoto")
+                    }
+                }
+            }
+        }
     }
     
     override func didReceiveMemoryWarning() {
